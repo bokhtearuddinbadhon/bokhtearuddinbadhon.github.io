@@ -244,3 +244,15 @@ body {
   color: #e0e0e0;
   position: relative;
 }
+/* Ensure the body and HTML have a dark theme background and allow canvas to show */
+html, body {
+  background-color: #0d0f12 !important;
+  color: #e0e0e0;
+  overflow-x: hidden;
+  position: relative;
+}
+
+/* Ensure all major sections have a transparent or semi-transparent background so the mechanical canvas is visible underneath */
+section, .navbar, footer {
+  background-color: transparent !important;
+}
