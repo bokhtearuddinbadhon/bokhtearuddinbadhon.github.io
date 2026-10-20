@@ -235,6 +235,11 @@ footer {
     font-size: 0.9rem;
     border-top: 1px solid var(--border-color);
 }
+body {
+  background-color: #0d0f12;
+  color: #e0e0e0;
+  position: relative;
+}
 
 @media (max-width: 768px) {
     .hero h1 { font-size: 2.5rem; }
