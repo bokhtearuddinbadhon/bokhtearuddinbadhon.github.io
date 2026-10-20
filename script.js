@@ -274,8 +274,8 @@ function draw() {
     ctx.save();
     ctx.translate(item.x, item.y);
     ctx.rotate(item.rotation);
-    ctx.font = `${item.fontSize}px sans-serif`;
-    ctx.globalAlpha = item.opacity;
+    ctx.font = `bold ${item.fontSize + 4}px sans-serif`; 
+    ctx.globalAlpha = 0.35; 
     ctx.fillText(item.symbol, 0, 0);
     ctx.restore();
 
@@ -284,5 +284,3 @@ function draw() {
 
   requestAnimationFrame(draw);
 }
-
-draw();
