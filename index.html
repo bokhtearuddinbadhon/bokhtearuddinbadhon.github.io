@@ -6,8 +6,22 @@
     <title>Bokhtear Uddin Badhon - United Kingdom | Professional Profile</title>
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+  /* Mechanical background canvas styling */
+  #mech-background {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 1;
+    opacity: 0.15;
+    pointer-events: none;
+  }
+</style>
 </head>
 <body>
+    <canvas id="mech-background"></canvas>
 
     <!-- Canvas for Mechanical Blueprint Grid Background Animation -->
     <canvas id="bgCanvas"></canvas>
