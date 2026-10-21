@@ -38,9 +38,9 @@ function draw() {
     ctx.rotate(item.rotation);
     ctx.font = `bold ${item.fontSize}px sans-serif`; 
     
-    // স্বচ্ছতা বা Opacity কমিয়ে একদম হালকা ও ব্যাকগ্রাউন্ডমুখী করা হলো (0.40)
+    // স্বচ্ছতা বা Opacity কমিয়ে একদম হালকা ও ব্যাকগ্রাউন্ডমুখী করা হলো (0.38)
     // যাতে মূল লেখা, নাম বা এবাউট সেকশনই ফোকাসে থাকে এবং ব্যাকগ্রাউন্ড একদম বিরক্তিকর না লাগে।
-    ctx.globalAlpha = 0.40; 
+    ctx.globalAlpha = 0.38; 
     
     ctx.fillText(item.symbol, 0, 0);
     ctx.restore();
