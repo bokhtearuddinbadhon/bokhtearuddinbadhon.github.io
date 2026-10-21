@@ -11,8 +11,7 @@ resizeCanvas();
 // মেকানিক্যাল সিম্বল বা আইকনসমূহ
 const mechSymbols = ['⚙', '🔩', '🔧', '🛠', '⚙️', '📐'];
 const items = [];
-// ঘনত্ব কমিয়ে আগের অবস্থায় ফিরিয়ে আনা হলো (reduced density for spacing)
-// আইটেমের সংখ্যা নির্ধারণে ভাজক ৪০০০ থেকে বাড়িয়ে ৮০০০ করা হলো
+// একদম প্রথমবারের মতো একদম পারফেক্ট ফাঁকা বা স্পেসিং ফিরিয়ে আনা হলো (৮০০০ দিয়ে ভাগ)
 const itemCount = Math.floor((canvas.width * canvas.height) / 8000); 
 
 for (let i = 0; i < itemCount; i++) {
@@ -20,7 +19,7 @@ for (let i = 0; i < itemCount; i++) {
     x: Math.random() * canvas.width,
     y: Math.random() * canvas.height,
     symbol: mechSymbols[Math.floor(Math.random() * mechSymbols.length)],
-    // সাইজ কমিয়ে আগের অবস্থায় ফিরিয়ে আনা হলো (smaller size)
+    // একদম প্রথমবারের সাইজ ফিরিয়ে আনা হলো
     fontSize: Math.random() * 14 + 14, 
     rotation: Math.random() * Math.PI * 2,
     rotSpeed: (Math.random() - 0.5) * 0.005
@@ -30,7 +29,7 @@ for (let i = 0; i < itemCount; i++) {
 function draw() {
   ctx.clearRect(0, 0, canvas.width, canvas.height);
   
-  // আগের উজ্জ্বল অ্যাম্বার গোল্ড (#f59e0b) কালার ব্যবহার করা হলো
+  // আসল অ্যাম্বার গোল্ড কালার
   ctx.fillStyle = '#f59e0b'; 
 
   items.forEach(item => {
@@ -39,9 +38,10 @@ function draw() {
     ctx.rotate(item.rotation);
     ctx.font = `bold ${item.fontSize}px sans-serif`; 
     
-    // স্বচ্ছতা (Opacity) ০.৩৫ থেকে বাড়িয়ে ০.৫৫ করা হলো 
-    // যাতে ফাঁকা ফাঁকা ভাব থাকে কিন্তু আইকনগুলো লো-ব্রাইটনেসেও একটু বেশি স্পষ্ট হয়
-    ctx.globalAlpha = 0.55; 
+    // একদম প্রথমবার ছিল ০.৩৫, সেখান থেকে সামান্য একটু বাড়িয়ে 0.45 করা হলো 
+    // যাতে লেখাগুলো কোনোভাবেই ঢাকা না পড়ে এবং ঘিজিবিজি না লাগে, 
+    // অথচ লো-ব্রাইটনেসেও যেন খুব হালকা ও সাবলীলভাবে আইকনগুলো দৃশ্যমান হয়।
+    ctx.globalAlpha = 0.45; 
     
     ctx.fillText(item.symbol, 0, 0);
     ctx.restore();
