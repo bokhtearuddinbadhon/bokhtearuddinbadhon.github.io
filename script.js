@@ -38,10 +38,10 @@ function draw() {
     ctx.rotate(item.rotation);
     ctx.font = `bold ${item.fontSize}px sans-serif`; 
     
-    // একদম প্রথমবার ছিল ০.৩৫, সেখান থেকে সামান্য একটু বাড়িয়ে 0.45 করা হলো 
+    // একদম প্রথমবার ছিল ০.৩৫, সেখান থেকে সামান্য একটু বাড়িয়ে 0.42 করা হলো 
     // যাতে লেখাগুলো কোনোভাবেই ঢাকা না পড়ে এবং ঘিজিবিজি না লাগে, 
     // অথচ লো-ব্রাইটনেসেও যেন খুব হালকা ও সাবলীলভাবে আইকনগুলো দৃশ্যমান হয়।
-    ctx.globalAlpha = 0.45; 
+    ctx.globalAlpha = 0.42; 
     
     ctx.fillText(item.symbol, 0, 0);
     ctx.restore();
