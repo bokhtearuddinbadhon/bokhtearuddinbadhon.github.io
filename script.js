@@ -11,46 +11,39 @@ resizeCanvas();
 // মেকানিক্যাল সিম্বল বা আইকনসমূহ
 const mechSymbols = ['⚙', '🔩', '🔧', '🛠', '⚙️', '📐'];
 const items = [];
-// ঘনত্ব বাড়ানোর জন্য আইটেমের সংখ্যা আরেকটু বাড়ানো হলো (increase density for clarity)
-const itemCount = Math.floor((canvas.width * canvas.height) / 3500); 
+// ঘনত্ব কমিয়ে আগের অবস্থায় ফিরিয়ে আনা হলো (reduced density for spacing)
+// আইটেমের সংখ্যা নির্ধারণে ভাজক ৪০০০ থেকে বাড়িয়ে ৮০০০ করা হলো
+const itemCount = Math.floor((canvas.width * canvas.height) / 8000); 
 
 for (let i = 0; i < itemCount; i++) {
   items.push({
     x: Math.random() * canvas.width,
     y: Math.random() * canvas.height,
     symbol: mechSymbols[Math.floor(Math.random() * mechSymbols.length)],
-    // আকার আরেকটু বড় করা হলো যাতে লো-ব্রাইটনেসেও সহজে দেখা যায়
-    fontSize: Math.random() * 26 + 22, 
+    // সাইজ কমিয়ে আগের অবস্থায় ফিরিয়ে আনা হলো (smaller size)
+    fontSize: Math.random() * 14 + 14, 
     rotation: Math.random() * Math.PI * 2,
-    rotSpeed: (Math.random() - 0.5) * 0.007 // ঘূর্ণন গতি ঠিক রাখা হলো
+    rotSpeed: (Math.random() - 0.5) * 0.005
   });
 }
 
 function draw() {
   ctx.clearRect(0, 0, canvas.width, canvas.height);
   
+  // আগের উজ্জ্বল অ্যাম্বার গোল্ড (#f59e0b) কালার ব্যবহার করা হলো
+  ctx.fillStyle = '#f59e0b'; 
+
   items.forEach(item => {
     ctx.save();
     ctx.translate(item.x, item.y);
     ctx.rotate(item.rotation);
     ctx.font = `bold ${item.fontSize}px sans-serif`; 
     
-    // স্বচ্ছতা বা Opacity পুরোপুরি ১.০ (অর্থাৎ ১০০% স্পষ্ট এবং উজ্জ্বল)
-    ctx.globalAlpha = 1.0; 
-
-    // লো-ব্রাইটনেসে বা গাঢ় ব্যাকগ্রাউন্ডে স্পষ্ট দেখতে হালকা অ্যাম্বার কালার ব্যবহার করা হলো
-    // (উজ্জ্বল অ্যাম্বার গোল্ড #f59e0b থেকে উজ্জ্বল হলুদ #ffcc00 তে পরিবর্তন)
-    // এটি কনট্রাস্ট বা উজ্জ্বলতা বাড়াতে সাহায্য করবে।
-    ctx.fillStyle = '#ffcc00'; 
+    // স্বচ্ছতা (Opacity) ০.৩৫ থেকে বাড়িয়ে ০.৫৫ করা হলো 
+    // যাতে ফাঁকা ফাঁকা ভাব থাকে কিন্তু আইকনগুলো লো-ব্রাইটনেসেও একটু বেশি স্পষ্ট হয়
+    ctx.globalAlpha = 0.55; 
     
-    // টেক্সট ফিল করার পর আমরা তার উপর আবার স্টোক (বর্ডার) দিব যাতে উজ্জ্বলতা বাড়ে
     ctx.fillText(item.symbol, 0, 0);
-
-    // ১.৫ পিক্সেল চওড়া হালকা অ্যাম্বার গোল্ড স্টোক (বর্ডার) দেওয়া হলো
-    ctx.lineWidth = 1.5;
-    ctx.strokeStyle = '#ffcc00'; // একই হালকা রঙ ব্যবহার করা হলো
-    ctx.strokeText(item.symbol, 0, 0);
-
     ctx.restore();
 
     item.rotation += item.rotSpeed;
