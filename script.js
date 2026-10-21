@@ -11,7 +11,7 @@ resizeCanvas();
 // মেকানিক্যাল সিম্বল বা আইকনসমূহ
 const mechSymbols = ['⚙', '🔩', '🔧', '🛠', '⚙️', '📐'];
 const items = [];
-// একদম প্রথমবারের মতো একদম পারফেক্ট ফাঁকা বা স্পেসিং ফিরিয়ে আনা হলো (৮০০০ দিয়ে ভাগ)
+// একদম প্রথমবার যেমন ফাঁকা ফাঁকা ও গোছানো ছিল, সেটাই রাখা হলো (৮০০০ দিয়ে ভাগ)
 const itemCount = Math.floor((canvas.width * canvas.height) / 8000); 
 
 for (let i = 0; i < itemCount; i++) {
@@ -19,7 +19,7 @@ for (let i = 0; i < itemCount; i++) {
     x: Math.random() * canvas.width,
     y: Math.random() * canvas.height,
     symbol: mechSymbols[Math.floor(Math.random() * mechSymbols.length)],
-    // একদম প্রথমবারের সাইজ ফিরিয়ে আনা হলো
+    // একদম প্রথমবারের মতো স্বাভাবিক সাইজ
     fontSize: Math.random() * 14 + 14, 
     rotation: Math.random() * Math.PI * 2,
     rotSpeed: (Math.random() - 0.5) * 0.005
@@ -38,10 +38,9 @@ function draw() {
     ctx.rotate(item.rotation);
     ctx.font = `bold ${item.fontSize}px sans-serif`; 
     
-    // একদম প্রথমবার ছিল ০.৩৫, সেখান থেকে সামান্য একটু বাড়িয়ে 0.42 করা হলো 
-    // যাতে লেখাগুলো কোনোভাবেই ঢাকা না পড়ে এবং ঘিজিবিজি না লাগে, 
-    // অথচ লো-ব্রাইটনেসেও যেন খুব হালকা ও সাবলীলভাবে আইকনগুলো দৃশ্যমান হয়।
-    ctx.globalAlpha = 0.42; 
+    // স্বচ্ছতা বা Opacity কমিয়ে একদম হালকা ও ব্যাকগ্রাউন্ডমুখী করা হলো (০.৩০)
+    // যাতে মূল লেখা, নাম বা এবাউট সেকশনই ফোকাসে থাকে এবং ব্যাকগ্রাউন্ড একদম বিরক্তিকর না লাগে।
+    ctx.globalAlpha = 0.30; 
     
     ctx.fillText(item.symbol, 0, 0);
     ctx.restore();
