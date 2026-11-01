@@ -8,9 +8,9 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
         .project-detail-container {
-            max-width: 900px;
+            max-width: 960px;
             margin: 100px auto 60px;
-            padding: 0 25px;
+            padding: 0 24px;
             color: #e2e8f0;
             line-height: 1.7;
         }
@@ -21,14 +21,14 @@
             color: #f59e0b;
             text-decoration: none;
             font-weight: 600;
-            margin-bottom: 30px;
+            margin-bottom: 25px;
             transition: transform 0.2s;
         }
         .back-link:hover {
             transform: translateX(-5px);
         }
         .detail-header {
-            margin-bottom: 40px;
+            margin-bottom: 30px;
             border-bottom: 1px solid rgba(255, 255, 255, 0.1);
             padding-bottom: 25px;
         }
@@ -38,20 +38,54 @@
             color: #f59e0b;
             border: 1px solid #f59e0b;
             border-radius: 20px;
-            padding: 5px 15px;
+            padding: 4px 14px;
             font-size: 0.85rem;
             font-weight: 600;
-            margin-bottom: 15px;
+            margin-bottom: 12px;
         }
         .detail-title {
-            font-size: 2.3rem;
-            margin-bottom: 12px;
+            font-size: 2.2rem;
+            margin-bottom: 10px;
             color: #ffffff;
         }
         .detail-subtitle {
             font-size: 1.1rem;
             color: #94a3b8;
         }
+        
+        /* Interactive Presentation Embed Viewer */
+        .deck-viewer-container {
+            background: rgba(15, 23, 42, 0.8);
+            border: 1px solid rgba(245, 158, 11, 0.3);
+            border-radius: 12px;
+            padding: 16px;
+            margin-bottom: 40px;
+            box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.5);
+        }
+        .deck-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 12px;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+        .deck-header h3 {
+            margin: 0;
+            font-size: 1.1rem;
+            color: #f59e0b;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        .pdf-frame {
+            width: 100%;
+            height: 540px;
+            border: none;
+            border-radius: 8px;
+            background: #1e293b;
+        }
+
         .project-meta-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
@@ -60,12 +94,12 @@
             border: 1px solid rgba(255, 255, 255, 0.08);
             border-radius: 10px;
             padding: 20px;
-            margin-bottom: 40px;
+            margin-bottom: 35px;
         }
         .meta-item strong {
             display: block;
             color: #f59e0b;
-            font-size: 0.85rem;
+            font-size: 0.82rem;
             text-transform: uppercase;
             letter-spacing: 0.5px;
         }
@@ -74,47 +108,48 @@
             font-size: 0.95rem;
         }
         .detail-section {
-            margin-bottom: 45px;
+            margin-bottom: 40px;
         }
         .detail-section h2 {
-            font-size: 1.5rem;
+            font-size: 1.45rem;
             color: #ffffff;
-            margin-bottom: 18px;
+            margin-bottom: 16px;
             border-left: 4px solid #f59e0b;
             padding-left: 12px;
         }
         .formula-card {
-            background: rgba(15, 23, 42, 0.8);
+            background: rgba(15, 23, 42, 0.85);
             border-left: 3px solid #38bdf8;
-            padding: 15px 20px;
-            margin: 15px 0;
+            padding: 12px 18px;
+            margin: 12px 0;
             border-radius: 0 8px 8px 0;
             font-family: 'Courier New', Courier, monospace;
             color: #38bdf8;
+            font-size: 0.95rem;
         }
         .results-table {
             width: 100%;
             border-collapse: collapse;
             margin: 20px 0;
-            font-size: 0.95rem;
+            font-size: 0.92rem;
             background: rgba(30, 41, 59, 0.4);
             border-radius: 8px;
             overflow: hidden;
         }
         .results-table th, .results-table td {
-            padding: 12px 18px;
+            padding: 12px 16px;
             text-align: left;
             border-bottom: 1px solid rgba(255, 255, 255, 0.08);
         }
         .results-table th {
-            background: rgba(15, 23, 42, 0.8);
+            background: rgba(15, 23, 42, 0.85);
             color: #f59e0b;
         }
         .project-actions {
             display: flex;
             gap: 15px;
             flex-wrap: wrap;
-            margin-top: 40px;
+            margin-top: 35px;
             padding-top: 25px;
             border-top: 1px solid rgba(255, 255, 255, 0.1);
         }
@@ -122,7 +157,7 @@
             display: inline-flex;
             align-items: center;
             gap: 8px;
-            padding: 12px 24px;
+            padding: 12px 22px;
             border-radius: 8px;
             text-decoration: none;
             font-weight: 600;
@@ -135,17 +170,39 @@
         .btn-primary-action:hover {
             background: #d97706;
         }
+        .btn-secondary-action {
+            background: rgba(255, 255, 255, 0.08);
+            color: #ffffff;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+        .btn-secondary-action:hover {
+            background: rgba(255, 255, 255, 0.15);
+        }
     </style>
 </head>
 <body>
     <div class="project-detail-container">
-        <a href="index.html#projects" class="back-link"><i class="fa-solid fa-arrow-left"></i> Back to Portfolio</a>
+        <a href="index.html#projects" class="back-link"><i class="fa-solid fa-arrow-left"></i> Back to Main Portfolio</a>
         
         <header class="detail-header">
-            <span class="detail-badge"><i class="fa-solid fa-flask"></i> Laboratory Investigation</span>
+            <span class="detail-badge"><i class="fa-solid fa-flask"></i> Laboratory Investigation &amp; Proof Deck</span>
             <h1 class="detail-title">Experimental Investigation of Wind Turbine Performance</h1>
-            <p class="detail-subtitle">Energy Balance, Efficiency, and Wake Behaviour of HAWT and Savonius VAWT Rotors</p>
+            <p class="detail-subtitle">Energy Conversion, Efficiency &amp; Wake Behaviour of HAWT and Savonius VAWT Rotors</p>
         </header>
+
+        <!-- Interactive Embedded Slide Deck -->
+        <div class="deck-viewer-container">
+            <div class="deck-header">
+                <h3><i class="fa-solid fa-file-powerpoint"></i> Interactive Project Portfolio Deck</h3>
+                <a href="Wind_Turbine_Lab_Project_Portfolio_Deck.pdf" target="_blank" class="back-link" style="margin: 0; font-size: 0.88rem;">
+                    <i class="fa-solid fa-up-right-from-square"></i> Open Fullscreen / Download
+                </a>
+            </div>
+            <!-- Embedded PDF frame -->
+            <iframe class="pdf-frame" src="Wind_Turbine_Lab_Project_Portfolio_Deck.pdf#toolbar=1" type="application/pdf">
+                <p>Your browser does not support inline PDFs. <a href="Wind_Turbine_Lab_Project_Portfolio_Deck.pdf" style="color: #f59e0b;">Click here to download and view the slide deck directly.</a></p>
+            </iframe>
+        </div>
 
         <div class="project-meta-grid">
             <div class="meta-item">
@@ -158,99 +215,78 @@
             </div>
             <div class="meta-item">
                 <strong>Testing Rig</strong>
-                <span>Armfield RE12 Wind Energy System</span>
+                <span>Armfield RE12 Advanced Wind Energy System</span>
             </div>
             <div class="meta-item">
-                <strong>Key Conditions</strong>
-                <span>T = 23.0°C | ρ = 1.1731 kg/m³ | R = 33 Ω</span>
+                <strong>Test Boundary</strong>
+                <span>T = 23.0°C | ρ = 1.1731 kg/m³ | R = 33.0 Ω</span>
             </div>
         </div>
 
         <section class="detail-section">
-            <h2>1. Project Overview & Objectives</h2>
+            <h2>1. Investigation Overview &amp; Research Aims</h2>
             <p>
-                This controlled laboratory investigation evaluated how small-scale horizontal-axis and vertical-axis wind turbine rotors convert incoming aerodynamic power into electrical power[cite: 5, 16]. Using the Armfield RE12 Advanced Wind Energy System, measurements of upstream and downstream air velocity, generator voltage, and load current were recorded across 8 variable fan supply settings (5 V to 12 V)[cite: 5, 16].
-            </p>
-            <ul>
-                <li><strong>Theoretical Benchmarking:</strong> Applied fluid mechanics and the Betz limit (59.3% theoretical maximum extraction) to quantify practical losses[cite: 5, 16].</li>
-                <li><strong>Aerodynamic Comparison:</strong> Examined performance differences between lift-based (HAWT) and drag-based (Savonius VAWT) aerodynamic operating regimes[cite: 5, 16].</li>
-                <li><strong>Wake Analysis:</strong> Analyzed downstream airflow velocity to determine energy extraction and wake deceleration across the swept area[cite: 5, 16].</li>
-            </ul>
-        </section>
-
-        <section class="detail-section">
-            <h2>2. Experimental Apparatus & Rotor Geometry</h2>
-            <div class="project-meta-grid">
-                <div class="meta-item">
-                    <strong>HAWT (Lift-Based)</strong>
-                    <span>3 Blades | 25° Pitch | Radius: 62 mm | Swept Area: 0.012076 m²</span>
-                </div>
-                <div class="meta-item">
-                    <strong>Savonius VAWT (Drag-Based)</strong>
-                    <span>Vertical Axis | Ø 80.3 mm × 60 mm H | Projected Area: 0.004818 m²</span>
-                </div>
-            </div>
-            <p>
-                The testing apparatus comprised an axial flow fan with a flow-straightening duct, variable DC power supply, generator circuit with a fixed 33 Ω resistive load, and digital anemometer calibrated for upstream and downstream boundary readings[cite: 5, 17].
+                A controlled experimental investigation completed on the Armfield RE12 test platform comparing the energy conversion capabilities, aerodynamic starting behaviours, and wake velocity deceleration between a 3-blade lift-based HAWT and a drag-based Savonius VAWT across 8 excitation settings (5.0 V to 12.0 V).
             </p>
         </section>
 
         <section class="detail-section">
-            <h2>3. Governing Engineering Equations</h2>
-            <p>Calculations were carried out systematically using standard thermofluid dynamics formulations[cite: 17, 18]:</p>
-            <div class="formula-card">Available Wind Power: Pw = 0.5 × ρ × A × Vw³</div>
-            <div class="formula-card">Electrical Power Output: Pr = U × I</div>
-            <div class="formula-card">Turbine Power Coefficient: Cp = Pr / Pw</div>
-            <div class="formula-card">Efficiency Relative to Betz Limit: η = (Pr / (0.593 × Pw)) × 100%</div>
+            <h2>2. Aerodynamic Laws &amp; Governing Calculations</h2>
+            <p>Empirical measurements conformed strictly to theoretical fluid dynamics principles:</p>
+            <div class="formula-card">Available Kinetic Wind Power: Pw = 0.5 × ρ × A × Vw³</div>
+            <div class="formula-card">Terminal Electrical Power: Pr = U × I</div>
+            <div class="formula-card">Power Extraction Coefficient: Cp = Pr / Pw</div>
+            <div class="formula-card">Betz Limit Theoretical Benchmark: P_Betz = 0.593 × Pw</div>
+            <p>
+                <strong>Cubic Velocity Verification:</strong> Raising the upstream velocity from 2.51 m/s to 6.00 m/s (2.39× increase) resulted in an exact 13.65× available power growth (conforming directly to (2.39)³ = 13.65).
+            </p>
         </section>
 
         <section class="detail-section">
-            <h2>4. Experimental Findings & Data Summary</h2>
-            <p>
-                The two rotor topologies demonstrated distinctly different behaviour under identical airflow conditions[cite: 5, 18]:
-            </p>
+            <h2>3. Measured Performance Comparison (@ 6.00 m/s)</h2>
             <table class="results-table">
                 <thead>
                     <tr>
-                        <th>Parameter (@ 6.00 m/s Upstream Speed)</th>
-                        <th>HAWT (3-Blade)</th>
-                        <th>Savonius VAWT</th>
+                        <th>Metric</th>
+                        <th>HAWT (3-Blade Lift)</th>
+                        <th>Savonius VAWT (Drag)</th>
                     </tr>
                 </thead>
                 <tbody>
                     <tr>
-                        <td><strong>Peak Electrical Output</strong></td>
-                        <td>234.00 mW</td>
-                        <td>13.11 mW</td>
+                        <td><strong>Effective Swept / Projected Area</strong></td>
+                        <td>0.012076 m² (62 mm radius)</td>
+                        <td>0.004818 m² (80.3 mm × 60 mm)</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Peak Electrical Power</strong></td>
+                        <td>234.00 mW (1.56 V, 150.0 mA)</td>
+                        <td>13.11 mW (0.186 V, 70.5 mA)</td>
                     </tr>
                     <tr>
                         <td><strong>Efficiency Relative to Betz Limit</strong></td>
-                        <td>25.79%</td>
+                        <td>25.79% (peak 26.91% at 4.66 m/s)</td>
                         <td>3.62%</td>
                     </tr>
                     <tr>
-                        <td><strong>Starting Torque & Low-Speed Behavior</strong></td>
-                        <td>Cut-in threshold required > 3.6 m/s</td>
-                        <td>Self-started reliably at lowest speed (2.5 m/s)</td>
+                        <td><strong>Cut-In Speed Threshold</strong></td>
+                        <td>Stalled < 3.60 m/s due to stiction</td>
+                        <td>Self-starting down to 2.51 m/s</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Wake Deceleration (V_down)</strong></td>
+                        <td>3.80 m/s (63.3% of upstream)</td>
+                        <td>Higher residual momentum / lower drag extraction</td>
                     </tr>
                 </tbody>
             </table>
-            <p>
-                <strong>Engineering Insight:</strong> While the lift-based HAWT achieved dramatically higher conversion efficiency at higher air velocities, the Savonius rotor demonstrated superior starting torque at low wind speeds, illustrating trade-offs in urban or micro-scale wind generation[cite: 5, 18].
-            </p>
-        </section>
-
-        <section class="detail-section">
-            <h2>5. Key Competencies Demonstrated</h2>
-            <ul>
-                <li>Thermofluids & aerodynamic testing using calibrated instrumentation (anemometers, shunt resistors, variable power modules)[cite: 5, 19].</li>
-                <li>Data processing, error quantification, Betz-limit benchmarking, and power curve generation[cite: 5, 19].</li>
-                <li>Technical communication: translating raw laboratory readings into structured engineering documentation for stakeholders[cite: 5, 19].</li>
-            </ul>
         </section>
 
         <div class="project-actions">
-            <a href="index.html#contact" class="btn-action btn-primary-action">
+            <a href="Wind_Turbine_Lab_Project_Portfolio_Deck.pdf" download class="btn-action btn-primary-action">
+                <i class="fa-solid fa-download"></i> Download Presentation Deck
+            </a>
+            <a href="index.html#contact" class="btn-action btn-secondary-action">
                 <i class="fa-solid fa-envelope"></i> Contact Me About This Project
             </a>
         </div>
