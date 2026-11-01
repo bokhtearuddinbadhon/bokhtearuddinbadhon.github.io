@@ -1,0 +1,259 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Wind Turbine Performance Study | Bokhtear Uddin Badhon</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        .project-detail-container {
+            max-width: 900px;
+            margin: 100px auto 60px;
+            padding: 0 25px;
+            color: #e2e8f0;
+            line-height: 1.7;
+        }
+        .back-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            color: #f59e0b;
+            text-decoration: none;
+            font-weight: 600;
+            margin-bottom: 30px;
+            transition: transform 0.2s;
+        }
+        .back-link:hover {
+            transform: translateX(-5px);
+        }
+        .detail-header {
+            margin-bottom: 40px;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            padding-bottom: 25px;
+        }
+        .detail-badge {
+            display: inline-block;
+            background: rgba(245, 158, 11, 0.15);
+            color: #f59e0b;
+            border: 1px solid #f59e0b;
+            border-radius: 20px;
+            padding: 5px 15px;
+            font-size: 0.85rem;
+            font-weight: 600;
+            margin-bottom: 15px;
+        }
+        .detail-title {
+            font-size: 2.3rem;
+            margin-bottom: 12px;
+            color: #ffffff;
+        }
+        .detail-subtitle {
+            font-size: 1.1rem;
+            color: #94a3b8;
+        }
+        .project-meta-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 15px;
+            background: rgba(30, 41, 59, 0.6);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            border-radius: 10px;
+            padding: 20px;
+            margin-bottom: 40px;
+        }
+        .meta-item strong {
+            display: block;
+            color: #f59e0b;
+            font-size: 0.85rem;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+        .meta-item span {
+            color: #cbd5e1;
+            font-size: 0.95rem;
+        }
+        .detail-section {
+            margin-bottom: 45px;
+        }
+        .detail-section h2 {
+            font-size: 1.5rem;
+            color: #ffffff;
+            margin-bottom: 18px;
+            border-left: 4px solid #f59e0b;
+            padding-left: 12px;
+        }
+        .formula-card {
+            background: rgba(15, 23, 42, 0.8);
+            border-left: 3px solid #38bdf8;
+            padding: 15px 20px;
+            margin: 15px 0;
+            border-radius: 0 8px 8px 0;
+            font-family: 'Courier New', Courier, monospace;
+            color: #38bdf8;
+        }
+        .results-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+            font-size: 0.95rem;
+            background: rgba(30, 41, 59, 0.4);
+            border-radius: 8px;
+            overflow: hidden;
+        }
+        .results-table th, .results-table td {
+            padding: 12px 18px;
+            text-align: left;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+        }
+        .results-table th {
+            background: rgba(15, 23, 42, 0.8);
+            color: #f59e0b;
+        }
+        .project-actions {
+            display: flex;
+            gap: 15px;
+            flex-wrap: wrap;
+            margin-top: 40px;
+            padding-top: 25px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        .btn-action {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 12px 24px;
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: 0.2s ease;
+        }
+        .btn-primary-action {
+            background: #f59e0b;
+            color: #0f172a;
+        }
+        .btn-primary-action:hover {
+            background: #d97706;
+        }
+    </style>
+</head>
+<body>
+    <div class="project-detail-container">
+        <a href="index.html#projects" class="back-link"><i class="fa-solid fa-arrow-left"></i> Back to Portfolio</a>
+        
+        <header class="detail-header">
+            <span class="detail-badge"><i class="fa-solid fa-flask"></i> Laboratory Investigation</span>
+            <h1 class="detail-title">Experimental Investigation of Wind Turbine Performance</h1>
+            <p class="detail-subtitle">Energy Balance, Efficiency, and Wake Behaviour of HAWT and Savonius VAWT Rotors</p>
+        </header>
+
+        <div class="project-meta-grid">
+            <div class="meta-item">
+                <strong>Institution</strong>
+                <span>London South Bank University</span>
+            </div>
+            <div class="meta-item">
+                <strong>Academic Level</strong>
+                <span>Year 2 — BEng Mechanical Engineering</span>
+            </div>
+            <div class="meta-item">
+                <strong>Testing Rig</strong>
+                <span>Armfield RE12 Wind Energy System</span>
+            </div>
+            <div class="meta-item">
+                <strong>Key Conditions</strong>
+                <span>T = 23.0°C | ρ = 1.1731 kg/m³ | R = 33 Ω</span>
+            </div>
+        </div>
+
+        <section class="detail-section">
+            <h2>1. Project Overview & Objectives</h2>
+            <p>
+                This controlled laboratory investigation evaluated how small-scale horizontal-axis and vertical-axis wind turbine rotors convert incoming aerodynamic power into electrical power[cite: 5, 16]. Using the Armfield RE12 Advanced Wind Energy System, measurements of upstream and downstream air velocity, generator voltage, and load current were recorded across 8 variable fan supply settings (5 V to 12 V)[cite: 5, 16].
+            </p>
+            <ul>
+                <li><strong>Theoretical Benchmarking:</strong> Applied fluid mechanics and the Betz limit (59.3% theoretical maximum extraction) to quantify practical losses[cite: 5, 16].</li>
+                <li><strong>Aerodynamic Comparison:</strong> Examined performance differences between lift-based (HAWT) and drag-based (Savonius VAWT) aerodynamic operating regimes[cite: 5, 16].</li>
+                <li><strong>Wake Analysis:</strong> Analyzed downstream airflow velocity to determine energy extraction and wake deceleration across the swept area[cite: 5, 16].</li>
+            </ul>
+        </section>
+
+        <section class="detail-section">
+            <h2>2. Experimental Apparatus & Rotor Geometry</h2>
+            <div class="project-meta-grid">
+                <div class="meta-item">
+                    <strong>HAWT (Lift-Based)</strong>
+                    <span>3 Blades | 25° Pitch | Radius: 62 mm | Swept Area: 0.012076 m²</span>
+                </div>
+                <div class="meta-item">
+                    <strong>Savonius VAWT (Drag-Based)</strong>
+                    <span>Vertical Axis | Ø 80.3 mm × 60 mm H | Projected Area: 0.004818 m²</span>
+                </div>
+            </div>
+            <p>
+                The testing apparatus comprised an axial flow fan with a flow-straightening duct, variable DC power supply, generator circuit with a fixed 33 Ω resistive load, and digital anemometer calibrated for upstream and downstream boundary readings[cite: 5, 17].
+            </p>
+        </section>
+
+        <section class="detail-section">
+            <h2>3. Governing Engineering Equations</h2>
+            <p>Calculations were carried out systematically using standard thermofluid dynamics formulations[cite: 17, 18]:</p>
+            <div class="formula-card">Available Wind Power: Pw = 0.5 × ρ × A × Vw³</div>
+            <div class="formula-card">Electrical Power Output: Pr = U × I</div>
+            <div class="formula-card">Turbine Power Coefficient: Cp = Pr / Pw</div>
+            <div class="formula-card">Efficiency Relative to Betz Limit: η = (Pr / (0.593 × Pw)) × 100%</div>
+        </section>
+
+        <section class="detail-section">
+            <h2>4. Experimental Findings & Data Summary</h2>
+            <p>
+                The two rotor topologies demonstrated distinctly different behaviour under identical airflow conditions[cite: 5, 18]:
+            </p>
+            <table class="results-table">
+                <thead>
+                    <tr>
+                        <th>Parameter (@ 6.00 m/s Upstream Speed)</th>
+                        <th>HAWT (3-Blade)</th>
+                        <th>Savonius VAWT</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><strong>Peak Electrical Output</strong></td>
+                        <td>234.00 mW</td>
+                        <td>13.11 mW</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Efficiency Relative to Betz Limit</strong></td>
+                        <td>25.79%</td>
+                        <td>3.62%</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Starting Torque & Low-Speed Behavior</strong></td>
+                        <td>Cut-in threshold required > 3.6 m/s</td>
+                        <td>Self-started reliably at lowest speed (2.5 m/s)</td>
+                    </tr>
+                </tbody>
+            </table>
+            <p>
+                <strong>Engineering Insight:</strong> While the lift-based HAWT achieved dramatically higher conversion efficiency at higher air velocities, the Savonius rotor demonstrated superior starting torque at low wind speeds, illustrating trade-offs in urban or micro-scale wind generation[cite: 5, 18].
+            </p>
+        </section>
+
+        <section class="detail-section">
+            <h2>5. Key Competencies Demonstrated</h2>
+            <ul>
+                <li>Thermofluids & aerodynamic testing using calibrated instrumentation (anemometers, shunt resistors, variable power modules)[cite: 5, 19].</li>
+                <li>Data processing, error quantification, Betz-limit benchmarking, and power curve generation[cite: 5, 19].</li>
+                <li>Technical communication: translating raw laboratory readings into structured engineering documentation for stakeholders[cite: 5, 19].</li>
+            </ul>
+        </section>
+
+        <div class="project-actions">
+            <a href="index.html#contact" class="btn-action btn-primary-action">
+                <i class="fa-solid fa-envelope"></i> Contact Me About This Project
+            </a>
+        </div>
+    </div>
+</body>
+</html>
