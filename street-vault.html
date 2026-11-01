@@ -8,13 +8,15 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
         body {
-            background-color: #0b1120 !important;
+            background-color: #080d1a !important;
             position: relative;
             min-height: 100vh;
             margin: 0;
             padding: 0;
+            overflow-x: hidden;
         }
 
+        /* Fullscreen Subterranean Multi-Tier Hydraulic Vault Canvas */
         #hydraulics-canvas {
             position: fixed;
             top: 0;
@@ -253,6 +255,7 @@
     </style>
 </head>
 <body>
+    <!-- Real-Time Continuous Subterranean Multi-Tier Hydraulic Vault Animation -->
     <canvas id="hydraulics-canvas"></canvas>
 
     <div class="project-detail-container">
@@ -400,7 +403,7 @@
         </div>
     </div>
 
-    <!-- Scissor-Lift & Hydraulic Blueprint Canvas Background -->
+    <!-- Subterranean Multi-Tier Scissor Vault Mechanical Canvas Script -->
     <script>
         const canvas = document.getElementById('hydraulics-canvas');
         const ctx = canvas.getContext('2d');
@@ -412,12 +415,12 @@
         window.addEventListener('resize', resize);
         resize();
 
-        let animStep = 0;
+        let t = 0;
 
         function drawGrid() {
-            ctx.strokeStyle = 'rgba(56, 189, 248, 0.05)';
+            ctx.strokeStyle = 'rgba(56, 189, 248, 0.04)';
             ctx.lineWidth = 1;
-            const size = 45;
+            const size = 50;
             for (let x = 0; x < canvas.width; x += size) {
                 ctx.beginPath();
                 ctx.moveTo(x, 0);
@@ -432,73 +435,153 @@
             }
         }
 
-        function drawScissorLiftMechanism(x, y, scale, phase) {
+        // Draw Multi-Tier Double Scissor Subterranean Vault
+        function drawMultiTierVault(cx, groundY, scale, liftProgress) {
             ctx.save();
-            ctx.translate(x, y);
+            ctx.translate(cx, groundY);
 
-            const liftHeight = (Math.sin(phase) + 1) * 35 * scale;
-            const width = 140 * scale;
-            const groundY = 80 * scale;
-            const topY = groundY - 60 * scale - liftHeight;
+            const vaultW = 280 * scale;
+            const vaultDepth = 320 * scale;
 
-            // Concrete vault boundaries
+            // 1. Underground Reinforced Vault Enclosure
+            ctx.fillStyle = 'rgba(10, 16, 28, 0.85)';
+            ctx.fillRect(-vaultW / 2, 0, vaultW, vaultDepth);
             ctx.strokeStyle = 'rgba(148, 163, 184, 0.25)';
+            ctx.lineWidth = 2.5 * scale;
+            ctx.strokeRect(-vaultW / 2, 0, vaultW, vaultDepth);
+
+            // 2. Subterranean Blue LED Perimeter Lighting
+            ctx.shadowColor = '#00f2fe';
+            ctx.shadowBlur = 15;
+            ctx.strokeStyle = 'rgba(0, 242, 254, 0.8)';
+            ctx.lineWidth = 2.5 * scale;
+            ctx.beginPath();
+            ctx.moveTo(-vaultW / 2 + 6, 8);
+            ctx.lineTo(-vaultW / 2 + 6, vaultDepth - 8);
+            ctx.moveTo(vaultW / 2 - 6, 8);
+            ctx.lineTo(vaultW / 2 - 6, vaultDepth - 8);
+            ctx.stroke();
+            ctx.shadowBlur = 0; // Reset glow
+
+            // 3. Sliding Surface Street Hatch Covers
+            const hatchSlide = liftProgress * (vaultW * 0.48);
+            ctx.fillStyle = 'rgba(30, 41, 59, 0.95)';
+            ctx.strokeStyle = 'rgba(245, 158, 11, 0.5)';
             ctx.lineWidth = 2;
-            ctx.strokeRect(-width * 0.65, -120 * scale, width * 1.3, 210 * scale);
 
-            // Ground base plate
-            ctx.fillStyle = 'rgba(15, 23, 42, 0.7)';
-            ctx.fillRect(-width * 0.55, groundY, width * 1.1, 10 * scale);
-            ctx.strokeStyle = '#38bdf8';
-            ctx.strokeRect(-width * 0.55, groundY, width * 1.1, 10 * scale);
+            // Left sliding hatch
+            ctx.fillRect(-vaultW / 2 - hatchSlide, -10 * scale, vaultW / 2, 10 * scale);
+            ctx.strokeRect(-vaultW / 2 - hatchSlide, -10 * scale, vaultW / 2, 10 * scale);
 
-            // Scissor arm linkage
-            ctx.strokeStyle = 'rgba(245, 158, 11, 0.7)';
-            ctx.lineWidth = 4 * scale;
+            // Right sliding hatch
+            ctx.fillRect(hatchSlide, -10 * scale, vaultW / 2, 10 * scale);
+            ctx.strokeRect(hatchSlide, -10 * scale, vaultW / 2, 10 * scale);
 
-            // Arm 1
+            // 4. Hydraulic Scissor Mechanism Coordinates
+            const basePlatformY = vaultDepth - 25 * scale;
+            const fullLiftH = 220 * scale;
+            const currentLift = liftProgress * fullLiftH;
+
+            // Two-Stage Scissor Linkage
+            const midPivotY = basePlatformY - (currentLift * 0.5) - 40 * scale;
+            const lowerDeckY = basePlatformY - (currentLift * 0.48);
+            const upperDeckY = lowerDeckY - (110 * scale) - (currentLift * 0.52);
+
+            const scissorHalfW = (vaultW * 0.35) * (1 - (liftProgress * 0.28));
+
+            // Scissor Stage 1 (Lower)
+            ctx.strokeStyle = 'rgba(203, 213, 225, 0.7)';
+            ctx.lineWidth = 3.5 * scale;
+
             ctx.beginPath();
-            ctx.moveTo(-width * 0.45, groundY);
-            ctx.lineTo(width * 0.45, topY);
+            ctx.moveTo(-scissorHalfW, basePlatformY);
+            ctx.lineTo(scissorHalfW, midPivotY);
+            ctx.moveTo(scissorHalfW, basePlatformY);
+            ctx.lineTo(-scissorHalfW, midPivotY);
             ctx.stroke();
 
-            // Arm 2
+            // Scissor Stage 2 (Upper)
             ctx.beginPath();
-            ctx.moveTo(width * 0.45, groundY);
-            ctx.lineTo(-width * 0.45, topY);
+            ctx.moveTo(-scissorHalfW, midPivotY);
+            ctx.lineTo(scissorHalfW, lowerDeckY);
+            ctx.moveTo(scissorHalfW, midPivotY);
+            ctx.lineTo(-scissorHalfW, lowerDeckY);
             ctx.stroke();
 
-            // Center linkage pivot pin
-            const midY = (groundY + topY) / 2;
+            // Center Pin Joints
+            ctx.fillStyle = '#f59e0b';
             ctx.beginPath();
-            ctx.arc(0, midY, 6 * scale, 0, Math.PI * 2);
-            ctx.fillStyle = '#38bdf8';
+            ctx.arc(0, (basePlatformY + midPivotY) / 2, 4.5 * scale, 0, Math.PI * 2);
+            ctx.arc(0, (midPivotY + lowerDeckY) / 2, 4.5 * scale, 0, Math.PI * 2);
+            ctx.arc(0, midPivotY, 5.5 * scale, 0, Math.PI * 2);
             ctx.fill();
 
-            // Hydraulic cylinder ram
-            ctx.strokeStyle = 'rgba(56, 189, 248, 0.8)';
+            // Central Hydraulic Cylinder Ram
+            ctx.strokeStyle = 'rgba(56, 189, 248, 0.9)';
             ctx.lineWidth = 5 * scale;
             ctx.beginPath();
-            ctx.moveTo(-width * 0.35, groundY);
-            ctx.lineTo(0, midY);
+            ctx.moveTo(0, basePlatformY);
+            ctx.lineTo(0, midPivotY);
             ctx.stroke();
 
-            // Top elevated vehicle platform
-            ctx.fillStyle = 'rgba(30, 41, 59, 0.9)';
-            ctx.fillRect(-width * 0.55, topY - 12 * scale, width * 1.1, 12 * scale);
-            ctx.strokeStyle = '#f59e0b';
-            ctx.lineWidth = 2;
-            ctx.strokeRect(-width * 0.55, topY - 12 * scale, width * 1.1, 12 * scale);
+            // 5. Tier 1: Lower Vehicle Deck
+            drawPlatform(0, lowerDeckY, vaultW * 0.88, 12 * scale, '#38bdf8');
+            drawCarSilhouette(0, lowerDeckY, 0.85 * scale, '#00f2fe');
 
-            // Vehicle profile silhouette
-            ctx.fillStyle = 'rgba(245, 158, 11, 0.3)';
+            // Vertical Stanchions connecting lower and upper tiers
+            ctx.strokeStyle = 'rgba(148, 163, 184, 0.6)';
+            ctx.lineWidth = 3 * scale;
             ctx.beginPath();
-            ctx.moveTo(-width * 0.4, topY - 12 * scale);
-            ctx.lineTo(-width * 0.3, topY - 32 * scale);
-            ctx.lineTo(width * 0.25, topY - 32 * scale);
-            ctx.lineTo(width * 0.42, topY - 12 * scale);
+            ctx.moveTo(-vaultW * 0.38, lowerDeckY);
+            ctx.lineTo(-vaultW * 0.38, upperDeckY);
+            ctx.moveTo(vaultW * 0.38, lowerDeckY);
+            ctx.lineTo(vaultW * 0.38, upperDeckY);
+            ctx.stroke();
+
+            // 6. Tier 2: Upper Vehicle Deck
+            drawPlatform(0, upperDeckY, vaultW * 0.88, 14 * scale, '#f59e0b');
+            drawCarSilhouette(0, upperDeckY, 0.85 * scale, '#f59e0b');
+
+            ctx.restore();
+        }
+
+        function drawPlatform(cx, py, w, h, accentColor) {
+            ctx.fillStyle = 'rgba(30, 41, 59, 0.95)';
+            ctx.fillRect(cx - w / 2, py - h, w, h);
+            ctx.strokeStyle = accentColor;
+            ctx.lineWidth = 1.8;
+            ctx.strokeRect(cx - w / 2, py - h, w, h);
+        }
+
+        function drawCarSilhouette(cx, py, s, glowColor) {
+            ctx.save();
+            ctx.translate(cx, py - 6);
+            ctx.fillStyle = 'rgba(15, 23, 42, 0.85)';
+            ctx.strokeStyle = glowColor;
+            ctx.lineWidth = 1.5;
+
+            ctx.beginPath();
+            ctx.moveTo(-60 * s, 0);
+            ctx.lineTo(-55 * s, -14 * s);
+            ctx.lineTo(-30 * s, -20 * s);
+            ctx.lineTo(-12 * s, -34 * s);
+            ctx.lineTo(24 * s, -34 * s);
+            ctx.lineTo(44 * s, -20 * s);
+            ctx.lineTo(62 * s, -14 * s);
+            ctx.lineTo(64 * s, 0);
             ctx.closePath();
             ctx.fill();
+            ctx.stroke();
+
+            // Wheels
+            ctx.fillStyle = '#080d1a';
+            ctx.strokeStyle = '#64748b';
+            ctx.lineWidth = 1.2;
+            ctx.beginPath();
+            ctx.arc(-38 * s, 0, 8 * s, 0, Math.PI * 2);
+            ctx.arc(38 * s, 0, 8 * s, 0, Math.PI * 2);
+            ctx.fill();
+            ctx.stroke();
 
             ctx.restore();
         }
@@ -507,13 +590,21 @@
             ctx.clearRect(0, 0, canvas.width, canvas.height);
             drawGrid();
 
-            // Primary Hydraulic Lift (Right side background)
-            drawScissorLiftMechanism(canvas.width * 0.82, canvas.height * 0.52, 1.25, animStep);
+            // Smooth Harmonic Motion: Expands, holds at road level, retracts, holds flush
+            const cycle = (Math.sin(t) + 1) / 2; // Value between 0.0 and 1.0
 
-            // Secondary Hydraulic Lift (Left side perspective)
-            drawScissorLiftMechanism(canvas.width * 0.14, canvas.height * 0.72, 0.75, animStep + 1.5);
+            // Primary Vault (Right-side background)
+            const primaryX = canvas.width * 0.78;
+            const primaryGroundY = canvas.height * 0.44;
+            drawMultiTierVault(primaryX, primaryGroundY, 1.05, cycle);
 
-            animStep += 0.015;
+            // Secondary Scaled Perspective Vault (Left-side background)
+            const secondaryX = canvas.width * 0.16;
+            const secondaryGroundY = canvas.height * 0.60;
+            const secondaryCycle = (Math.sin(t + 1.6) + 1) / 2;
+            drawMultiTierVault(secondaryX, secondaryGroundY, 0.65, secondaryCycle);
+
+            t += 0.012; // Smooth hydraulic speed
             requestAnimationFrame(animate);
         }
 
