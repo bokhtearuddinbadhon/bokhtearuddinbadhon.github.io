@@ -1,0 +1,623 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>The Slider Support Project | Bokhtear Uddin Badhon</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        body {
+            background-color: #080d1a !important;
+            position: relative;
+            min-height: 100vh;
+            margin: 0;
+            padding: 0;
+            overflow-x: hidden;
+        }
+
+        /* Real-Time Linear Motion Mechanism Canvas */
+        #linear-canvas {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            z-index: 0;
+            pointer-events: none;
+        }
+
+        .project-detail-container {
+            max-width: 980px;
+            margin: 80px auto 60px;
+            padding: 0 24px;
+            color: #e2e8f0;
+            line-height: 1.7;
+            position: relative;
+            z-index: 1;
+        }
+        .back-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            color: #f59e0b;
+            text-decoration: none;
+            font-weight: 600;
+            margin-bottom: 25px;
+            transition: transform 0.2s;
+        }
+        .back-link:hover {
+            transform: translateX(-5px);
+        }
+        .detail-header {
+            margin-bottom: 30px;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            padding-bottom: 25px;
+        }
+        .detail-badge {
+            display: inline-block;
+            background: rgba(245, 158, 11, 0.15);
+            color: #f59e0b;
+            border: 1px solid #f59e0b;
+            border-radius: 20px;
+            padding: 4px 14px;
+            font-size: 0.82rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            margin-bottom: 12px;
+        }
+        .detail-title {
+            font-size: 2.2rem;
+            margin-bottom: 10px;
+            color: #ffffff;
+            font-weight: 700;
+        }
+        .detail-subtitle {
+            font-size: 1.05rem;
+            color: #94a3b8;
+        }
+
+        /* Slide Deck Viewer Container */
+        .deck-viewer-container {
+            background: rgba(15, 23, 42, 0.88);
+            border: 1px solid rgba(245, 158, 11, 0.35);
+            border-radius: 12px;
+            padding: 16px;
+            margin: 35px 0 45px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.6);
+            backdrop-filter: blur(8px);
+        }
+        .deck-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 12px;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+        .deck-header h3 {
+            margin: 0;
+            font-size: 1.05rem;
+            color: #f59e0b;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        .pdf-frame {
+            width: 100%;
+            height: 540px;
+            border: none;
+            border-radius: 8px;
+            background: #1e293b;
+        }
+
+        .project-meta-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(210px, 1fr));
+            gap: 15px;
+            background: rgba(15, 23, 42, 0.8);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 10px;
+            padding: 20px;
+            margin-bottom: 40px;
+            backdrop-filter: blur(8px);
+        }
+        .meta-item strong {
+            display: block;
+            color: #f59e0b;
+            font-size: 0.8rem;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            margin-bottom: 4px;
+        }
+        .meta-item span {
+            color: #cbd5e1;
+            font-size: 0.95rem;
+        }
+
+        .detail-section {
+            margin-bottom: 40px;
+            background: rgba(15, 23, 42, 0.8);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            border-radius: 10px;
+            padding: 24px;
+            backdrop-filter: blur(8px);
+        }
+        .detail-section h2 {
+            font-size: 1.4rem;
+            color: #ffffff;
+            margin-bottom: 16px;
+            border-left: 4px solid #f59e0b;
+            padding-left: 12px;
+            font-weight: 600;
+        }
+
+        .principle-box {
+            background: rgba(11, 19, 36, 0.95);
+            border-left: 3px solid #38bdf8;
+            padding: 14px 18px;
+            margin: 12px 0;
+            border-radius: 0 8px 8px 0;
+            color: #cbd5e1;
+            font-size: 0.95rem;
+        }
+        .principle-box strong {
+            color: #38bdf8;
+        }
+
+        .table-responsive {
+            overflow-x: auto;
+            margin: 20px 0;
+        }
+        .deck-table {
+            width: 100%;
+            border-collapse: collapse;
+            font-size: 0.88rem;
+            background: rgba(11, 19, 36, 0.7);
+            border-radius: 8px;
+            overflow: hidden;
+            text-align: left;
+        }
+        .deck-table th, .deck-table td {
+            padding: 10px 14px;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+        }
+        .deck-table th {
+            background: rgba(11, 19, 36, 0.95);
+            color: #f59e0b;
+            font-weight: 600;
+        }
+        .deck-table tr:hover {
+            background: rgba(255, 255, 255, 0.04);
+        }
+
+        .step-list {
+            list-style: none;
+            padding: 0;
+            counter-reset: step-counter;
+        }
+        .step-list li {
+            counter-increment: step-counter;
+            margin-bottom: 12px;
+            display: flex;
+            align-items: flex-start;
+            gap: 12px;
+        }
+        .step-list li::before {
+            content: counter(step-counter);
+            background: #f59e0b;
+            color: #0f172a;
+            font-weight: 700;
+            width: 24px;
+            height: 24px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.8rem;
+            flex-shrink: 0;
+            margin-top: 2px;
+        }
+
+        .project-actions {
+            display: flex;
+            gap: 15px;
+            flex-wrap: wrap;
+            margin-top: 40px;
+            padding-top: 25px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        .btn-action {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 12px 22px;
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: 0.2s ease;
+        }
+        .btn-primary-action {
+            background: #f59e0b;
+            color: #0f172a;
+        }
+        .btn-primary-action:hover {
+            background: #d97706;
+        }
+        .btn-secondary-action {
+            background: rgba(255, 255, 255, 0.08);
+            color: #ffffff;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+        .btn-secondary-action:hover {
+            background: rgba(255, 255, 255, 0.15);
+        }
+    </style>
+</head>
+<body>
+    <!-- Kinematic Linear Slider Motion Canvas -->
+    <canvas id="linear-canvas"></canvas>
+
+    <div class="project-detail-container">
+        <a href="index.html#projects" class="back-link"><i class="fa-solid fa-arrow-left"></i> Back to Main Portfolio</a>
+        
+        <header class="detail-header">
+            <span class="detail-badge"><i class="fa-solid fa-arrows-left-right"></i> Applied Solid Mechanics &amp; Kinematics</span>
+            <h1 class="detail-title">The Slider Support Project</h1>
+            <p class="detail-subtitle">Investigation of Rigid-Body Statics, Intermediate Support Constraints, and FDM Prototyping of a Guided Collar Mechanism</p>
+        </header>
+
+        <!-- Slide Deck Viewer Container -->
+        <div class="deck-viewer-container">
+            <div class="deck-header">
+                <h3><i class="fa-solid fa-file-powerpoint"></i> Practical Project Portfolio Deck</h3>
+                <a href="Slider_Support_AEROVENT_Matching_Complete_Deck.pdf" target="_blank" class="back-link" style="margin: 0; font-size: 0.88rem;">
+                    <i class="fa-solid fa-up-right-from-square"></i> Open Fullscreen / Download Deck
+                </a>
+            </div>
+            <iframe class="pdf-frame" src="Slider_Support_AEROVENT_Matching_Complete_Deck.pdf#toolbar=1" type="application/pdf">
+                <p>Your browser does not support inline PDFs. <a href="Slider_Support_AEROVENT_Matching_Complete_Deck.pdf" style="color: #f59e0b;">Download the presentation deck here.</a></p>
+            </iframe>
+        </div>
+
+        <div class="project-meta-grid">
+            <div class="meta-item">
+                <strong>Institution &amp; Cohort</strong>
+                <span>London South Bank University | BEng Mechanical Engineering</span>
+            </div>
+            <div class="meta-item">
+                <strong>My Core Contribution</strong>
+                <span>3D CAD Modeling (Autodesk Fusion 360) &amp; Physical Demonstration</span>
+            </div>
+            <div class="meta-item">
+                <strong>Manufacturing Method</strong>
+                <span>FDM 3D Printing (PLA | 0.2 mm Layer Height | 20–30% Infill)</span>
+            </div>
+            <div class="meta-item">
+                <strong>Mechanism Topology</strong>
+                <span>Collar-on-Rod / Pin-in-Slot Guided Linear Translation</span>
+            </div>
+        </div>
+
+        <section class="detail-section">
+            <h2>1. The Mechanical Engineering Question</h2>
+            <p>
+                In structural mechanics, supports control how forces and moments are transmitted while allowing or restricting degrees of freedom (DoF). A slider support occupies the fundamental boundary between a pin support (which resists translation but allows rotation) and a fixed support (which prevents all motion and rotation).
+            </p>
+            <div class="principle-box">
+                <strong>Statics Equilibrium &amp; Degrees of Freedom:</strong>
+                <br>
+                Under ideal frictionless mechanics: $\sum F_y = 0$, $\sum M_z = 0$, while $\sum F_x = 0$ remains unrestrained along the guide axis. The guide assembly provides reaction forces against vertical loads and moments while permitting pure horizontal travel.
+            </div>
+        </section>
+
+        <section class="detail-section">
+            <h2>2. Mechanism Architecture &amp; CAD Design</h2>
+            <p>
+                Modeled from initial technical sketches into 3D CAD parametric components:
+            </p>
+            <ul>
+                <li><strong>Base &amp; Linear Guide Rod:</strong> A 70 mm longitudinal base fitted with a precision 6 mm diameter guide rod establishing the translation datum.</li>
+                <li><strong>Sliding Collar:</strong> Cylindrical sliding sleeve with engineered bore clearance to balance smooth sliding against excessive angular play.</li>
+                <li><strong>Rigid L-Bracket Loading Arm:</strong> Fixed cantilever member enabling progressive dead-weight vertical hanger testing.</li>
+            </ul>
+        </section>
+
+        <section class="detail-section">
+            <h2>3. Support Boundary Condition Comparison</h2>
+            <div class="table-responsive">
+                <table class="deck-table">
+                    <thead>
+                        <tr>
+                            <th>Support Condition</th>
+                            <th>Horizontal Translation (X)</th>
+                            <th>Vertical Translation (Y)</th>
+                            <th>In-Plane Rotation (&theta;)</th>
+                            <th>Reaction Produced</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><strong>Pin / Hinge Support</strong></td>
+                            <td>Restrained</td>
+                            <td>Restrained</td>
+                            <td><strong>Free</strong></td>
+                            <td>$R_x$, $R_y$</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Fixed / Built-In Support</strong></td>
+                            <td>Restrained</td>
+                            <td>Restrained</td>
+                            <td>Restrained</td>
+                            <td>$R_x$, $R_y$, $M_z$</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Slider Support (This Model)</strong></td>
+                            <td><strong>Permitted (Free)</strong></td>
+                            <td>Restrained</td>
+                            <td>Restrained</td>
+                            <td><strong>$R_y$, $M_z$</strong></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </section>
+
+        <section class="detail-section">
+            <h2>4. Experimental Evaluation &amp; Physical Observations</h2>
+            <ol class="step-list">
+                <li><strong>Controlled Vertical Loading:</strong> Incremental slotted masses were applied to the cantilever hanger arm.</li>
+                <li><strong>Restraint Verification:</strong> Zero measurable vertical deflection or tilt rotation was observed along the collar body under design load.</li>
+                <li><strong>Unrestrained Motion:</strong> The assembly maintained free horizontal translation across the guide axis throughout loading.</li>
+                <li><strong>Real Friction Factors:</strong> Surface layer stepping inherent to FDM PLA printing introduced minor sliding friction ($\mu > 0$), distinguishing physical mechanics from theoretical frictionless equilibrium.</li>
+            </ol>
+        </section>
+
+        <div class="project-actions">
+            <a href="Slider_Support_AEROVENT_Matching_Complete_Deck.pdf" download class="btn-action btn-primary-action">
+                <i class="fa-solid fa-file-pdf"></i> Download Project Deck (PDF)
+            </a>
+            <a href="index.html#contact" class="btn-action btn-secondary-action">
+                <i class="fa-solid fa-envelope"></i> Contact Me About This Project
+            </a>
+        </div>
+    </div>
+
+    <!-- Mechanical Linear Motion Mechanism Canvas Script -->
+    <script>
+        const canvas = document.getElementById('linear-canvas');
+        const ctx = canvas.getContext('2d');
+
+        function resize() {
+            canvas.width = window.innerWidth;
+            canvas.height = window.innerHeight;
+        }
+        window.addEventListener('resize', resize);
+        resize();
+
+        let t = 0;
+
+        function drawBlueprintGrid() {
+            ctx.strokeStyle = 'rgba(56, 189, 248, 0.04)';
+            ctx.lineWidth = 1;
+            const size = 45;
+            for (let x = 0; x < canvas.width; x += size) {
+                ctx.beginPath();
+                ctx.moveTo(x, 0);
+                ctx.lineTo(x, canvas.height);
+                ctx.stroke();
+            }
+            for (let y = 0; y < canvas.height; y += size) {
+                ctx.beginPath();
+                ctx.moveTo(0, y);
+                ctx.lineTo(canvas.width, y);
+                ctx.stroke();
+            }
+        }
+
+        // Draw Complete Linear Slider Mechanism Assembly
+        function drawLinearMechanism(cx, cy, scale, travelPhase) {
+            ctx.save();
+            ctx.translate(cx, cy);
+
+            const railLength = 340 * scale;
+            const railRadius = 7 * scale;
+            const strokeAmplitude = 95 * scale;
+            const collarX = Math.sin(travelPhase) * strokeAmplitude;
+
+            // 1. Heavy Base Foundation
+            ctx.fillStyle = 'rgba(15, 23, 42, 0.9)';
+            ctx.strokeStyle = 'rgba(148, 163, 184, 0.3)';
+            ctx.lineWidth = 2 * scale;
+            ctx.fillRect(-railLength / 2 - 25 * scale, 32 * scale, railLength + 50 * scale, 18 * scale);
+            ctx.strokeRect(-railLength / 2 - 25 * scale, 32 * scale, railLength + 50 * scale, 18 * scale);
+
+            // Ground Hatch Marks
+            ctx.strokeStyle = 'rgba(148, 163, 184, 0.2)';
+            ctx.lineWidth = 1.2 * scale;
+            for (let x = -railLength / 2 - 20 * scale; x <= railLength / 2 + 20 * scale; x += 16 * scale) {
+                ctx.beginPath();
+                ctx.moveTo(x, 50 * scale);
+                ctx.lineTo(x - 10 * scale, 62 * scale);
+                ctx.stroke();
+            }
+
+            // 2. Fixed End Pillow Blocks
+            [-railLength / 2, railLength / 2].forEach(bx => {
+                ctx.fillStyle = 'rgba(30, 41, 59, 0.95)';
+                ctx.strokeStyle = '#f59e0b';
+                ctx.lineWidth = 2 * scale;
+                ctx.beginPath();
+                ctx.rect(bx - 12 * scale, -22 * scale, 24 * scale, 54 * scale);
+                ctx.fill();
+                ctx.stroke();
+
+                // Fastener bolts
+                ctx.fillStyle = '#38bdf8';
+                ctx.beginPath();
+                ctx.arc(bx, 41 * scale, 3.5 * scale, 0, Math.PI * 2);
+                ctx.arc(bx, -12 * scale, 3.5 * scale, 0, Math.PI * 2);
+                ctx.fill();
+            });
+
+            // 3. Ground Precision Guide Rod (Cylindrical Shaft)
+            ctx.strokeStyle = 'rgba(203, 213, 225, 0.85)';
+            ctx.lineWidth = railRadius * 2;
+            ctx.lineCap = 'round';
+            ctx.beginPath();
+            ctx.moveTo(-railLength / 2, 0);
+            ctx.lineTo(railLength / 2, 0);
+            ctx.stroke();
+
+            // Shaft Centerline Datum (Blue Dash)
+            ctx.strokeStyle = '#38bdf8';
+            ctx.lineWidth = 1 * scale;
+            ctx.setLineDash([8, 6, 2, 6]);
+            ctx.beginPath();
+            ctx.moveTo(-railLength / 2 - 15 * scale, 0);
+            ctx.lineTo(railLength / 2 + 15 * scale, 0);
+            ctx.stroke();
+            ctx.setLineDash([]);
+
+            // 4. Moving Slider Collar (Purple CAD Accent matching physical PLA prototype)
+            ctx.save();
+            ctx.translate(collarX, 0);
+
+            const collarW = 92 * scale;
+            const collarH = 34 * scale;
+
+            ctx.fillStyle = 'rgba(99, 102, 241, 0.35)'; // Vibrant engineered PLA tint
+            ctx.strokeStyle = '#818cf8';
+            ctx.lineWidth = 2.5 * scale;
+            ctx.beginPath();
+            ctx.rect(-collarW / 2, -collarH / 2, collarW, collarH);
+            ctx.fill();
+            ctx.stroke();
+
+            // Low-friction bronze bushing / inner bore line
+            ctx.strokeStyle = '#f59e0b';
+            ctx.lineWidth = 2 * scale;
+            ctx.strokeRect(-collarW / 2 + 6 * scale, -collarH / 2 + 4 * scale, collarW - 12 * scale, collarH - 8 * scale);
+
+            // 5. Rigid Cantilever L-Bracket Arm & Load Hanger
+            ctx.fillStyle = 'rgba(99, 102, 241, 0.55)';
+            ctx.strokeStyle = '#c7d2fe';
+            ctx.lineWidth = 2.5 * scale;
+
+            // Vertical Bracket Segment
+            ctx.beginPath();
+            ctx.rect(-10 * scale, -collarH / 2 - 48 * scale, 20 * scale, 48 * scale);
+            ctx.fill();
+            ctx.stroke();
+
+            // Horizontal Overhang Arm
+            const armLen = 78 * scale;
+            ctx.beginPath();
+            ctx.rect(-10 * scale, -collarH / 2 - 62 * scale, armLen, 16 * scale);
+            ctx.fill();
+            ctx.stroke();
+
+            // Weight Hanger Rod & Slotted Disc Masses
+            const hangerX = armLen - 18 * scale;
+            const hangerY = -collarH / 2 - 46 * scale;
+            ctx.strokeStyle = '#f59e0b';
+            ctx.lineWidth = 2 * scale;
+            ctx.beginPath();
+            ctx.moveTo(hangerX, hangerY);
+            ctx.lineTo(hangerX, hangerY + 45 * scale);
+            ctx.stroke();
+
+            // Slotted weights
+            ctx.fillStyle = 'rgba(245, 158, 11, 0.8)';
+            ctx.fillRect(hangerX - 16 * scale, hangerY + 28 * scale, 32 * scale, 7 * scale);
+            ctx.fillRect(hangerX - 14 * scale, hangerY + 36 * scale, 28 * scale, 7 * scale);
+
+            // 6. Mechanical Vectors & Free-Body Statics Annotations
+            // Applied Downward Load Force Vector
+            drawArrow(hangerX, hangerY + 44 * scale, hangerX, hangerY + 82 * scale, '#ef4444', 2.2 * scale, 'F_load');
+
+            // Restrained Vertical Reaction Vector (R_y)
+            drawArrow(0, collarH / 2 + 4 * scale, 0, collarH / 2 - 32 * scale, '#10b981', 2.2 * scale, 'R_y');
+
+            // Resisted Moment Arc (M_z)
+            ctx.strokeStyle = '#38bdf8';
+            ctx.lineWidth = 2 * scale;
+            ctx.beginPath();
+            ctx.arc(-22 * scale, -collarH / 2 - 20 * scale, 18 * scale, -0.6 * Math.PI, 0.5 * Math.PI);
+            ctx.stroke();
+            drawArrowHead(-22 * scale + 18 * scale * Math.cos(0.5 * Math.PI), -collarH / 2 - 20 * scale + 18 * scale * Math.sin(0.5 * Math.PI), 0.7 * Math.PI, '#38bdf8', 1.8 * scale);
+
+            // Unrestrained Guide Axis Motion Vector
+            drawArrow(-collarW / 2 - 8 * scale, 0, -collarW / 2 - 38 * scale, 0, '#f59e0b', 1.8 * scale, '±Δx');
+            drawArrow(collarW / 2 + 8 * scale, 0, collarW / 2 + 38 * scale, 0, '#f59e0b', 1.8 * scale, '');
+
+            ctx.restore();
+            ctx.restore();
+        }
+
+        function drawArrow(fromX, fromY, toX, toY, color, width, label) {
+            const headlen = 8 * (width / 2);
+            const dx = toX - fromX;
+            const dy = toY - fromY;
+            const angle = Math.atan2(dy, dx);
+
+            ctx.save();
+            ctx.strokeStyle = color;
+            ctx.fillStyle = color;
+            ctx.lineWidth = width;
+
+            ctx.beginPath();
+            ctx.moveTo(fromX, fromY);
+            ctx.lineTo(toX, toY);
+            ctx.stroke();
+
+            ctx.beginPath();
+            ctx.moveTo(toX, toY);
+            ctx.lineTo(toX - headlen * Math.cos(angle - Math.PI / 6), toY - headlen * Math.sin(angle - Math.PI / 6));
+            ctx.lineTo(toX - headlen * Math.cos(angle + Math.PI / 6), toY - headlen * Math.sin(angle + Math.PI / 6));
+            ctx.closePath();
+            ctx.fill();
+
+            if (label) {
+                ctx.font = '10px "Courier New", monospace';
+                ctx.fillText(label, toX + 6, toY + 4);
+            }
+            ctx.restore();
+        }
+
+        function drawArrowHead(x, y, angle, color, scale) {
+            const headlen = 7 * scale;
+            ctx.save();
+            ctx.fillStyle = color;
+            ctx.beginPath();
+            ctx.moveTo(x, y);
+            ctx.lineTo(x - headlen * Math.cos(angle - Math.PI / 6), y - headlen * Math.sin(angle - Math.PI / 6));
+            ctx.lineTo(x - headlen * Math.cos(angle + Math.PI / 6), y - headlen * Math.sin(angle + Math.PI / 6));
+            ctx.closePath();
+            ctx.fill();
+            ctx.restore();
+        }
+
+        function animate() {
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+            drawBlueprintGrid();
+
+            // Primary Linear Motion Rig (Right background)
+            const primaryX = canvas.width * 0.76;
+            const primaryY = canvas.height * 0.46;
+            drawLinearMechanism(primaryX, primaryY, 1.05, t);
+
+            // Perspective Secondary Rig (Left background)
+            const secondaryX = canvas.width * 0.18;
+            const secondaryY = canvas.height * 0.62;
+            drawLinearMechanism(secondaryX, secondaryY, 0.68, t + 1.2);
+
+            t += 0.022; // Kinematic speed
+            requestAnimationFrame(animate);
+        }
+
+        animate();
+    </script>
+</body>
+</html>
