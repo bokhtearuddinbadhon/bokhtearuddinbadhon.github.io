@@ -7,12 +7,26 @@
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
+        /* Mechanical Engineering Background Canvas */
+        #turbine-canvas {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            z-index: -1;
+            pointer-events: none;
+            background: #090d16;
+        }
+
         .project-detail-container {
-            max-width: 960px;
-            margin: 100px auto 60px;
+            max-width: 980px;
+            margin: 90px auto 60px;
             padding: 0 24px;
             color: #e2e8f0;
             line-height: 1.7;
+            position: relative;
+            z-index: 1;
         }
         .back-link {
             display: inline-flex;
@@ -31,6 +45,7 @@
             margin-bottom: 30px;
             border-bottom: 1px solid rgba(255, 255, 255, 0.1);
             padding-bottom: 25px;
+            backdrop-filter: blur(4px);
         }
         .detail-badge {
             display: inline-block;
@@ -39,28 +54,32 @@
             border: 1px solid #f59e0b;
             border-radius: 20px;
             padding: 4px 14px;
-            font-size: 0.85rem;
+            font-size: 0.82rem;
             font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
             margin-bottom: 12px;
         }
         .detail-title {
             font-size: 2.2rem;
             margin-bottom: 10px;
             color: #ffffff;
+            font-weight: 700;
         }
         .detail-subtitle {
-            font-size: 1.1rem;
+            font-size: 1.05rem;
             color: #94a3b8;
         }
-        
-        /* Interactive Presentation Embed Viewer */
+
+        /* Slide Deck Viewer Container */
         .deck-viewer-container {
-            background: rgba(15, 23, 42, 0.8);
-            border: 1px solid rgba(245, 158, 11, 0.3);
+            background: rgba(15, 23, 42, 0.85);
+            border: 1px solid rgba(245, 158, 11, 0.35);
             border-radius: 12px;
             padding: 16px;
-            margin-bottom: 40px;
-            box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.5);
+            margin: 35px 0 45px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+            backdrop-filter: blur(6px);
         }
         .deck-header {
             display: flex;
@@ -72,7 +91,7 @@
         }
         .deck-header h3 {
             margin: 0;
-            font-size: 1.1rem;
+            font-size: 1.05rem;
             color: #f59e0b;
             display: flex;
             align-items: center;
@@ -88,68 +107,115 @@
 
         .project-meta-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            grid-template-columns: repeat(auto-fit, minmax(210px, 1fr));
             gap: 15px;
-            background: rgba(30, 41, 59, 0.6);
+            background: rgba(15, 23, 42, 0.75);
             border: 1px solid rgba(255, 255, 255, 0.08);
             border-radius: 10px;
             padding: 20px;
-            margin-bottom: 35px;
+            margin-bottom: 40px;
+            backdrop-filter: blur(6px);
         }
         .meta-item strong {
             display: block;
             color: #f59e0b;
-            font-size: 0.82rem;
+            font-size: 0.8rem;
             text-transform: uppercase;
             letter-spacing: 0.5px;
+            margin-bottom: 4px;
         }
         .meta-item span {
             color: #cbd5e1;
             font-size: 0.95rem;
         }
+
         .detail-section {
-            margin-bottom: 40px;
+            margin-bottom: 45px;
+            background: rgba(15, 23, 42, 0.65);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            border-radius: 10px;
+            padding: 24px;
+            backdrop-filter: blur(6px);
         }
         .detail-section h2 {
-            font-size: 1.45rem;
+            font-size: 1.4rem;
             color: #ffffff;
             margin-bottom: 16px;
             border-left: 4px solid #f59e0b;
             padding-left: 12px;
+            font-weight: 600;
         }
+
         .formula-card {
-            background: rgba(15, 23, 42, 0.85);
+            background: rgba(11, 19, 36, 0.9);
             border-left: 3px solid #38bdf8;
             padding: 12px 18px;
-            margin: 12px 0;
+            margin: 10px 0;
             border-radius: 0 8px 8px 0;
             font-family: 'Courier New', Courier, monospace;
             color: #38bdf8;
             font-size: 0.95rem;
         }
-        .results-table {
+
+        .table-responsive {
+            overflow-x: auto;
+            margin: 20px 0;
+        }
+        .deck-table {
             width: 100%;
             border-collapse: collapse;
-            margin: 20px 0;
-            font-size: 0.92rem;
-            background: rgba(30, 41, 59, 0.4);
+            font-size: 0.88rem;
+            background: rgba(15, 23, 42, 0.6);
             border-radius: 8px;
             overflow: hidden;
-        }
-        .results-table th, .results-table td {
-            padding: 12px 16px;
             text-align: left;
+        }
+        .deck-table th, .deck-table td {
+            padding: 10px 14px;
             border-bottom: 1px solid rgba(255, 255, 255, 0.08);
         }
-        .results-table th {
-            background: rgba(15, 23, 42, 0.85);
+        .deck-table th {
+            background: rgba(11, 19, 36, 0.95);
             color: #f59e0b;
+            font-weight: 600;
         }
+        .deck-table tr:hover {
+            background: rgba(255, 255, 255, 0.04);
+        }
+
+        .step-list {
+            list-style: none;
+            padding: 0;
+            counter-reset: step-counter;
+        }
+        .step-list li {
+            counter-increment: step-counter;
+            margin-bottom: 12px;
+            display: flex;
+            align-items: flex-start;
+            gap: 12px;
+        }
+        .step-list li::before {
+            content: counter(step-counter);
+            background: #f59e0b;
+            color: #0f172a;
+            font-weight: 700;
+            width: 24px;
+            height: 24px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.8rem;
+            flex-shrink: 0;
+            margin-top: 2px;
+        }
+
         .project-actions {
             display: flex;
             gap: 15px;
             flex-wrap: wrap;
-            margin-top: 35px;
+            margin-top: 40px;
             padding-top: 25px;
             border-top: 1px solid rgba(255, 255, 255, 0.1);
         }
@@ -181,115 +247,355 @@
     </style>
 </head>
 <body>
+    <!-- Real-Time Continuous Mechanical Turbine Canvas -->
+    <canvas id="turbine-canvas"></canvas>
+
     <div class="project-detail-container">
         <a href="index.html#projects" class="back-link"><i class="fa-solid fa-arrow-left"></i> Back to Main Portfolio</a>
         
         <header class="detail-header">
-            <span class="detail-badge"><i class="fa-solid fa-flask"></i> Laboratory Investigation &amp; Proof Deck</span>
+            <span class="detail-badge"><i class="fa-solid fa-flask"></i> Thermofluids &amp; Sustainable Energy</span>
             <h1 class="detail-title">Experimental Investigation of Wind Turbine Performance</h1>
-            <p class="detail-subtitle">Energy Conversion, Efficiency &amp; Wake Behaviour of HAWT and Savonius VAWT Rotors</p>
+            <p class="detail-subtitle">Energy Conversion, Betz Efficiency &amp; Wake Behaviour of HAWT and Savonius VAWT Rotors</p>
         </header>
 
-        <!-- Interactive Embedded Slide Deck -->
+        <!-- Slide Deck Embed -->
         <div class="deck-viewer-container">
             <div class="deck-header">
-                <h3><i class="fa-solid fa-file-powerpoint"></i> Interactive Project Portfolio Deck</h3>
+                <h3><i class="fa-solid fa-file-powerpoint"></i> Practical Project Portfolio Deck</h3>
                 <a href="Wind_Turbine_Lab_Project_Portfolio_Deck.pdf" target="_blank" class="back-link" style="margin: 0; font-size: 0.88rem;">
-                    <i class="fa-solid fa-up-right-from-square"></i> Open Fullscreen / Download
+                    <i class="fa-solid fa-up-right-from-square"></i> Open Fullscreen / Download Deck
                 </a>
             </div>
-            <!-- Embedded PDF frame -->
             <iframe class="pdf-frame" src="Wind_Turbine_Lab_Project_Portfolio_Deck.pdf#toolbar=1" type="application/pdf">
-                <p>Your browser does not support inline PDFs. <a href="Wind_Turbine_Lab_Project_Portfolio_Deck.pdf" style="color: #f59e0b;">Click here to download and view the slide deck directly.</a></p>
+                <p>Your browser does not support inline PDFs. <a href="Wind_Turbine_Lab_Project_Portfolio_Deck.pdf" style="color: #f59e0b;">Download the deck here.</a></p>
             </iframe>
         </div>
 
+        <!-- 01 & 02: Apparatus & Boundary Context -->
         <div class="project-meta-grid">
             <div class="meta-item">
-                <strong>Institution</strong>
-                <span>London South Bank University</span>
+                <strong>Institution &amp; Level</strong>
+                <span>London South Bank University | Year 2 BEng</span>
             </div>
             <div class="meta-item">
-                <strong>Academic Level</strong>
-                <span>Year 2 — BEng Mechanical Engineering</span>
-            </div>
-            <div class="meta-item">
-                <strong>Testing Rig</strong>
+                <strong>Experimental Rig</strong>
                 <span>Armfield RE12 Advanced Wind Energy System</span>
             </div>
             <div class="meta-item">
-                <strong>Test Boundary</strong>
-                <span>T = 23.0°C | ρ = 1.1731 kg/m³ | R = 33.0 Ω</span>
+                <strong>Ambient Conditions</strong>
+                <span>T = 23.0°C | RH = 65.5% | ρ = 1.1731 kg/m³</span>
+            </div>
+            <div class="meta-item">
+                <strong>Electromechanical Load</strong>
+                <span>Fixed 33.0 Ω Resistive Load | 5.0 V – 12.0 V Supply</span>
             </div>
         </div>
 
+        <!-- 03: Rotor Configurations -->
         <section class="detail-section">
-            <h2>1. Investigation Overview &amp; Research Aims</h2>
+            <h2>Rotor Topologies &amp; Geometry</h2>
+            <div class="project-meta-grid">
+                <div class="meta-item">
+                    <strong>HAWT (Lift-Based)</strong>
+                    <span>3 Blades | 25° Pitch | Radius: 62 mm | Swept Area: 0.012076 m²</span>
+                </div>
+                <div class="meta-item">
+                    <strong>Savonius VAWT (Drag-Based)</strong>
+                    <span>Vertical Axis | Ø 80.3 mm × 60 mm H | Projected Area: 0.004818 m²</span>
+                </div>
+            </div>
             <p>
-                A controlled experimental investigation completed on the Armfield RE12 test platform comparing the energy conversion capabilities, aerodynamic starting behaviours, and wake velocity deceleration between a 3-blade lift-based HAWT and a drag-based Savonius VAWT across 8 excitation settings (5.0 V to 12.0 V).
+                The HAWT provides an area ratio 2.506× larger than the Savonius rotor, directly scaling the available incoming kinetic wind power across identical upstream velocities[cite: 33].
             </p>
         </section>
 
+        <!-- 04: Method & Analysis Sequence -->
         <section class="detail-section">
-            <h2>2. Aerodynamic Laws &amp; Governing Calculations</h2>
-            <p>Empirical measurements conformed strictly to theoretical fluid dynamics principles:</p>
-            <div class="formula-card">Available Kinetic Wind Power: Pw = 0.5 × ρ × A × Vw³</div>
-            <div class="formula-card">Terminal Electrical Power: Pr = U × I</div>
+            <h2>Method &amp; Governing Calculations</h2>
+            <ol class="step-list">
+                <li>Established ambient laboratory baselines (temperature, air density, humidity) and verified physical rotor dimensions[cite: 28].</li>
+                <li>Calibrated baseline upstream wind velocity across 8 excitation settings (5.0 V to 12.0 V) without rotors fitted[cite: 28].</li>
+                <li>Installed the three-blade HAWT; logged upstream velocity, downstream wake velocity, voltage, and current across all fan voltages[cite: 28].</li>
+                <li>Fitted the Savonius VAWT and recorded identical aerodynamic and electrical parameters[cite: 28].</li>
+                <li>Processed raw readings to evaluate available power, output power, Betz limits, and irreversible loss mechanisms[cite: 28].</li>
+            </ol>
+
+            <div class="formula-card">Available Wind Power: Pw = 0.5 × ρ × A × Vw³</div>
+            <div class="formula-card">Electrical Power Output: Pr = U × I</div>
             <div class="formula-card">Power Extraction Coefficient: Cp = Pr / Pw</div>
-            <div class="formula-card">Betz Limit Theoretical Benchmark: P_Betz = 0.593 × Pw</div>
-            <p>
-                <strong>Cubic Velocity Verification:</strong> Raising the upstream velocity from 2.51 m/s to 6.00 m/s (2.39× increase) resulted in an exact 13.65× available power growth (conforming directly to (2.39)³ = 13.65).
+            <div class="formula-card">Betz-Limit Reference Power: P_Betz = 0.593 × Pw</div>
+            <div class="formula-card">Efficiency Relative to Betz: η = (Pr / P_Betz) × 100%</div>
+        </section>
+
+        <!-- 08: Full Experimental Data Log -->
+        <section class="detail-section">
+            <h2>Experimental Measurements &amp; Data Logging</h2>
+            <div class="table-responsive">
+                <table class="deck-table">
+                    <thead>
+                        <tr>
+                            <th>V_fan</th>
+                            <th>Vw (m/s)</th>
+                            <th>HAWT Pw (mW)</th>
+                            <th>HAWT Pr (mW)</th>
+                            <th>HAWT η_Betz</th>
+                            <th>VAWT Pw (mW)</th>
+                            <th>VAWT Pr (mW)</th>
+                            <th>VAWT η_Betz</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr><td>12.0 V</td><td>6.00</td><td>1530.00</td><td>234.00</td><td><strong>25.79%</strong></td><td>610.42</td><td>13.11</td><td>3.62%</td></tr>
+                        <tr><td>11.0 V</td><td>5.60</td><td>1243.95</td><td>182.00</td><td>24.67%</td><td>496.28</td><td>2.64</td><td>0.90%</td></tr>
+                        <tr><td>10.0 V</td><td>5.14</td><td>961.89</td><td>145.14</td><td>25.45%</td><td>383.75</td><td>2.04</td><td>0.90%</td></tr>
+                        <tr><td>9.0 V</td><td>4.66</td><td>716.80</td><td>114.40</td><td><strong>26.91%</strong></td><td>285.97</td><td>1.37</td><td>0.81%</td></tr>
+                        <tr><td>8.0 V</td><td>4.22</td><td>532.32</td><td>49.00</td><td>15.52%</td><td>212.37</td><td>0.89</td><td>0.71%</td></tr>
+                        <tr><td>7.0 V</td><td>3.60</td><td>330.48</td><td>0.06</td><td>0.03%</td><td>131.84</td><td>1.28</td><td>1.63%</td></tr>
+                        <tr><td>6.0 V</td><td>3.11</td><td>213.07</td><td>0.00</td><td>0.00%</td><td>84.99</td><td>0.66</td><td>1.30%</td></tr>
+                        <tr><td>5.0 V</td><td>2.51</td><td>112.01</td><td>0.00</td><td>0.00%</td><td>44.69</td><td>0.25</td><td>0.94%</td></tr>
+                    </tbody>
+                </table>
+            </div>
+            <p style="font-size: 0.9rem; color: #94a3b8;">
+                *Sample calculation at 12.0 V (HAWT): Pw = 0.5 × 1.1731 × 0.012076 × (6.00)³ = 1530.00 mW | Pr = 1.56 V × 150.0 mA = 234.00 mW | η_Betz = 234.00 / (0.593 × 1530) = 25.79%[cite: 32].
             </p>
         </section>
 
+        <!-- 12: Rotor Trade-off Matrix -->
         <section class="detail-section">
-            <h2>3. Measured Performance Comparison (@ 6.00 m/s)</h2>
-            <table class="results-table">
-                <thead>
-                    <tr>
-                        <th>Metric</th>
-                        <th>HAWT (3-Blade Lift)</th>
-                        <th>Savonius VAWT (Drag)</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        <td><strong>Effective Swept / Projected Area</strong></td>
-                        <td>0.012076 m² (62 mm radius)</td>
-                        <td>0.004818 m² (80.3 mm × 60 mm)</td>
-                    </tr>
-                    <tr>
-                        <td><strong>Peak Electrical Power</strong></td>
-                        <td>234.00 mW (1.56 V, 150.0 mA)</td>
-                        <td>13.11 mW (0.186 V, 70.5 mA)</td>
-                    </tr>
-                    <tr>
-                        <td><strong>Efficiency Relative to Betz Limit</strong></td>
-                        <td>25.79% (peak 26.91% at 4.66 m/s)</td>
-                        <td>3.62%</td>
-                    </tr>
-                    <tr>
-                        <td><strong>Cut-In Speed Threshold</strong></td>
-                        <td>Stalled < 3.60 m/s due to stiction</td>
-                        <td>Self-starting down to 2.51 m/s</td>
-                    </tr>
-                    <tr>
-                        <td><strong>Wake Deceleration (V_down)</strong></td>
-                        <td>3.80 m/s (63.3% of upstream)</td>
-                        <td>Higher residual momentum / lower drag extraction</td>
-                    </tr>
-                </tbody>
-            </table>
+            <h2>Systematic Rotor Trade-Off Matrix</h2>
+            <div class="table-responsive">
+                <table class="deck-table">
+                    <thead>
+                        <tr>
+                            <th>Engineering Criterion</th>
+                            <th>HAWT (3-Blade Lift Rotor)</th>
+                            <th>Savonius VAWT (Drag Rotor)</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><strong>1. Axis &amp; Orientation</strong></td>
+                            <td>Horizontal axis; requires active yaw alignment to follow wind vector[cite: 36].</td>
+                            <td>Vertical axis; omnidirectional (360°) capture without yaw mechanisms[cite: 36].</td>
+                        </tr>
+                        <tr>
+                            <td><strong>2. Rotational Speed (TSR)</strong></td>
+                            <td>High shaft speed; tip-speed ratio λ > 1 enables efficient generator coupling[cite: 36].</td>
+                            <td>Low shaft speed; bucket cannot exceed incoming wind velocity (λ < 1)[cite: 36].</td>
+                        </tr>
+                        <tr>
+                            <td><strong>3. Starting Dynamics</strong></td>
+                            <td>Stalled below 3.60 m/s due to blade stall and bearing stiction[cite: 36].</td>
+                            <td>Self-starting down to 2.51 m/s via positive static cup drag[cite: 36].</td>
+                        </tr>
+                        <tr>
+                            <td><strong>4. Terminal Power Output</strong></td>
+                            <td>High peak conversion: 234.00 mW output (26.91% peak Betz efficiency)[cite: 32, 36].</td>
+                            <td>Limited peak output: 13.11 mW (max 3.62% Betz efficiency)[cite: 32, 36].</td>
+                        </tr>
+                        <tr>
+                            <td><strong>5. Operating Principle</strong></td>
+                            <td>Bernoulli pressure differentials generate driving aerodynamic lift[cite: 36].</td>
+                            <td>Differential drag force between advancing concave and returning convex cups[cite: 36].</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </section>
+
+        <!-- 11: Loss Mechanisms -->
+        <section class="detail-section">
+            <h2>Thermodynamic Losses &amp; Exergy Dissipation</h2>
+            <ul>
+                <li><strong>Wake Kinetic Deficit:</strong> Betz theorem proves an ideal disk exit velocity of Vw/3 (33.3%)[cite: 35]. The HAWT wake exited at 3.80 m/s (63.3% of upstream), dissipating kinetic exergy into downstream swirl[cite: 35].</li>
+                <li><strong>Tip Vortex &amp; Flow Bypass:</strong> Without tip winglets, high-pressure air spills over the 62 mm blade tips into spanwise tip vortices, causing aerodynamic induced drag[cite: 27, 35].</li>
+                <li><strong>Electromechanical Dissipation:</strong> Available work is irreversibly degraded (ΔS_gen > 0) through mechanical bearing friction and electrical generator I²R resistive heat dissipation[cite: 35].</li>
+            </ul>
         </section>
 
         <div class="project-actions">
             <a href="Wind_Turbine_Lab_Project_Portfolio_Deck.pdf" download class="btn-action btn-primary-action">
-                <i class="fa-solid fa-download"></i> Download Presentation Deck
+                <i class="fa-solid fa-file-pdf"></i> Download Full Deck (PDF)
             </a>
             <a href="index.html#contact" class="btn-action btn-secondary-action">
                 <i class="fa-solid fa-envelope"></i> Contact Me About This Project
             </a>
         </div>
     </div>
+
+    <!-- Mechanical Wind Turbine Animation Script -->
+    <script>
+        const canvas = document.getElementById('turbine-canvas');
+        const ctx = canvas.getContext('2d');
+
+        function resize() {
+            canvas.width = window.innerWidth;
+            canvas.height = window.innerHeight;
+        }
+        window.addEventListener('resize', resize);
+        resize();
+
+        // Mechanical Streamline Particles
+        const particles = [];
+        const particleCount = 45;
+        for (let i = 0; i < particleCount; i++) {
+            particles.push({
+                x: Math.random() * canvas.width,
+                y: Math.random() * canvas.height,
+                len: 30 + Math.random() * 60,
+                speed: 1.5 + Math.random() * 2.5,
+                opacity: 0.15 + Math.random() * 0.25
+            });
+        }
+
+        let angle = 0;
+
+        function drawBlueprintGrid() {
+            ctx.strokeStyle = 'rgba(56, 189, 248, 0.035)';
+            ctx.lineWidth = 1;
+            const gridSize = 40;
+            for (let x = 0; x < canvas.width; x += gridSize) {
+                ctx.beginPath();
+                ctx.moveTo(x, 0);
+                ctx.lineTo(x, canvas.height);
+                ctx.stroke();
+            }
+            for (let y = 0; y < canvas.height; y += gridSize) {
+                ctx.beginPath();
+                ctx.moveTo(0, y);
+                ctx.lineTo(canvas.width, y);
+                ctx.stroke();
+            }
+        }
+
+        function drawStreamlines() {
+            ctx.lineWidth = 1.5;
+            for (let p of particles) {
+                ctx.strokeStyle = `rgba(56, 189, 248, ${p.opacity * 0.4})`;
+                ctx.beginPath();
+                ctx.moveTo(p.x, p.y);
+                ctx.lineTo(p.x + p.len, p.y);
+                ctx.stroke();
+
+                p.x += p.speed;
+                if (p.x > canvas.width) {
+                    p.x = -p.len;
+                    p.y = Math.random() * canvas.height;
+                }
+            }
+        }
+
+        function drawTurbineMechanism(cx, cy, r, rotAngle) {
+            ctx.save();
+            ctx.translate(cx, cy);
+
+            // Technical Swept Disc Coordinate Rings
+            ctx.strokeStyle = 'rgba(245, 158, 11, 0.09)';
+            ctx.lineWidth = 1.2;
+            ctx.setLineDash([4, 6]);
+            ctx.beginPath();
+            ctx.arc(0, 0, r, 0, Math.PI * 2);
+            ctx.stroke();
+
+            ctx.beginPath();
+            ctx.arc(0, 0, r * 0.5, 0, Math.PI * 2);
+            ctx.stroke();
+            ctx.setLineDash([]);
+
+            // Tower Support Mechanism
+            ctx.strokeStyle = 'rgba(148, 163, 184, 0.18)';
+            ctx.fillStyle = 'rgba(30, 41, 59, 0.25)';
+            ctx.lineWidth = 2;
+            ctx.beginPath();
+            ctx.moveTo(-10, 10);
+            ctx.lineTo(-24, canvas.height - cy);
+            ctx.lineTo(24, canvas.height - cy);
+            ctx.lineTo(10, 10);
+            ctx.closePath();
+            ctx.fill();
+            ctx.stroke();
+
+            // Nacelle Housing
+            ctx.fillStyle = 'rgba(56, 189, 248, 0.22)';
+            ctx.strokeStyle = 'rgba(56, 189, 248, 0.4)';
+            ctx.lineWidth = 1.5;
+            ctx.beginPath();
+            ctx.roundRect(-22, -10, 44, 20, 6);
+            ctx.fill();
+            ctx.stroke();
+
+            // 3-Blade Rotating Rotor Assembly
+            for (let i = 0; i < 3; i++) {
+                const bladeAngle = rotAngle + (i * (Math.PI * 2) / 3);
+                ctx.save();
+                ctx.rotate(bladeAngle);
+
+                // Engineered Airfoil Blade Geometry
+                ctx.beginPath();
+                ctx.moveTo(0, 0);
+                ctx.bezierCurveTo(8, -r * 0.35, 14, -r * 0.75, 2, -r);
+                ctx.bezierCurveTo(-4, -r * 0.75, -8, -r * 0.35, 0, 0);
+                
+                ctx.fillStyle = 'rgba(245, 158, 11, 0.16)';
+                ctx.strokeStyle = 'rgba(245, 158, 11, 0.55)';
+                ctx.lineWidth = 1.5;
+                ctx.fill();
+                ctx.stroke();
+
+                // Blade Chord Centerline Reference
+                ctx.strokeStyle = 'rgba(255, 255, 255, 0.25)';
+                ctx.lineWidth = 0.8;
+                ctx.beginPath();
+                ctx.moveTo(0, -6);
+                ctx.lineTo(1, -r * 0.92);
+                ctx.stroke();
+
+                ctx.restore();
+            }
+
+            // Central Rotor Hub & Pitch Disc
+            ctx.beginPath();
+            ctx.arc(0, 0, 12, 0, Math.PI * 2);
+            ctx.fillStyle = 'rgba(15, 23, 42, 0.9)';
+            ctx.strokeStyle = 'rgba(245, 158, 11, 0.8)';
+            ctx.lineWidth = 2.5;
+            ctx.fill();
+            ctx.stroke();
+
+            // Center Bearing Pin
+            ctx.beginPath();
+            ctx.arc(0, 0, 4, 0, Math.PI * 2);
+            ctx.fillStyle = '#38bdf8';
+            ctx.fill();
+
+            ctx.restore();
+        }
+
+        function animate() {
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+            drawBlueprintGrid();
+            drawStreamlines();
+
+            // Right Background Primary Wind Turbine
+            const primaryX = canvas.width * 0.78;
+            const primaryY = canvas.height * 0.42;
+            const primaryRadius = Math.min(canvas.width, canvas.height) * 0.32;
+            drawTurbineMechanism(primaryX, primaryY, primaryRadius, angle);
+
+            // Left Background Secondary Scaled Turbine (Perspective depth)
+            const secondaryX = canvas.width * 0.15;
+            const secondaryY = canvas.height * 0.65;
+            const secondaryRadius = Math.min(canvas.width, canvas.height) * 0.18;
+            drawTurbineMechanism(secondaryX, secondaryY, secondaryRadius, angle * 1.35);
+
+            angle += 0.012; // Continuous smooth rotational speed
+            requestAnimationFrame(animate);
+        }
+
+        animate();
+    </script>
 </body>
 </html>
