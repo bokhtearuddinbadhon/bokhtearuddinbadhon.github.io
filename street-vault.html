@@ -16,7 +16,6 @@
             overflow-x: hidden;
         }
 
-        /* Fullscreen Subterranean Multi-Tier Hydraulic Vault Canvas */
         #hydraulics-canvas {
             position: fixed;
             top: 0;
@@ -255,7 +254,6 @@
     </style>
 </head>
 <body>
-    <!-- Real-Time Continuous Subterranean Multi-Tier Hydraulic Vault Animation -->
     <canvas id="hydraulics-canvas"></canvas>
 
     <div class="project-detail-container">
@@ -403,7 +401,7 @@
         </div>
     </div>
 
-    <!-- Subterranean Multi-Tier Scissor Vault Mechanical Canvas Script -->
+    <!-- Complete Kinematic 4-Stroke Hydraulic Subterranean Script -->
     <script>
         const canvas = document.getElementById('hydraulics-canvas');
         const ctx = canvas.getContext('2d');
@@ -435,130 +433,142 @@
             }
         }
 
-        // Draw Multi-Tier Double Scissor Subterranean Vault
         function drawMultiTierVault(cx, groundY, scale, liftProgress) {
             ctx.save();
             ctx.translate(cx, groundY);
 
             const vaultW = 280 * scale;
-            const vaultDepth = 320 * scale;
+            const vaultDepth = 300 * scale;
+            const deckSpacing = 110 * scale; 
+            const pitFloorY = vaultDepth - 15 * scale;
 
-            // 1. Underground Reinforced Vault Enclosure
-            ctx.fillStyle = 'rgba(10, 16, 28, 0.85)';
+            // 1. Reinforced Concrete Vault Chamber
+            ctx.fillStyle = 'rgba(8, 14, 26, 0.92)';
             ctx.fillRect(-vaultW / 2, 0, vaultW, vaultDepth);
-            ctx.strokeStyle = 'rgba(148, 163, 184, 0.25)';
+            ctx.strokeStyle = 'rgba(148, 163, 184, 0.35)';
             ctx.lineWidth = 2.5 * scale;
             ctx.strokeRect(-vaultW / 2, 0, vaultW, vaultDepth);
 
-            // 2. Subterranean Blue LED Perimeter Lighting
+            // 2. Cyan LED Subterranean Lighting Strip
             ctx.shadowColor = '#00f2fe';
-            ctx.shadowBlur = 15;
-            ctx.strokeStyle = 'rgba(0, 242, 254, 0.8)';
+            ctx.shadowBlur = 12;
+            ctx.strokeStyle = 'rgba(0, 242, 254, 0.85)';
             ctx.lineWidth = 2.5 * scale;
             ctx.beginPath();
-            ctx.moveTo(-vaultW / 2 + 6, 8);
+            ctx.moveTo(-vaultW / 2 + 6, 6);
             ctx.lineTo(-vaultW / 2 + 6, vaultDepth - 8);
-            ctx.moveTo(vaultW / 2 - 6, 8);
+            ctx.moveTo(vaultW / 2 - 6, 6);
             ctx.lineTo(vaultW / 2 - 6, vaultDepth - 8);
             ctx.stroke();
-            ctx.shadowBlur = 0; // Reset glow
+            ctx.shadowBlur = 0;
 
-            // 3. Sliding Surface Street Hatch Covers
-            const hatchSlide = liftProgress * (vaultW * 0.48);
+            // 3. Sliding Street Hatch Covers
+            const hatchSlide = Math.min(1, liftProgress * 2.5) * (vaultW * 0.49);
             ctx.fillStyle = 'rgba(30, 41, 59, 0.95)';
-            ctx.strokeStyle = 'rgba(245, 158, 11, 0.5)';
+            ctx.strokeStyle = 'rgba(245, 158, 11, 0.6)';
             ctx.lineWidth = 2;
 
-            // Left sliding hatch
+            // Left cover
             ctx.fillRect(-vaultW / 2 - hatchSlide, -10 * scale, vaultW / 2, 10 * scale);
             ctx.strokeRect(-vaultW / 2 - hatchSlide, -10 * scale, vaultW / 2, 10 * scale);
 
-            // Right sliding hatch
+            // Right cover
             ctx.fillRect(hatchSlide, -10 * scale, vaultW / 2, 10 * scale);
             ctx.strokeRect(hatchSlide, -10 * scale, vaultW / 2, 10 * scale);
 
-            // 4. Hydraulic Scissor Mechanism Coordinates
-            const basePlatformY = vaultDepth - 25 * scale;
-            const fullLiftH = 220 * scale;
-            const currentLift = liftProgress * fullLiftH;
+            // 4. Exact Platform Elevations:
+            // liftProgress = 0.0 -> Upper deck = 0 (flush street level), Lower deck = 110 (deep in pit)
+            // liftProgress = 1.0 -> Lower deck = 0 (flush street level), Upper deck = -110 (overhead canopy)
+            const lowerDeckY = deckSpacing * (1 - liftProgress);
+            const upperDeckY = lowerDeckY - deckSpacing;
 
-            // Two-Stage Scissor Linkage
-            const midPivotY = basePlatformY - (currentLift * 0.5) - 40 * scale;
-            const lowerDeckY = basePlatformY - (currentLift * 0.48);
-            const upperDeckY = lowerDeckY - (110 * scale) - (currentLift * 0.52);
+            // 5. Scissor Mechanism: Sits strictly underneath the lower platform
+            const subFrameY = lowerDeckY + 12 * scale;
+            const scissorTravel = pitFloorY - subFrameY;
+            const midJointY = pitFloorY - (scissorTravel / 2);
+            const scissorSpan = (vaultW * 0.38) * Math.max(0.25, (1 - (scissorTravel / (vaultDepth * 1.5))));
 
-            const scissorHalfW = (vaultW * 0.35) * (1 - (liftProgress * 0.28));
-
-            // Scissor Stage 1 (Lower)
-            ctx.strokeStyle = 'rgba(203, 213, 225, 0.7)';
+            ctx.strokeStyle = 'rgba(203, 213, 225, 0.8)';
             ctx.lineWidth = 3.5 * scale;
 
+            // Stage 1 (Bottom X)
             ctx.beginPath();
-            ctx.moveTo(-scissorHalfW, basePlatformY);
-            ctx.lineTo(scissorHalfW, midPivotY);
-            ctx.moveTo(scissorHalfW, basePlatformY);
-            ctx.lineTo(-scissorHalfW, midPivotY);
+            ctx.moveTo(-scissorSpan, pitFloorY);
+            ctx.lineTo(scissorSpan, midJointY);
+            ctx.moveTo(scissorSpan, pitFloorY);
+            ctx.lineTo(-scissorSpan, midJointY);
             ctx.stroke();
 
-            // Scissor Stage 2 (Upper)
+            // Stage 2 (Top X)
             ctx.beginPath();
-            ctx.moveTo(-scissorHalfW, midPivotY);
-            ctx.lineTo(scissorHalfW, lowerDeckY);
-            ctx.moveTo(scissorHalfW, midPivotY);
-            ctx.lineTo(-scissorHalfW, lowerDeckY);
+            ctx.moveTo(-scissorSpan, midJointY);
+            ctx.lineTo(scissorSpan, subFrameY);
+            ctx.moveTo(scissorSpan, midJointY);
+            ctx.lineTo(-scissorSpan, subFrameY);
             ctx.stroke();
 
-            // Center Pin Joints
+            // Center Bronze Pivot Pins
             ctx.fillStyle = '#f59e0b';
             ctx.beginPath();
-            ctx.arc(0, (basePlatformY + midPivotY) / 2, 4.5 * scale, 0, Math.PI * 2);
-            ctx.arc(0, (midPivotY + lowerDeckY) / 2, 4.5 * scale, 0, Math.PI * 2);
-            ctx.arc(0, midPivotY, 5.5 * scale, 0, Math.PI * 2);
+            ctx.arc(0, (pitFloorY + midJointY) / 2, 4 * scale, 0, Math.PI * 2);
+            ctx.arc(0, (midJointY + subFrameY) / 2, 4 * scale, 0, Math.PI * 2);
+            ctx.arc(0, midJointY, 5 * scale, 0, Math.PI * 2);
             ctx.fill();
 
-            // Central Hydraulic Cylinder Ram
+            // Telescopic Hydraulic Ram
             ctx.strokeStyle = 'rgba(56, 189, 248, 0.9)';
             ctx.lineWidth = 5 * scale;
             ctx.beginPath();
-            ctx.moveTo(0, basePlatformY);
-            ctx.lineTo(0, midPivotY);
+            ctx.moveTo(0, pitFloorY);
+            ctx.lineTo(0, midJointY);
             ctx.stroke();
 
-            // 5. Tier 1: Lower Vehicle Deck
+            // 6. Rigid Vertical Canopy Posts
+            ctx.strokeStyle = 'rgba(148, 163, 184, 0.7)';
+            ctx.lineWidth = 3.5 * scale;
+            ctx.beginPath();
+            ctx.moveTo(-vaultW * 0.40, lowerDeckY);
+            ctx.lineTo(-vaultW * 0.40, upperDeckY);
+            ctx.moveTo(vaultW * 0.40, lowerDeckY);
+            ctx.lineTo(vaultW * 0.40, upperDeckY);
+            ctx.stroke();
+
+            // 7. Lower Vehicle Deck (Tier 2 - Cyan Accent)
             drawPlatform(0, lowerDeckY, vaultW * 0.88, 12 * scale, '#38bdf8');
             drawCarSilhouette(0, lowerDeckY, 0.85 * scale, '#00f2fe');
 
-            // Vertical Stanchions connecting lower and upper tiers
-            ctx.strokeStyle = 'rgba(148, 163, 184, 0.6)';
-            ctx.lineWidth = 3 * scale;
-            ctx.beginPath();
-            ctx.moveTo(-vaultW * 0.38, lowerDeckY);
-            ctx.lineTo(-vaultW * 0.38, upperDeckY);
-            ctx.moveTo(vaultW * 0.38, lowerDeckY);
-            ctx.lineTo(vaultW * 0.38, upperDeckY);
-            ctx.stroke();
-
-            // 6. Tier 2: Upper Vehicle Deck
-            drawPlatform(0, upperDeckY, vaultW * 0.88, 14 * scale, '#f59e0b');
+            // 8. Upper Heavy-Duty Flush Road Deck (Tier 1 - Amber Accent)
+            drawPlatform(0, upperDeckY, vaultW * 0.90, 14 * scale, '#f59e0b');
             drawCarSilhouette(0, upperDeckY, 0.85 * scale, '#f59e0b');
+
+            // Reference Street Grade Line
+            ctx.strokeStyle = 'rgba(255, 255, 255, 0.2)';
+            ctx.setLineDash([4, 4]);
+            ctx.beginPath();
+            ctx.moveTo(-vaultW * 0.75, 0);
+            ctx.lineTo(-vaultW * 0.5, 0);
+            ctx.moveTo(vaultW * 0.5, 0);
+            ctx.lineTo(vaultW * 0.75, 0);
+            ctx.stroke();
+            ctx.setLineDash([]);
 
             ctx.restore();
         }
 
         function drawPlatform(cx, py, w, h, accentColor) {
-            ctx.fillStyle = 'rgba(30, 41, 59, 0.95)';
+            ctx.fillStyle = 'rgba(25, 34, 52, 0.95)';
             ctx.fillRect(cx - w / 2, py - h, w, h);
             ctx.strokeStyle = accentColor;
-            ctx.lineWidth = 1.8;
+            ctx.lineWidth = 2;
             ctx.strokeRect(cx - w / 2, py - h, w, h);
         }
 
         function drawCarSilhouette(cx, py, s, glowColor) {
             ctx.save();
             ctx.translate(cx, py - 6);
-            ctx.fillStyle = 'rgba(15, 23, 42, 0.85)';
+            ctx.fillStyle = 'rgba(11, 18, 33, 0.92)';
             ctx.strokeStyle = glowColor;
-            ctx.lineWidth = 1.5;
+            ctx.lineWidth = 1.6;
 
             ctx.beginPath();
             ctx.moveTo(-60 * s, 0);
@@ -575,11 +585,11 @@
 
             // Wheels
             ctx.fillStyle = '#080d1a';
-            ctx.strokeStyle = '#64748b';
+            ctx.strokeStyle = '#94a3b8';
             ctx.lineWidth = 1.2;
             ctx.beginPath();
-            ctx.arc(-38 * s, 0, 8 * s, 0, Math.PI * 2);
-            ctx.arc(38 * s, 0, 8 * s, 0, Math.PI * 2);
+            ctx.arc(-38 * s, 0, 7.5 * s, 0, Math.PI * 2);
+            ctx.arc(38 * s, 0, 7.5 * s, 0, Math.PI * 2);
             ctx.fill();
             ctx.stroke();
 
@@ -590,21 +600,32 @@
             ctx.clearRect(0, 0, canvas.width, canvas.height);
             drawGrid();
 
-            // Smooth Harmonic Motion: Expands, holds at road level, retracts, holds flush
-            const cycle = (Math.sin(t) + 1) / 2; // Value between 0.0 and 1.0
+            const cycleTime = 14; 
+            const phase = (t % cycleTime) / cycleTime;
+            let liftProgress = 0;
 
-            // Primary Vault (Right-side background)
+            if (phase < 0.20) {
+                liftProgress = 0;
+            } else if (phase < 0.50) {
+                const p = (phase - 0.20) / 0.30;
+                liftProgress = (1 - Math.cos(p * Math.PI)) / 2;
+            } else if (phase < 0.75) {
+                liftProgress = 1.0;
+            } else {
+                const p = (phase - 0.75) / 0.25;
+                liftProgress = 1.0 - ((1 - Math.cos(p * Math.PI)) / 2);
+            }
+
             const primaryX = canvas.width * 0.78;
-            const primaryGroundY = canvas.height * 0.44;
-            drawMultiTierVault(primaryX, primaryGroundY, 1.05, cycle);
+            const primaryGroundY = canvas.height * 0.52;
+            drawMultiTierVault(primaryX, primaryGroundY, 1.05, liftProgress);
 
-            // Secondary Scaled Perspective Vault (Left-side background)
             const secondaryX = canvas.width * 0.16;
-            const secondaryGroundY = canvas.height * 0.60;
-            const secondaryCycle = (Math.sin(t + 1.6) + 1) / 2;
-            drawMultiTierVault(secondaryX, secondaryGroundY, 0.65, secondaryCycle);
+            const secondaryGroundY = canvas.height * 0.64;
+            const secLift = Math.max(0, liftProgress * 0.75);
+            drawMultiTierVault(secondaryX, secondaryGroundY, 0.65, secLift);
 
-            t += 0.012; // Smooth hydraulic speed
+            t += 0.02;
             requestAnimationFrame(animate);
         }
 
