@@ -1,0 +1,523 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>StreetVault Parking System | Bokhtear Uddin Badhon</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        body {
+            background-color: #0b1120 !important;
+            position: relative;
+            min-height: 100vh;
+            margin: 0;
+            padding: 0;
+        }
+
+        #hydraulics-canvas {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            z-index: 0;
+            pointer-events: none;
+        }
+
+        .project-detail-container {
+            max-width: 980px;
+            margin: 80px auto 60px;
+            padding: 0 24px;
+            color: #e2e8f0;
+            line-height: 1.7;
+            position: relative;
+            z-index: 1;
+        }
+        .back-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            color: #f59e0b;
+            text-decoration: none;
+            font-weight: 600;
+            margin-bottom: 25px;
+            transition: transform 0.2s;
+        }
+        .back-link:hover {
+            transform: translateX(-5px);
+        }
+        .detail-header {
+            margin-bottom: 30px;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            padding-bottom: 25px;
+        }
+        .detail-badge {
+            display: inline-block;
+            background: rgba(245, 158, 11, 0.15);
+            color: #f59e0b;
+            border: 1px solid #f59e0b;
+            border-radius: 20px;
+            padding: 4px 14px;
+            font-size: 0.82rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            margin-bottom: 12px;
+        }
+        .detail-title {
+            font-size: 2.2rem;
+            margin-bottom: 10px;
+            color: #ffffff;
+            font-weight: 700;
+        }
+        .detail-subtitle {
+            font-size: 1.05rem;
+            color: #94a3b8;
+        }
+
+        .deck-viewer-container {
+            background: rgba(15, 23, 42, 0.88);
+            border: 1px solid rgba(245, 158, 11, 0.35);
+            border-radius: 12px;
+            padding: 16px;
+            margin: 35px 0 45px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.6);
+            backdrop-filter: blur(8px);
+        }
+        .deck-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 12px;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+        .deck-header h3 {
+            margin: 0;
+            font-size: 1.05rem;
+            color: #f59e0b;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        .pdf-frame {
+            width: 100%;
+            height: 540px;
+            border: none;
+            border-radius: 8px;
+            background: #1e293b;
+        }
+
+        .project-meta-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(210px, 1fr));
+            gap: 15px;
+            background: rgba(15, 23, 42, 0.8);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 10px;
+            padding: 20px;
+            margin-bottom: 40px;
+            backdrop-filter: blur(8px);
+        }
+        .meta-item strong {
+            display: block;
+            color: #f59e0b;
+            font-size: 0.8rem;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            margin-bottom: 4px;
+        }
+        .meta-item span {
+            color: #cbd5e1;
+            font-size: 0.95rem;
+        }
+
+        .detail-section {
+            margin-bottom: 40px;
+            background: rgba(15, 23, 42, 0.8);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            border-radius: 10px;
+            padding: 24px;
+            backdrop-filter: blur(8px);
+        }
+        .detail-section h2 {
+            font-size: 1.4rem;
+            color: #ffffff;
+            margin-bottom: 16px;
+            border-left: 4px solid #f59e0b;
+            padding-left: 12px;
+            font-weight: 600;
+        }
+
+        .principle-box {
+            background: rgba(11, 19, 36, 0.95);
+            border-left: 3px solid #38bdf8;
+            padding: 14px 18px;
+            margin: 12px 0;
+            border-radius: 0 8px 8px 0;
+            color: #cbd5e1;
+            font-size: 0.95rem;
+        }
+        .principle-box strong {
+            color: #38bdf8;
+        }
+
+        .table-responsive {
+            overflow-x: auto;
+            margin: 20px 0;
+        }
+        .deck-table {
+            width: 100%;
+            border-collapse: collapse;
+            font-size: 0.88rem;
+            background: rgba(11, 19, 36, 0.7);
+            border-radius: 8px;
+            overflow: hidden;
+            text-align: left;
+        }
+        .deck-table th, .deck-table td {
+            padding: 10px 14px;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+        }
+        .deck-table th {
+            background: rgba(11, 19, 36, 0.95);
+            color: #f59e0b;
+            font-weight: 600;
+        }
+        .deck-table tr:hover {
+            background: rgba(255, 255, 255, 0.04);
+        }
+
+        .step-list {
+            list-style: none;
+            padding: 0;
+            counter-reset: step-counter;
+        }
+        .step-list li {
+            counter-increment: step-counter;
+            margin-bottom: 12px;
+            display: flex;
+            align-items: flex-start;
+            gap: 12px;
+        }
+        .step-list li::before {
+            content: counter(step-counter);
+            background: #f59e0b;
+            color: #0f172a;
+            font-weight: 700;
+            width: 24px;
+            height: 24px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.8rem;
+            flex-shrink: 0;
+            margin-top: 2px;
+        }
+
+        .project-actions {
+            display: flex;
+            gap: 15px;
+            flex-wrap: wrap;
+            margin-top: 40px;
+            padding-top: 25px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        .btn-action {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 12px 22px;
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: 0.2s ease;
+        }
+        .btn-primary-action {
+            background: #f59e0b;
+            color: #0f172a;
+        }
+        .btn-primary-action:hover {
+            background: #d97706;
+        }
+        .btn-secondary-action {
+            background: rgba(255, 255, 255, 0.08);
+            color: #ffffff;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+        .btn-secondary-action:hover {
+            background: rgba(255, 255, 255, 0.15);
+        }
+    </style>
+</head>
+<body>
+    <canvas id="hydraulics-canvas"></canvas>
+
+    <div class="project-detail-container">
+        <a href="index.html#projects" class="back-link"><i class="fa-solid fa-arrow-left"></i> Back to Main Portfolio</a>
+        
+        <header class="detail-header">
+            <span class="detail-badge"><i class="fa-solid fa-car-tunnel"></i> Mechanical &amp; Urban Infrastructure Design</span>
+            <h1 class="detail-title">StreetVault: Underground Hydraulic Parking System</h1>
+            <p class="detail-subtitle">An Underground Multi-Layer Parking Vault Powered by Hydraulics to Reduce London Residential Roadside Congestion</p>
+        </header>
+
+        <!-- Slide Deck Embed -->
+        <div class="deck-viewer-container">
+            <div class="deck-header">
+                <h3><i class="fa-solid fa-file-powerpoint"></i> Practical Project Portfolio Deck</h3>
+                <a href="StreetVault_Engineering_Portfolio_Deck.pdf" target="_blank" class="back-link" style="margin: 0; font-size: 0.88rem;">
+                    <i class="fa-solid fa-up-right-from-square"></i> Open Fullscreen / Download Deck
+                </a>
+            </div>
+            <iframe class="pdf-frame" src="StreetVault_Engineering_Portfolio_Deck.pdf#toolbar=1" type="application/pdf">
+                <p>Your browser does not support inline PDFs. <a href="StreetVault_Engineering_Portfolio_Deck.pdf" style="color: #f59e0b;">Download the presentation deck here.</a></p>
+            </iframe>
+        </div>
+
+        <div class="project-meta-grid">
+            <div class="meta-item">
+                <strong>Institution &amp; Module</strong>
+                <span>London South Bank University | Design and Practice</span>
+            </div>
+            <div class="meta-item">
+                <strong>Project Team</strong>
+                <span>Team Street Vault (Bokhtear Badhon, M. Sadik, M. Rahman)</span>
+            </div>
+            <div class="meta-item">
+                <strong>Mechanical Actuation</strong>
+                <span>Hydraulic Scissor / Multi-Cylinder Lift (Pascal's Law)</span>
+            </div>
+            <div class="meta-item">
+                <strong>Key Context</strong>
+                <span>Vehicle Load: 1,200 kg – 2,500 kg | London Urban Footprint</span>
+            </div>
+        </div>
+
+        <section class="detail-section">
+            <h2>1. Urban Challenge &amp; Problem Framing</h2>
+            <p>
+                London's historic street network was constructed long before mass automobile adoption. Today, parked roadside vehicles reduce effective carriageways to single-lane bottlenecks, impede London Fire Brigade and NHS emergency vehicle access, force pedestrians and prams onto roads, and restrict lateral clearance for cyclists.
+            </p>
+            <p>
+                Controlled Parking Zones (CPZs) and permits redistribute cars without creating physical surface space. StreetVault resolves this by moving static vehicle storage vertically below ground level, leaving the upper road deck flush and operational for public transit when closed.
+            </p>
+        </section>
+
+        <section class="detail-section">
+            <h2>2. Mechanical &amp; Hydraulic System Principles</h2>
+            <div class="principle-box">
+                <strong>Actuation Principle:</strong> Hydraulic fluid power governs movement based on <strong>Pascal's Law</strong> (pressure applied to an enclosed fluid is transmitted undiminished in all directions). A high lifting force at four synchronized corner cylinders is generated using a compact electric-motor-driven pump unit.
+            </div>
+            <p>
+                The mechanical drive train follows an integrated sequence: <strong>Electric Motor &rarr; Hydraulic Pump &rarr; Directional Control Valves &rarr; Synchronized Cylinders &rarr; Rigid Lifting Platform</strong>.
+            </p>
+            <ul>
+                <li><strong>Dynamic Lifting Capacity:</strong> Sized for private passenger cars (1,200 kg to 2,500 kg) with safety factor redundancy.</li>
+                <li><strong>Structural Integrity:</strong> Reinforced waterproof concrete vault designed to resist lateral soil pressure, hydrostatic groundwater loads, and heavy overhead highway traffic.</li>
+                <li><strong>CAD Iteration:</strong> Assembly designed and spatially verified using Autodesk Fusion 360 to align platform clearances with standard UK parking stall footprints.</li>
+            </ul>
+        </section>
+
+        <section class="detail-section">
+            <h2>3. Controlled Operational Workflow</h2>
+            <ol class="step-list">
+                <li><strong>Request Initiated:</strong> Driver triggers parking request via user interface or credential scan.</li>
+                <li><strong>Zone Clearance &amp; Isolation:</strong> Optical and traffic sensors confirm clear street space; perimeter barriers and warning alerts activate.</li>
+                <li><strong>Hydraulic Elevation:</strong> Synchronized hydraulic cylinders smoothly elevate the platform flush to street grade.</li>
+                <li><strong>Positioning &amp; Alignment:</strong> Driver positions vehicle; integrated weight and limit switches verify alignment.</li>
+                <li><strong>Descent &amp; Vault Locking:</strong> Platform descends into the reinforced underground vault and mechanical locking pins engage.</li>
+                <li><strong>Surface Resumption:</strong> Flush heavy-duty top deck re-opens for unrestricted pedestrian and vehicular roadway passage.</li>
+            </ol>
+        </section>
+
+        <section class="detail-section">
+            <h2>4. Systematic Infrastructure Comparison</h2>
+            <div class="table-responsive">
+                <table class="deck-table">
+                    <thead>
+                        <tr>
+                            <th>Performance Metric</th>
+                            <th>Traditional Roadside Parking</th>
+                            <th>Multi-Storey Car Park</th>
+                            <th>StreetVault Underground Solution</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><strong>Land Footprint Efficiency</strong></td>
+                            <td>Low (1 surface bay = 1 car)</td>
+                            <td>Medium (demands massive above-ground plot)</td>
+                            <td><strong>High (2–3 cars within 1 bay footprint)</strong></td>
+                        </tr>
+                        <tr>
+                            <td><strong>Carriageway Impact</strong></td>
+                            <td>Severe width reduction &amp; bottlenecks</td>
+                            <td>Local access bottleneck</td>
+                            <td><strong>Zero obstruction (flush surface when idle)</strong></td>
+                        </tr>
+                        <tr>
+                            <td><strong>Emergency Vehicle Access</strong></td>
+                            <td>Constrained by parked cars</td>
+                            <td>Not applicable to street corridor</td>
+                            <td><strong>Restores full two-way clear street width</strong></td>
+                        </tr>
+                        <tr>
+                            <td><strong>Vehicle Damage &amp; Security</strong></td>
+                            <td>Vulnerable to dents, theft, vandalism</td>
+                            <td>Moderate security risk</td>
+                            <td><strong>Sealed underground vault isolation</strong></td>
+                        </tr>
+                        <tr>
+                            <td><strong>Visual &amp; Environmental Impact</strong></td>
+                            <td>Cluttered urban aesthetic &amp; idle emissions</td>
+                            <td>Large concrete footprint</td>
+                            <td><strong>Minimal surface presence; EV-ready</strong></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </section>
+
+        <section class="detail-section">
+            <h2>5. Risk Mitigation &amp; Safety Engineering</h2>
+            <ul>
+                <li><strong>Hydraulic Failure &amp; Drift:</strong> Redundant synchronized cylinders, fail-safe pilot-operated check valves, mechanical lock pins, and emergency manual lowering overrides.</li>
+                <li><strong>Water Infiltration:</strong> Sub-grade waterproof membrane, perimeter channel drains, and dual automatic sump pumps with battery backup.</li>
+                <li><strong>Ground Settlement:</strong> Reinforced footing design conforming to UK Building Regulations and British civil standards following geotechnical site investigation.</li>
+            </ul>
+        </section>
+
+        <div class="project-actions">
+            <a href="StreetVault_Engineering_Portfolio_Deck.pdf" download class="btn-action btn-primary-action">
+                <i class="fa-solid fa-file-pdf"></i> Download Presentation Deck (PDF)
+            </a>
+            <a href="index.html#contact" class="btn-action btn-secondary-action">
+                <i class="fa-solid fa-envelope"></i> Contact Me About This Project
+            </a>
+        </div>
+    </div>
+
+    <!-- Scissor-Lift & Hydraulic Blueprint Canvas Background -->
+    <script>
+        const canvas = document.getElementById('hydraulics-canvas');
+        const ctx = canvas.getContext('2d');
+
+        function resize() {
+            canvas.width = window.innerWidth;
+            canvas.height = window.innerHeight;
+        }
+        window.addEventListener('resize', resize);
+        resize();
+
+        let animStep = 0;
+
+        function drawGrid() {
+            ctx.strokeStyle = 'rgba(56, 189, 248, 0.05)';
+            ctx.lineWidth = 1;
+            const size = 45;
+            for (let x = 0; x < canvas.width; x += size) {
+                ctx.beginPath();
+                ctx.moveTo(x, 0);
+                ctx.lineTo(x, canvas.height);
+                ctx.stroke();
+            }
+            for (let y = 0; y < canvas.height; y += size) {
+                ctx.beginPath();
+                ctx.moveTo(0, y);
+                ctx.lineTo(canvas.width, y);
+                ctx.stroke();
+            }
+        }
+
+        function drawScissorLiftMechanism(x, y, scale, phase) {
+            ctx.save();
+            ctx.translate(x, y);
+
+            const liftHeight = (Math.sin(phase) + 1) * 35 * scale;
+            const width = 140 * scale;
+            const groundY = 80 * scale;
+            const topY = groundY - 60 * scale - liftHeight;
+
+            // Concrete vault boundaries
+            ctx.strokeStyle = 'rgba(148, 163, 184, 0.25)';
+            ctx.lineWidth = 2;
+            ctx.strokeRect(-width * 0.65, -120 * scale, width * 1.3, 210 * scale);
+
+            // Ground base plate
+            ctx.fillStyle = 'rgba(15, 23, 42, 0.7)';
+            ctx.fillRect(-width * 0.55, groundY, width * 1.1, 10 * scale);
+            ctx.strokeStyle = '#38bdf8';
+            ctx.strokeRect(-width * 0.55, groundY, width * 1.1, 10 * scale);
+
+            // Scissor arm linkage
+            ctx.strokeStyle = 'rgba(245, 158, 11, 0.7)';
+            ctx.lineWidth = 4 * scale;
+
+            // Arm 1
+            ctx.beginPath();
+            ctx.moveTo(-width * 0.45, groundY);
+            ctx.lineTo(width * 0.45, topY);
+            ctx.stroke();
+
+            // Arm 2
+            ctx.beginPath();
+            ctx.moveTo(width * 0.45, groundY);
+            ctx.lineTo(-width * 0.45, topY);
+            ctx.stroke();
+
+            // Center linkage pivot pin
+            const midY = (groundY + topY) / 2;
+            ctx.beginPath();
+            ctx.arc(0, midY, 6 * scale, 0, Math.PI * 2);
+            ctx.fillStyle = '#38bdf8';
+            ctx.fill();
+
+            // Hydraulic cylinder ram
+            ctx.strokeStyle = 'rgba(56, 189, 248, 0.8)';
+            ctx.lineWidth = 5 * scale;
+            ctx.beginPath();
+            ctx.moveTo(-width * 0.35, groundY);
+            ctx.lineTo(0, midY);
+            ctx.stroke();
+
+            // Top elevated vehicle platform
+            ctx.fillStyle = 'rgba(30, 41, 59, 0.9)';
+            ctx.fillRect(-width * 0.55, topY - 12 * scale, width * 1.1, 12 * scale);
+            ctx.strokeStyle = '#f59e0b';
+            ctx.lineWidth = 2;
+            ctx.strokeRect(-width * 0.55, topY - 12 * scale, width * 1.1, 12 * scale);
+
+            // Vehicle profile silhouette
+            ctx.fillStyle = 'rgba(245, 158, 11, 0.3)';
+            ctx.beginPath();
+            ctx.moveTo(-width * 0.4, topY - 12 * scale);
+            ctx.lineTo(-width * 0.3, topY - 32 * scale);
+            ctx.lineTo(width * 0.25, topY - 32 * scale);
+            ctx.lineTo(width * 0.42, topY - 12 * scale);
+            ctx.closePath();
+            ctx.fill();
+
+            ctx.restore();
+        }
+
+        function animate() {
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+            drawGrid();
+
+            // Primary Hydraulic Lift (Right side background)
+            drawScissorLiftMechanism(canvas.width * 0.82, canvas.height * 0.52, 1.25, animStep);
+
+            // Secondary Hydraulic Lift (Left side perspective)
+            drawScissorLiftMechanism(canvas.width * 0.14, canvas.height * 0.72, 0.75, animStep + 1.5);
+
+            animStep += 0.015;
+            requestAnimationFrame(animate);
+        }
+
+        animate();
+    </script>
+</body>
+</html>
