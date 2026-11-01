@@ -7,21 +7,28 @@
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
-        /* Mechanical Engineering Background Canvas */
+        body {
+            background-color: #0b1120 !important;
+            position: relative;
+            min-height: 100vh;
+            margin: 0;
+            padding: 0;
+        }
+
+        /* Continuous Mechanical Wind Turbine Canvas */
         #turbine-canvas {
             position: fixed;
             top: 0;
             left: 0;
             width: 100vw;
             height: 100vh;
-            z-index: -1;
+            z-index: 0;
             pointer-events: none;
-            background: #090d16;
         }
 
         .project-detail-container {
             max-width: 980px;
-            margin: 90px auto 60px;
+            margin: 80px auto 60px;
             padding: 0 24px;
             color: #e2e8f0;
             line-height: 1.7;
@@ -45,7 +52,6 @@
             margin-bottom: 30px;
             border-bottom: 1px solid rgba(255, 255, 255, 0.1);
             padding-bottom: 25px;
-            backdrop-filter: blur(4px);
         }
         .detail-badge {
             display: inline-block;
@@ -73,13 +79,13 @@
 
         /* Slide Deck Viewer Container */
         .deck-viewer-container {
-            background: rgba(15, 23, 42, 0.85);
+            background: rgba(15, 23, 42, 0.88);
             border: 1px solid rgba(245, 158, 11, 0.35);
             border-radius: 12px;
             padding: 16px;
             margin: 35px 0 45px;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
-            backdrop-filter: blur(6px);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.6);
+            backdrop-filter: blur(8px);
         }
         .deck-header {
             display: flex;
@@ -109,12 +115,12 @@
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(210px, 1fr));
             gap: 15px;
-            background: rgba(15, 23, 42, 0.75);
-            border: 1px solid rgba(255, 255, 255, 0.08);
+            background: rgba(15, 23, 42, 0.8);
+            border: 1px solid rgba(255, 255, 255, 0.1);
             border-radius: 10px;
             padding: 20px;
             margin-bottom: 40px;
-            backdrop-filter: blur(6px);
+            backdrop-filter: blur(8px);
         }
         .meta-item strong {
             display: block;
@@ -130,12 +136,12 @@
         }
 
         .detail-section {
-            margin-bottom: 45px;
-            background: rgba(15, 23, 42, 0.65);
-            border: 1px solid rgba(255, 255, 255, 0.05);
+            margin-bottom: 40px;
+            background: rgba(15, 23, 42, 0.8);
+            border: 1px solid rgba(255, 255, 255, 0.08);
             border-radius: 10px;
             padding: 24px;
-            backdrop-filter: blur(6px);
+            backdrop-filter: blur(8px);
         }
         .detail-section h2 {
             font-size: 1.4rem;
@@ -147,7 +153,7 @@
         }
 
         .formula-card {
-            background: rgba(11, 19, 36, 0.9);
+            background: rgba(11, 19, 36, 0.95);
             border-left: 3px solid #38bdf8;
             padding: 12px 18px;
             margin: 10px 0;
@@ -165,7 +171,7 @@
             width: 100%;
             border-collapse: collapse;
             font-size: 0.88rem;
-            background: rgba(15, 23, 42, 0.6);
+            background: rgba(11, 19, 36, 0.7);
             border-radius: 8px;
             overflow: hidden;
             text-align: left;
@@ -437,25 +443,25 @@
         window.addEventListener('resize', resize);
         resize();
 
-        // Mechanical Streamline Particles
+        // Mechanical Streamline Airflow Particles
         const particles = [];
-        const particleCount = 45;
+        const particleCount = 50;
         for (let i = 0; i < particleCount; i++) {
             particles.push({
-                x: Math.random() * canvas.width,
-                y: Math.random() * canvas.height,
-                len: 30 + Math.random() * 60,
-                speed: 1.5 + Math.random() * 2.5,
-                opacity: 0.15 + Math.random() * 0.25
+                x: Math.random() * window.innerWidth,
+                y: Math.random() * window.innerHeight,
+                len: 40 + Math.random() * 70,
+                speed: 1.8 + Math.random() * 2.8,
+                opacity: 0.25 + Math.random() * 0.35
             });
         }
 
         let angle = 0;
 
         function drawBlueprintGrid() {
-            ctx.strokeStyle = 'rgba(56, 189, 248, 0.035)';
+            ctx.strokeStyle = 'rgba(56, 189, 248, 0.06)';
             ctx.lineWidth = 1;
-            const gridSize = 40;
+            const gridSize = 45;
             for (let x = 0; x < canvas.width; x += gridSize) {
                 ctx.beginPath();
                 ctx.moveTo(x, 0);
@@ -473,7 +479,7 @@
         function drawStreamlines() {
             ctx.lineWidth = 1.5;
             for (let p of particles) {
-                ctx.strokeStyle = `rgba(56, 189, 248, ${p.opacity * 0.4})`;
+                ctx.strokeStyle = 'rgba(56, 189, 248, ' + p.opacity + ')';
                 ctx.beginPath();
                 ctx.moveTo(p.x, p.y);
                 ctx.lineTo(p.x + p.len, p.y);
@@ -492,21 +498,20 @@
             ctx.translate(cx, cy);
 
             // Technical Swept Disc Coordinate Rings
-            ctx.strokeStyle = 'rgba(245, 158, 11, 0.09)';
-            ctx.lineWidth = 1.2;
-            ctx.setLineDash([4, 6]);
+            ctx.strokeStyle = 'rgba(245, 158, 11, 0.2)';
+            ctx.lineWidth = 1.5;
             ctx.beginPath();
             ctx.arc(0, 0, r, 0, Math.PI * 2);
             ctx.stroke();
 
+            ctx.strokeStyle = 'rgba(56, 189, 248, 0.15)';
             ctx.beginPath();
             ctx.arc(0, 0, r * 0.5, 0, Math.PI * 2);
             ctx.stroke();
-            ctx.setLineDash([]);
 
             // Tower Support Mechanism
-            ctx.strokeStyle = 'rgba(148, 163, 184, 0.18)';
-            ctx.fillStyle = 'rgba(30, 41, 59, 0.25)';
+            ctx.strokeStyle = 'rgba(148, 163, 184, 0.35)';
+            ctx.fillStyle = 'rgba(15, 23, 42, 0.5)';
             ctx.lineWidth = 2;
             ctx.beginPath();
             ctx.moveTo(-10, 10);
@@ -518,11 +523,11 @@
             ctx.stroke();
 
             // Nacelle Housing
-            ctx.fillStyle = 'rgba(56, 189, 248, 0.22)';
-            ctx.strokeStyle = 'rgba(56, 189, 248, 0.4)';
-            ctx.lineWidth = 1.5;
+            ctx.fillStyle = 'rgba(30, 41, 59, 0.85)';
+            ctx.strokeStyle = 'rgba(56, 189, 248, 0.6)';
+            ctx.lineWidth = 2;
             ctx.beginPath();
-            ctx.roundRect(-22, -10, 44, 20, 6);
+            ctx.rect(-25, -12, 50, 24);
             ctx.fill();
             ctx.stroke();
 
@@ -535,18 +540,18 @@
                 // Engineered Airfoil Blade Geometry
                 ctx.beginPath();
                 ctx.moveTo(0, 0);
-                ctx.bezierCurveTo(8, -r * 0.35, 14, -r * 0.75, 2, -r);
-                ctx.bezierCurveTo(-4, -r * 0.75, -8, -r * 0.35, 0, 0);
+                ctx.bezierCurveTo(12, -r * 0.35, 18, -r * 0.75, 3, -r);
+                ctx.bezierCurveTo(-6, -r * 0.75, -10, -r * 0.35, 0, 0);
                 
-                ctx.fillStyle = 'rgba(245, 158, 11, 0.16)';
-                ctx.strokeStyle = 'rgba(245, 158, 11, 0.55)';
-                ctx.lineWidth = 1.5;
+                ctx.fillStyle = 'rgba(245, 158, 11, 0.35)';
+                ctx.strokeStyle = 'rgba(245, 158, 11, 0.85)';
+                ctx.lineWidth = 2;
                 ctx.fill();
                 ctx.stroke();
 
                 // Blade Chord Centerline Reference
-                ctx.strokeStyle = 'rgba(255, 255, 255, 0.25)';
-                ctx.lineWidth = 0.8;
+                ctx.strokeStyle = 'rgba(255, 255, 255, 0.45)';
+                ctx.lineWidth = 1;
                 ctx.beginPath();
                 ctx.moveTo(0, -6);
                 ctx.lineTo(1, -r * 0.92);
@@ -557,16 +562,16 @@
 
             // Central Rotor Hub & Pitch Disc
             ctx.beginPath();
-            ctx.arc(0, 0, 12, 0, Math.PI * 2);
-            ctx.fillStyle = 'rgba(15, 23, 42, 0.9)';
-            ctx.strokeStyle = 'rgba(245, 158, 11, 0.8)';
+            ctx.arc(0, 0, 14, 0, Math.PI * 2);
+            ctx.fillStyle = 'rgba(15, 23, 42, 0.95)';
+            ctx.strokeStyle = 'rgba(245, 158, 11, 0.95)';
             ctx.lineWidth = 2.5;
             ctx.fill();
             ctx.stroke();
 
             // Center Bearing Pin
             ctx.beginPath();
-            ctx.arc(0, 0, 4, 0, Math.PI * 2);
+            ctx.arc(0, 0, 5, 0, Math.PI * 2);
             ctx.fillStyle = '#38bdf8';
             ctx.fill();
 
@@ -579,19 +584,19 @@
             drawBlueprintGrid();
             drawStreamlines();
 
-            // Right Background Primary Wind Turbine
-            const primaryX = canvas.width * 0.78;
-            const primaryY = canvas.height * 0.42;
-            const primaryRadius = Math.min(canvas.width, canvas.height) * 0.32;
+            // Primary Rotating Wind Turbine (Right side)
+            const primaryX = canvas.width * 0.82;
+            const primaryY = canvas.height * 0.38;
+            const primaryRadius = Math.min(canvas.width, canvas.height) * 0.35;
             drawTurbineMechanism(primaryX, primaryY, primaryRadius, angle);
 
-            // Left Background Secondary Scaled Turbine (Perspective depth)
-            const secondaryX = canvas.width * 0.15;
-            const secondaryY = canvas.height * 0.65;
-            const secondaryRadius = Math.min(canvas.width, canvas.height) * 0.18;
+            // Secondary Scaled Wind Turbine (Left side)
+            const secondaryX = canvas.width * 0.14;
+            const secondaryY = canvas.height * 0.62;
+            const secondaryRadius = Math.min(canvas.width, canvas.height) * 0.20;
             drawTurbineMechanism(secondaryX, secondaryY, secondaryRadius, angle * 1.35);
 
-            angle += 0.012; // Continuous smooth rotational speed
+            angle += 0.015; // Smooth continuous rotation
             requestAnimationFrame(animate);
         }
 
