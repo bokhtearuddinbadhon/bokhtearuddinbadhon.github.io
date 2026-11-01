@@ -1,0 +1,514 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>The Aerovent Project | Bokhtear Uddin Badhon</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        body {
+            background-color: #080d1a !important;
+            position: relative;
+            min-height: 100vh;
+            margin: 0;
+            padding: 0;
+            overflow-x: hidden;
+        }
+
+        #thermo-canvas {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            z-index: 0;
+            pointer-events: none;
+        }
+
+        .project-detail-container {
+            max-width: 980px;
+            margin: 80px auto 60px;
+            padding: 0 24px;
+            color: #e2e8f0;
+            line-height: 1.7;
+            position: relative;
+            z-index: 1;
+        }
+        .back-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            color: #f59e0b;
+            text-decoration: none;
+            font-weight: 600;
+            margin-bottom: 25px;
+            transition: transform 0.2s;
+        }
+        .back-link:hover {
+            transform: translateX(-5px);
+        }
+        .detail-header {
+            margin-bottom: 30px;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            padding-bottom: 25px;
+        }
+        .detail-badge {
+            display: inline-block;
+            background: rgba(245, 158, 11, 0.15);
+            color: #f59e0b;
+            border: 1px solid #f59e0b;
+            border-radius: 20px;
+            padding: 4px 14px;
+            font-size: 0.82rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            margin-bottom: 12px;
+        }
+        .detail-title {
+            font-size: 2.2rem;
+            margin-bottom: 10px;
+            color: #ffffff;
+            font-weight: 700;
+        }
+        .detail-subtitle {
+            font-size: 1.05rem;
+            color: #94a3b8;
+        }
+
+        .deck-viewer-container {
+            background: rgba(15, 23, 42, 0.88);
+            border: 1px solid rgba(245, 158, 11, 0.35);
+            border-radius: 12px;
+            padding: 16px;
+            margin: 35px 0 45px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.6);
+            backdrop-filter: blur(8px);
+        }
+        .deck-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 12px;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+        .deck-header h3 {
+            margin: 0;
+            font-size: 1.05rem;
+            color: #f59e0b;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        .pdf-frame {
+            width: 100%;
+            height: 540px;
+            border: none;
+            border-radius: 8px;
+            background: #1e293b;
+        }
+
+        .project-meta-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(210px, 1fr));
+            gap: 15px;
+            background: rgba(15, 23, 42, 0.8);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 10px;
+            padding: 20px;
+            margin-bottom: 40px;
+            backdrop-filter: blur(8px);
+        }
+        .meta-item strong {
+            display: block;
+            color: #f59e0b;
+            font-size: 0.8rem;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            margin-bottom: 4px;
+        }
+        .meta-item span {
+            color: #cbd5e1;
+            font-size: 0.95rem;
+        }
+
+        .detail-section {
+            margin-bottom: 40px;
+            background: rgba(15, 23, 42, 0.8);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            border-radius: 10px;
+            padding: 24px;
+            backdrop-filter: blur(8px);
+        }
+        .detail-section h2 {
+            font-size: 1.4rem;
+            color: #ffffff;
+            margin-bottom: 16px;
+            border-left: 4px solid #f59e0b;
+            padding-left: 12px;
+            font-weight: 600;
+        }
+
+        .formula-card {
+            background: rgba(11, 19, 36, 0.95);
+            border-left: 3px solid #38bdf8;
+            padding: 12px 18px;
+            margin: 10px 0;
+            border-radius: 0 8px 8px 0;
+            font-family: 'Courier New', Courier, monospace;
+            color: #38bdf8;
+            font-size: 0.95rem;
+        }
+
+        .table-responsive {
+            overflow-x: auto;
+            margin: 20px 0;
+        }
+        .deck-table {
+            width: 100%;
+            border-collapse: collapse;
+            font-size: 0.88rem;
+            background: rgba(11, 19, 36, 0.7);
+            border-radius: 8px;
+            overflow: hidden;
+            text-align: left;
+        }
+        .deck-table th, .deck-table td {
+            padding: 10px 14px;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+        }
+        .deck-table th {
+            background: rgba(11, 19, 36, 0.95);
+            color: #f59e0b;
+            font-weight: 600;
+        }
+        .deck-table tr:hover {
+            background: rgba(255, 255, 255, 0.04);
+        }
+
+        .step-list {
+            list-style: none;
+            padding: 0;
+            counter-reset: step-counter;
+        }
+        .step-list li {
+            counter-increment: step-counter;
+            margin-bottom: 12px;
+            display: flex;
+            align-items: flex-start;
+            gap: 12px;
+        }
+        .step-list li::before {
+            content: counter(step-counter);
+            background: #f59e0b;
+            color: #0f172a;
+            font-weight: 700;
+            width: 24px;
+            height: 24px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.8rem;
+            flex-shrink: 0;
+            margin-top: 2px;
+        }
+
+        .project-actions {
+            display: flex;
+            gap: 15px;
+            flex-wrap: wrap;
+            margin-top: 40px;
+            padding-top: 25px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        .btn-action {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 12px 22px;
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: 0.2s ease;
+        }
+        .btn-primary-action {
+            background: #f59e0b;
+            color: #0f172a;
+        }
+        .btn-primary-action:hover {
+            background: #d97706;
+        }
+        .btn-secondary-action {
+            background: rgba(255, 255, 255, 0.08);
+            color: #ffffff;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+        .btn-secondary-action:hover {
+            background: rgba(255, 255, 255, 0.15);
+        }
+    </style>
+</head>
+<body>
+    <canvas id="thermo-canvas"></canvas>
+
+    <div class="project-detail-container">
+        <a href="index.html#projects" class="back-link"><i class="fa-solid fa-arrow-left"></i> Back to Main Portfolio</a>
+        
+        <header class="detail-header">
+            <span class="detail-badge"><i class="fa-solid fa-wind"></i> Thermal-Fluids &amp; Sustainable Energy</span>
+            <h1 class="detail-title">The Aerovent: Low-Cost Heat-Recovery Ventilation</h1>
+            <p class="detail-subtitle">A Retrofit Decentralised Heat Recovery Ventilation Unit with Ceramic Matrix Core for Fuel-Poor Communities</p>
+        </header>
+
+        <div class="deck-viewer-container">
+            <div class="deck-header">
+                <h3><i class="fa-solid fa-file-powerpoint"></i> Practical Project Portfolio Deck</h3>
+                <a href="AEROVENT_Dark_Engineering_Portfolio_2027.pdf" target="_blank" class="back-link" style="margin: 0; font-size: 0.88rem;">
+                    <i class="fa-solid fa-up-right-from-square"></i> Open Fullscreen / Download Deck
+                </a>
+            </div>
+            <iframe class="pdf-frame" src="AEROVENT_Dark_Engineering_Portfolio_2027.pdf#toolbar=1" type="application/pdf">
+                <p>Your browser does not support inline PDFs. <a href="AEROVENT_Dark_Engineering_Portfolio_2027.pdf" style="color: #f59e0b;">Download the presentation deck here.</a></p>
+            </iframe>
+        </div>
+
+        <div class="project-meta-grid">
+            <div class="meta-item">
+                <strong>Institution &amp; Module</strong>
+                <span>London South Bank University | Design &amp; Practice</span>
+            </div>
+            <div class="meta-item">
+                <strong>Challenge Context</strong>
+                <span>Engineering for People Challenge | Ladywood, Birmingham</span>
+            </div>
+            <div class="meta-item">
+                <strong>Thermal Mechanism</strong>
+                <span>Ceramic Regenerative Honeycomb Core | Low-Voltage Reversible Fan</span>
+            </div>
+            <div class="meta-item">
+                <strong>Target Community Impact</strong>
+                <span>26.6% Fuel Poverty | 25,500 Homes Below EPC Target C</span>
+            </div>
+        </div>
+
+        <section class="detail-section">
+            <h2>1. Problem Framing &amp; Socio-Environmental Context</h2>
+            <p>
+                In urban areas such as Ladywood, Birmingham, aging and poorly insulated housing stock leads to severe heat loss and excessive fuel expenses. Conventional passive wall vents allow warm air to escape continually during cold months, forcing households to choose between living in cold, under-heated conditions or suffering indoor dampness, condensation, and black mould growth.
+            </p>
+            <p>
+                The Aerovent was engineered as a decentralised, non-invasive retrofit heat recovery ventilator (dHRV). Sized to fit standard 100 mm to 125 mm residential wall core apertures, it delivers constant air renewal without the substantial thermal losses of passive ventilation.
+            </p>
+        </section>
+
+        <section class="detail-section">
+            <h2>2. Thermal-Fluids Principles &amp; Regenerative Cycle</h2>
+            <p>The unit operates on an alternating regenerative thermodynamic exchange cycle:</p>
+            <ol class="step-list">
+                <li><strong>Exhaust Stroke (70 seconds):</strong> A low-voltage axial fan extracts warm, stale indoor air (T_indoor ≈ 20°C). As it passes through the ceramic honeycomb matrix, heat is absorbed and stored due to the ceramic material's high volumetric heat capacity.</li>
+                <li><strong>Intake Stroke (70 seconds):</strong> The fan reverses direction to draw in cold, fresh outdoor air (T_outdoor ≈ 2°C to 5°C). The cold intake air absorbs the thermal energy stored in the ceramic core, warming up to near indoor temperatures before discharging into the room.</li>
+            </ol>
+            <div class="formula-card">Thermal Heat Transfer Rate: Q = m_dot * Cp * ΔT</div>
+            <div class="formula-card">Heat Exchanger Temperature Efficiency: η_thermal = (T_supply - T_outdoor) / (T_exhaust - T_outdoor) * 100%</div>
+            <p>
+                By utilising a ceramic porous honeycomb core, the system achieves a substantial contact surface area within a compact Ø100 mm × 200 mm tube profile, maintaining low air resistance and low electrical power consumption.
+            </p>
+        </section>
+
+        <section class="detail-section">
+            <h2>3. Multi-Concept Evaluation Matrix</h2>
+            <div class="table-responsive">
+                <table class="deck-table">
+                    <thead>
+                        <tr>
+                            <th>Evaluation Criterion</th>
+                            <th>Idea 1: Solar Sharing</th>
+                            <th>Idea 2: Canal Heat Pump</th>
+                            <th>Idea 3: Retrofit Glazing</th>
+                            <th>Idea 4: Aerovent (Selected)</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><strong>Use of Existing Infrastructure</strong></td>
+                            <td>Moderate (requires rooftop wiring)</td>
+                            <td>Low (demands canal pipework)</td>
+                            <td>High (mounts onto window frames)</td>
+                            <td><strong>High (utilises existing 100 mm wall vents)</strong></td>
+                        </tr>
+                        <tr>
+                            <td><strong>Upfront Cost &amp; Accessibility</strong></td>
+                            <td>High initial solar capital</td>
+                            <td>Very high capital investment</td>
+                            <td>Low material cost</td>
+                            <td><strong>Lowest unit cost (PVC + Ceramic)</strong></td>
+                        </tr>
+                        <tr>
+                            <td><strong>Scalability &amp; Modularity</strong></td>
+                            <td>District-scale infrastructure</td>
+                            <td>Geographically restricted</td>
+                            <td>Moderate</td>
+                            <td><strong>High (modular room-by-room retrofit)</strong></td>
+                        </tr>
+                        <tr>
+                            <td><strong>Net Decision Rank</strong></td>
+                            <td>Rank 3</td>
+                            <td>Rank 4</td>
+                            <td>Rank 2</td>
+                            <td><strong>Rank 1 (Selected Team Proposal)</strong></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </section>
+
+        <section class="detail-section">
+            <h2>4. Mechanical Architecture &amp; Maintenance Engineering</h2>
+            <ul>
+                <li><strong>Cylindrical Housing:</strong> Lightweight uPVC outer sleeve designed for standard UK core-drilled wall sleeves with an integrated drip edge on the exterior hood.</li>
+                <li><strong>Regenerative Matrix:</strong> Cordierite ceramic porous honeycomb core providing high thermal storage density and chemical stability against condensation.</li>
+                <li><strong>Serviceable Filter Assembly:</strong> Washable G3/G4 particulate air filters and exterior insect screens located in easily removable end caps for routine resident maintenance.</li>
+                <li><strong>Acoustic Isolation:</strong> Sound-dampening foam lining surrounding the reversible DC fan motor to maintain acoustic comfort in residential living areas.</li>
+            </ul>
+        </section>
+
+        <div class="project-actions">
+            <a href="AEROVENT_Dark_Engineering_Portfolio_2027.pdf" download class="btn-action btn-primary-action">
+                <i class="fa-solid fa-file-pdf"></i> Download Presentation Deck (PDF)
+            </a>
+            <a href="index.html#contact" class="btn-action btn-secondary-action">
+                <i class="fa-solid fa-envelope"></i> Contact Me About This Project
+            </a>
+        </div>
+    </div>
+
+    <script>
+        const canvas = document.getElementById('thermo-canvas');
+        const ctx = canvas.getContext('2d');
+
+        function resize() {
+            canvas.width = window.innerWidth;
+            canvas.height = window.innerHeight;
+        }
+        window.addEventListener('resize', resize);
+        resize();
+
+        let t = 0;
+
+        function drawBlueprintGrid() {
+            ctx.strokeStyle = 'rgba(56, 189, 248, 0.04)';
+            ctx.lineWidth = 1;
+            const size = 50;
+            for (let x = 0; x < canvas.width; x += size) {
+                ctx.beginPath();
+                ctx.moveTo(x, 0);
+                ctx.lineTo(x, canvas.height);
+                ctx.stroke();
+            }
+            for (let y = 0; y < canvas.height; y += size) {
+                ctx.beginPath();
+                ctx.moveTo(0, y);
+                ctx.lineTo(canvas.width, y);
+                ctx.stroke();
+            }
+        }
+
+        function drawAeroventUnit(cx, cy, scale, isExhaust, coreTemp) {
+            ctx.save();
+            ctx.translate(cx, cy);
+
+            const tubeLength = 220 * scale;
+            const tubeRadius = 55 * scale;
+            const coreLength = 90 * scale;
+
+            // Wall aperture boundary
+            ctx.strokeStyle = 'rgba(148, 163, 184, 0.35)';
+            ctx.lineWidth = 2 * scale;
+            ctx.strokeRect(-tubeLength * 0.55, -tubeRadius * 1.6, tubeLength * 1.1, tubeRadius * 3.2);
+
+            // Cylindrical PVC Tube Housing
+            ctx.fillStyle = 'rgba(15, 23, 42, 0.85)';
+            ctx.strokeStyle = 'rgba(148, 163, 184, 0.6)';
+            ctx.lineWidth = 2 * scale;
+            ctx.fillRect(-tubeLength / 2, -tubeRadius, tubeLength, tubeRadius * 2);
+            ctx.strokeRect(-tubeLength / 2, -tubeRadius, tubeLength, tubeRadius * 2);
+
+            // Ceramic Honeycomb Heat-Storage Core (in center)
+            const coreColor = `rgba(${Math.floor(245 * coreTemp + 56 * (1 - coreTemp))}, ${Math.floor(158 * coreTemp + 189 * (1 - coreTemp))}, ${Math.floor(11 * coreTemp + 248 * (1 - coreTemp))}, 0.75)`;
+            ctx.fillStyle = coreColor;
+            ctx.fillRect(-coreLength / 2, -tubeRadius + 4 * scale, coreLength, (tubeRadius * 2) - 8 * scale);
+
+            // Honeycomb cell lines
+            ctx.strokeStyle = 'rgba(15, 23, 42, 0.7)';
+            ctx.lineWidth = 1.2 * scale;
+            for (let y = -tubeRadius + 10 * scale; y < tubeRadius - 5 * scale; y += 8 * scale) {
+                ctx.beginPath();
+                ctx.moveTo(-coreLength / 2, y);
+                ctx.lineTo(coreLength / 2, y);
+                ctx.stroke();
+            }
+
+            // Outer weather hood (Left)
+            ctx.strokeStyle = '#f59e0b';
+            ctx.fillStyle = 'rgba(30, 41, 59, 0.9)';
+            ctx.lineWidth = 2 * scale;
+            ctx.beginPath();
+            ctx.arc(-tubeLength / 2, 0, tubeRadius * 1.2, Math.PI * 0.5, Math.PI * 1.5);
+            ctx.closePath();
+            ctx.fill();
+            ctx.stroke();
+
+            // Reversible Axial Fan (Right side)
+            ctx.strokeStyle = '#38bdf8';
+            ctx.fillStyle = 'rgba(56, 189, 248, 0.3)';
+            ctx.lineWidth = 2 * scale;
+            ctx.strokeRect(tubeLength / 2 - 25 * scale, -tubeRadius + 6 * scale, 18 * scale, (tubeRadius * 2) - 12 * scale);
+
+            // Flow Direction Streamline Particles
+            const particleCount = 14;
+            for (let i = 0; i < particleCount; i++) {
+                const pxOffset = ((t * 80 + i * 35) % (tubeLength * 1.6)) - (tubeLength * 0.8);
+                const px = isExhaust ? -pxOffset : pxOffset;
+                const py = (Math.sin(i * 1.5) * tubeRadius * 0.55);
+
+                let pColor = isExhaust ? '#f59e0b' : '#38bdf8';
+                if (!isExhaust && px > 0) pColor = '#f59e0b'; // Air warms as it passes core
+
+                ctx.fillStyle = pColor;
+                ctx.beginPath();
+                ctx.arc(px, py, 2.8 * scale, 0, Math.PI * 2);
+                ctx.fill();
+            }
+
+            ctx.restore();
+        }
+
+        function animate() {
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+            drawBlueprintGrid();
+
+            // 12-Second Alternating Regenerative Flow Cycle:
+            // 0.0 - 0.5: Exhaust Stroke (Warm room air out, ceramic core heats up to amber)
+            // 0.5 - 1.0: Intake Stroke (Cold fresh air in, ceramic core warms air and cools to cyan)
+            const cycleDuration = 12;
+            const cycleProgress = (t % cycleDuration) / cycleDuration;
+            const isExhaust = cycleProgress < 0.5;
+            const coreTemp = isExhaust ? (cycleProgress / 0.5) : (1 - ((cycleProgress - 0.5) / 0.5));
+
+            // Primary Aerovent System (Right background)
+            drawAeroventUnit(canvas.width * 0.80, canvas.height * 0.48, 1.15, isExhaust, coreTemp);
+
+            // Secondary Scaled Unit (Left background)
+            drawAeroventUnit(canvas.width * 0.16, canvas.height * 0.65, 0.70, !isExhaust, 1 - coreTemp);
+
+            t += 0.02;
+            requestAnimationFrame(animate);
+        }
+
+        animate();
+    </script>
+</body>
+</html>
