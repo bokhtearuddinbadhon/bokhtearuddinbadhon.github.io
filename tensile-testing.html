@@ -1,0 +1,605 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mild Steel Tensile Testing | Bokhtear Uddin Badhon</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        body {
+            background-color: #080d1a !important;
+            position: relative;
+            min-height: 100vh;
+            margin: 0;
+            padding: 0;
+            color: #e2e8f0;
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+        }
+
+        #utm-canvas {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            z-index: 0;
+            pointer-events: none;
+        }
+
+        .project-detail-container {
+            max-width: 980px;
+            margin: 80px auto 60px;
+            padding: 0 24px;
+            line-height: 1.7;
+            position: relative;
+            z-index: 1;
+        }
+
+        .back-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            color: #f59e0b;
+            text-decoration: none;
+            font-weight: 600;
+            margin-bottom: 25px;
+            transition: transform 0.2s;
+        }
+        .back-link:hover {
+            transform: translateX(-5px);
+        }
+
+        .detail-header {
+            margin-bottom: 30px;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            padding-bottom: 25px;
+        }
+
+        .detail-badge {
+            display: inline-block;
+            background: rgba(245, 158, 11, 0.15);
+            color: #f59e0b;
+            border: 1px solid #f59e0b;
+            border-radius: 20px;
+            padding: 4px 14px;
+            font-size: 0.82rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            margin-bottom: 12px;
+        }
+
+        .detail-title {
+            font-size: 2.2rem;
+            margin-bottom: 10px;
+            color: #ffffff;
+            font-weight: 700;
+        }
+
+        .detail-subtitle {
+            font-size: 1.05rem;
+            color: #94a3b8;
+        }
+
+        .media-card {
+            background: rgba(15, 23, 42, 0.88);
+            border: 1px solid rgba(245, 158, 11, 0.35);
+            border-radius: 12px;
+            padding: 18px;
+            margin: 30px 0 40px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.6);
+            backdrop-filter: blur(8px);
+        }
+
+        .media-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 14px;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+
+        .media-header h3 {
+            margin: 0;
+            font-size: 1.05rem;
+            color: #f59e0b;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .pdf-frame {
+            width: 100%;
+            height: 560px;
+            border: none;
+            border-radius: 8px;
+            background: #1e293b;
+        }
+
+        .video-player-container {
+            width: 100%;
+            border-radius: 8px;
+            overflow: hidden;
+            background: #000000;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.5);
+        }
+
+        .video-player-container video {
+            width: 100%;
+            max-height: 500px;
+            display: block;
+            border-radius: 8px;
+        }
+
+        .project-meta-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(210px, 1fr));
+            gap: 15px;
+            background: rgba(15, 23, 42, 0.8);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 10px;
+            padding: 20px;
+            margin-bottom: 40px;
+            backdrop-filter: blur(8px);
+        }
+
+        .meta-item strong {
+            display: block;
+            color: #f59e0b;
+            font-size: 0.8rem;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            margin-bottom: 4px;
+        }
+
+        .meta-item span {
+            color: #cbd5e1;
+            font-size: 0.95rem;
+        }
+
+        .detail-section {
+            margin-bottom: 40px;
+            background: rgba(15, 23, 42, 0.8);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            border-radius: 10px;
+            padding: 24px;
+            backdrop-filter: blur(8px);
+        }
+
+        .detail-section h2 {
+            font-size: 1.4rem;
+            color: #ffffff;
+            margin-bottom: 16px;
+            border-left: 4px solid #f59e0b;
+            padding-left: 12px;
+            font-weight: 600;
+        }
+
+        .step-list {
+            list-style: none;
+            padding: 0;
+            counter-reset: step-counter;
+        }
+
+        .step-list li {
+            counter-increment: step-counter;
+            margin-bottom: 16px;
+            display: flex;
+            align-items: flex-start;
+            gap: 12px;
+        }
+
+        .step-list li::before {
+            content: counter(step-counter);
+            background: #f59e0b;
+            color: #0f172a;
+            font-weight: 700;
+            width: 24px;
+            height: 24px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.8rem;
+            flex-shrink: 0;
+            margin-top: 2px;
+        }
+
+        .table-responsive {
+            overflow-x: auto;
+            margin: 20px 0;
+        }
+
+        .deck-table {
+            width: 100%;
+            border-collapse: collapse;
+            font-size: 0.88rem;
+            background: rgba(11, 19, 36, 0.7);
+            border-radius: 8px;
+            overflow: hidden;
+            text-align: left;
+        }
+
+        .deck-table th, .deck-table td {
+            padding: 11px 14px;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+        }
+
+        .deck-table th {
+            background: rgba(11, 19, 36, 0.95);
+            color: #f59e0b;
+            font-weight: 600;
+        }
+
+        .deck-table tr:hover {
+            background: rgba(255, 255, 255, 0.04);
+        }
+
+        .project-actions {
+            display: flex;
+            gap: 15px;
+            flex-wrap: wrap;
+            margin-top: 40px;
+            padding-top: 25px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .btn-action {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 12px 22px;
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: 0.2s ease;
+        }
+
+        .btn-primary-action {
+            background: #f59e0b;
+            color: #0f172a;
+        }
+        .btn-primary-action:hover {
+            background: #d97706;
+        }
+
+        .btn-secondary-action {
+            background: rgba(255, 255, 255, 0.08);
+            color: #ffffff;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+        .btn-secondary-action:hover {
+            background: rgba(255, 255, 255, 0.15);
+        }
+    </style>
+</head>
+<body>
+    <canvas id="utm-canvas"></canvas>
+
+    <div class="project-detail-container">
+        <a href="index.html#projects" class="back-link"><i class="fa-solid fa-arrow-left"></i> Back to Main Portfolio</a>
+
+        <header class="detail-header">
+            <span class="detail-badge"><i class="fa-solid fa-atom"></i> Solid Mechanics Laboratory | Materials &amp; Fracture</span>
+            <h1 class="detail-title">Mild Steel Tensile Testing &amp; Mechanical Behaviour</h1>
+            <p class="detail-subtitle">Experimental Investigation of Elasticity, Yielding, Strain Hardening, Necking &amp; Ductile Fracture under Uniaxial Tensile Loading</p>
+        </header>
+
+        <!-- Presentation Slide Deck -->
+        <div class="media-card">
+            <div class="media-header">
+                <h3><i class="fa-solid fa-file-pdf"></i> Experimental Portfolio Deck</h3>
+                <a href="Mild_Steel_Tensile_Testing_Engineering_Portfolio.pdf" target="_blank" class="back-link" style="margin: 0; font-size: 0.88rem;">
+                    <i class="fa-solid fa-up-right-from-square"></i> Open Fullscreen / Download Deck
+                </a>
+            </div>
+            <iframe class="pdf-frame" src="Mild_Steel_Tensile_Testing_Engineering_Portfolio.pdf#toolbar=1" type="application/pdf">
+                <p>Your browser does not support inline PDFs. <a href="Mild_Steel_Tensile_Testing_Engineering_Portfolio.pdf" style="color: #f59e0b;">Download the portfolio PDF here.</a></p>
+            </iframe>
+        </div>
+
+        <!-- Tensile Testing Laboratory Video -->
+        <div class="media-card">
+            <div class="media-header">
+                <h3><i class="fa-solid fa-circle-play"></i> Universal Testing Machine (UTM) Experimental Recording</h3>
+                <span style="font-size: 0.85rem; color: #94a3b8;">Dogbone specimen elongation, crosshead displacement &amp; fracture</span>
+            </div>
+            <div class="video-player-container">
+                <video controls preload="metadata">
+                    <source src="Tensile testing.mp4" type="video/mp4">
+                    Your browser does not support the video tag.
+                </video>
+            </div>
+        </div>
+
+        <div class="project-meta-grid">
+            <div class="meta-item">
+                <strong>Institution &amp; Lab</strong>
+                <span>London South Bank University | Solid Mechanics</span>
+            </div>
+            <div class="meta-item">
+                <strong>Testing System</strong>
+                <span>Universal Testing Machine (UTM) &amp; Extensometer</span>
+            </div>
+            <div class="meta-item">
+                <strong>Specimen Geometry</strong>
+                <span>Dogbone: L0 = 50 mm, W = 12 mm, T = 6 mm (A0 = 72 mm²)</span>
+            </div>
+            <div class="meta-item">
+                <strong>Crosshead Speed</strong>
+                <span>2 mm/min (Quasi-Static Uniaxial Loading)</span>
+            </div>
+        </div>
+
+        <section class="detail-section">
+            <h2>Experimental Workflow &amp; Testing Methodology</h2>
+            <ol class="step-list">
+                <li><strong>Specimen Metrology &amp; Inspection:</strong> Visually checked dogbone specimen for machining marks, surface flaws, or oxidation. Recorded critical dimensions using digital vernier calipers (&plusmn;0.02 mm tolerance).</li>
+                <li><strong>Grip Alignment &amp; Hydraulic Clamping:</strong> Mounted specimen securely into higher and lower hydraulic grips, verifying vertical alignment marks to eliminate parasitic bending moments.</li>
+                <li><strong>Extensometer Calibration:</strong> Attached a high-precision clip-on extensometer (&plusmn;5 microstrain accuracy) across the 50 mm gauge marks and zeroed both load cell and displacement sensors.</li>
+                <li><strong>Quasi-Static Displacement Application:</strong> Applied controlled tensile displacement at a steady crosshead rate of 2 mm/min, logging real-time force and extension coordinates.</li>
+                <li><strong>Elastic-to-Plastic Transition:</strong> Monitored Hookean linear elasticity and the distinct upper/lower yield points, removing the extensometer before significant plastic elongation.</li>
+                <li><strong>Strain Hardening &amp; Necking:</strong> Observed dislocation accumulation driving plastic flow until Ultimate Tensile Strength (UTS), followed by localized geometric necking.</li>
+                <li><strong>Ductile Fracture Analysis:</strong> Recorded final separation featuring characteristic cup-and-cone morphology, confirming high ductility and predictable structural warning before failure.</li>
+            </ol>
+        </section>
+
+        <section class="detail-section">
+            <h2>Observed Mechanical Properties &amp; Verification</h2>
+            <div class="table-responsive">
+                <table class="deck-table">
+                    <thead>
+                        <tr>
+                            <th>Mechanical Parameter</th>
+                            <th>Experimental Value</th>
+                            <th>Theoretical Reference</th>
+                            <th>Engineering Significance</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Young's Modulus (E)</td>
+                            <td>205 GPa</td>
+                            <td>200 – 210 GPa</td>
+                            <td>Governs elastic stiffness and deflection resistance (Hooke's Law: &sigma; = E&epsilon;)</td>
+                        </tr>
+                        <tr>
+                            <td>Upper Yield Strength (&sigma;<sub>uy</sub>)</td>
+                            <td>260 MPa</td>
+                            <td>250 – 270 MPa</td>
+                            <td>Peak elastic limit before dislocation unpinning (Cottrell atmospheres)</td>
+                        </tr>
+                        <tr>
+                            <td>Lower Yield Strength (&sigma;<sub>ly</sub>)</td>
+                            <td>240 MPa</td>
+                            <td>235 – 250 MPa</td>
+                            <td>Design baseline yield criterion for non-permanent structural loading</td>
+                        </tr>
+                        <tr>
+                            <td>Ultimate Tensile Strength (UTS)</td>
+                            <td>430 MPa</td>
+                            <td>400 – 450 MPa</td>
+                            <td>Maximum nominal load-bearing capacity before localized necking</td>
+                        </tr>
+                        <tr>
+                            <td>Fracture Strength (&sigma;<sub>f</sub>)</td>
+                            <td>380 MPa</td>
+                            <td>360 – 400 MPa</td>
+                            <td>Breaking stress computed across initial nominal cross-sectional area (A<sub>0</sub>)</td>
+                        </tr>
+                        <tr>
+                            <td>Elongation at Break</td>
+                            <td>28%</td>
+                            <td>25% – 32%</td>
+                            <td>Demonstrates high material ductility and impact energy absorption capability</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </section>
+
+        <div class="project-actions">
+            <a href="Mild_Steel_Tensile_Testing_Engineering_Portfolio.pdf" download class="btn-action btn-primary-action">
+                <i class="fa-solid fa-file-pdf"></i> Download Full Portfolio Deck
+            </a>
+            <a href="index.html#contact" class="btn-action btn-secondary-action">
+                <i class="fa-solid fa-envelope"></i> Inquire Regarding 2027 Placement
+            </a>
+        </div>
+    </div>
+
+    <script>
+        const canvas = document.getElementById('utm-canvas');
+        const ctx = canvas.getContext('2d');
+
+        function resize() {
+            canvas.width = window.innerWidth;
+            canvas.height = window.innerHeight;
+        }
+        window.addEventListener('resize', resize);
+        resize();
+
+        let progress = 0; // 0 to 1 cycle
+        const cycleSpeed = 0.0035;
+
+        function drawUTM() {
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+            // Technical Grid Background
+            ctx.strokeStyle = 'rgba(56, 189, 248, 0.035)';
+            ctx.lineWidth = 1;
+            const grid = 60;
+            for (let x = 0; x < canvas.width; x += grid) {
+                ctx.beginPath();
+                ctx.moveTo(x, 0);
+                ctx.lineTo(x, canvas.height);
+                ctx.stroke();
+            }
+            for (let y = 0; y < canvas.height; y += grid) {
+                ctx.beginPath();
+                ctx.moveTo(0, y);
+                ctx.lineTo(canvas.width, y);
+                ctx.stroke();
+            }
+
+            // Universal Testing Machine schematic on right
+            const mx = canvas.width * 0.85;
+            const my = canvas.height * 0.45;
+            const colH = 340;
+            const colW = 160;
+
+            // Frame Columns
+            ctx.strokeStyle = 'rgba(148, 163, 184, 0.22)';
+            ctx.lineWidth = 8;
+            ctx.strokeRect(mx - colW / 2, my - colH / 2, colW, colH);
+
+            // Base and Top Plate
+            ctx.fillStyle = 'rgba(30, 41, 59, 0.85)';
+            ctx.fillRect(mx - colW / 2 - 20, my + colH / 2 - 15, colW + 40, 25);
+            ctx.fillRect(mx - colW / 2 - 20, my - colH / 2 - 10, colW + 40, 20);
+
+            // Moving Crosshead
+            const maxTravel = 55;
+            const curTravel = progress < 0.85 ? progress * maxTravel : maxTravel;
+            const crossheadY = my - 60 - curTravel;
+
+            ctx.fillStyle = 'rgba(245, 158, 11, 0.7)';
+            ctx.fillRect(mx - colW / 2 + 10, crossheadY, colW - 20, 16);
+
+            // Specimen Grips
+            ctx.fillStyle = 'rgba(239, 68, 68, 0.8)';
+            ctx.fillRect(mx - 24, crossheadY + 16, 48, 14); // Upper grip
+            ctx.fillRect(mx - 24, my + 60, 48, 14);          // Lower grip
+
+            // Tensile Dogbone Specimen
+            const specTop = crossheadY + 30;
+            const specBottom = my + 60;
+            const specLen = specBottom - specTop;
+            const neckFactor = progress > 0.5 ? (progress - 0.5) * 2 : 0;
+            const waistW = Math.max(2, 12 - neckFactor * 8);
+
+            ctx.save();
+            ctx.strokeStyle = progress >= 0.85 ? 'rgba(239, 68, 68, 0.4)' : 'rgba(245, 158, 11, 0.85)';
+            ctx.lineWidth = progress >= 0.85 ? 1 : 2;
+
+            if (progress < 0.85) {
+                // Intact stretching specimen
+                ctx.beginPath();
+                ctx.moveTo(mx - 10, specTop);
+                ctx.lineTo(mx - waistW / 2, specTop + specLen * 0.5);
+                ctx.lineTo(mx - 10, specBottom);
+                ctx.lineTo(mx + 10, specBottom);
+                ctx.lineTo(mx + waistW / 2, specTop + specLen * 0.5);
+                ctx.lineTo(mx + 10, specTop);
+                ctx.closePath();
+                ctx.fillStyle = 'rgba(56, 189, 248, 0.18)';
+                ctx.fill();
+                ctx.stroke();
+
+                // Tensile Force Arrows
+                ctx.strokeStyle = '#f59e0b';
+                ctx.lineWidth = 2;
+                ctx.beginPath();
+                ctx.moveTo(mx, crossheadY - 8);
+                ctx.lineTo(mx, crossheadY - 26);
+                ctx.lineTo(mx - 4, crossheadY - 20);
+                ctx.moveTo(mx, crossheadY - 26);
+                ctx.lineTo(mx + 4, crossheadY - 20);
+                ctx.stroke();
+            } else {
+                // Cup and Cone Fractured specimen
+                ctx.fillStyle = 'rgba(239, 68, 68, 0.3)';
+                // Top half
+                ctx.beginPath();
+                ctx.moveTo(mx - 10, specTop);
+                ctx.lineTo(mx - 2, specTop + specLen * 0.45);
+                ctx.lineTo(mx + 2, specTop + specLen * 0.45);
+                ctx.lineTo(mx + 10, specTop);
+                ctx.closePath();
+                ctx.fill();
+                ctx.stroke();
+
+                // Bottom half
+                ctx.beginPath();
+                ctx.moveTo(mx - 10, specBottom);
+                ctx.lineTo(mx - 2, specBottom - specLen * 0.45);
+                ctx.lineTo(mx + 2, specBottom - specLen * 0.45);
+                ctx.lineTo(mx + 10, specBottom);
+                ctx.closePath();
+                ctx.fill();
+                ctx.stroke();
+            }
+            ctx.restore();
+
+            // Stress-Strain Curve Plot on left side of UTM
+            const plotX = mx - 380;
+            const plotY = my + 90;
+            const plotW = 160;
+            const plotH = 110;
+
+            ctx.strokeStyle = 'rgba(148, 163, 184, 0.3)';
+            ctx.lineWidth = 1;
+            ctx.beginPath();
+            ctx.moveTo(plotX, plotY);
+            ctx.lineTo(plotX + plotW, plotY); // Strain axis
+            ctx.moveTo(plotX, plotY);
+            ctx.lineTo(plotX, plotY - plotH); // Stress axis
+            ctx.stroke();
+
+            ctx.font = '9px monospace';
+            ctx.fillStyle = 'rgba(148, 163, 184, 0.7)';
+            ctx.fillText('Strain (ε)', plotX + plotW - 45, plotY + 14);
+            ctx.fillText('Stress (σ)', plotX - 50, plotY - plotH + 10);
+
+            // Dynamic curve drawing
+            ctx.strokeStyle = '#38bdf8';
+            ctx.lineWidth = 2;
+            ctx.beginPath();
+            ctx.moveTo(plotX, plotY);
+
+            const steps = Math.floor(progress * 100);
+            for (let i = 0; i <= steps; i++) {
+                const p = i / 100;
+                let sY = 0;
+                if (p < 0.15) {
+                    // Elastic Hookean region
+                    sY = (p / 0.15) * 55;
+                } else if (p < 0.25) {
+                    // Yield plateau
+                    sY = 55 - Math.sin((p - 0.15) * 30) * 3;
+                } else if (p < 0.70) {
+                    // Strain hardening to UTS
+                    const t = (p - 0.25) / 0.45;
+                    sY = 55 + Math.sin(t * Math.PI * 0.5) * 45;
+                } else {
+                    // Necking to fracture
+                    const t = (p - 0.70) / 0.30;
+                    sY = 100 - t * 25;
+                }
+                ctx.lineTo(plotX + p * plotW, plotY - sY);
+            }
+            ctx.stroke();
+
+            // Status Text
+            ctx.font = '10px monospace';
+            ctx.fillStyle = 'rgba(245, 158, 11, 0.85)';
+            let status = 'ELASTIC DEFORMATION (HOOKE\'S LAW)';
+            if (progress > 0.15 && progress <= 0.25) status = 'YIELDING: UPPER/LOWER LIMITS';
+            else if (progress > 0.25 && progress <= 0.70) status = 'STRAIN HARDENING DISLOCATION FLOW';
+            else if (progress > 0.70 && progress < 0.85) status = 'LOCALIZED NECKING FORMATION';
+            else if (progress >= 0.85) status = 'CUP-AND-CONE DUCTILE FRACTURE';
+
+            ctx.fillText(status, plotX - 20, plotY - plotH - 12);
+
+            progress += cycleSpeed;
+            if (progress > 1.15) progress = 0;
+
+            requestAnimationFrame(drawUTM);
+        }
+
+        drawUTM();
+    </script>
+</body>
+</html>
