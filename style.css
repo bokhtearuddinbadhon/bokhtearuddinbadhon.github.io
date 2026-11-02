@@ -1635,182 +1635,166 @@ section,
 }
 
 /* ==========================================================================
-   ABOUT ME SECTION — PARAGRAPH | FACE | PARAGRAPH
+   ABOUT ME — EXACT VISUAL MATCH TO APPROVED PREVIEW
    ========================================================================== */
 
-/* Main Container Constraint */
 .about-section {
     position: relative;
     z-index: 2;
-    padding: 90px 6% 60px !important;
+    padding: 100px 5% 60px !important;
 }
 
-.about-container {
-    max-width: 1280px;
+.about-inner-container {
+    max-width: 1380px;
     margin: 0 auto;
     position: relative;
     z-index: 3;
 }
 
-/* Heading */
-.about-header-wrap {
-    margin-bottom: 28px;
-    text-align: left;
+/* Two Paragraphs Split Around Center Face */
+.about-hero-grid {
+    display: grid;
+    grid-template-columns: minmax(320px, 1.05fr) minmax(280px, 350px) minmax(340px, 1.25fr);
+    align-items: center;
+    gap: 25px;
+    margin-bottom: 55px;
 }
 
-.about-title {
-    font-size: 2.2rem;
+/* Left Column & Title */
+.about-col-left {
+    display: flex;
+    flex-direction: column;
+}
+
+.about-heading-box {
+    margin-bottom: 16px;
+}
+
+.about-main-title {
+    font-size: 2.25rem;
     font-weight: 700;
     color: #f59e0b;
-    margin: 0 0 10px 0;
+    margin: 0 0 8px 0;
     letter-spacing: 0.5px;
 }
 
-.about-title-underline {
-    width: 60px;
+.about-orange-line {
+    width: 58px;
     height: 3px;
     background: #f59e0b;
     border-radius: 2px;
 }
 
-/* --- Face-Safe Biography Layout (CSS Grid) --- */
-.about-bio-grid {
-    display: grid;
-    /* Left Col (1fr), Center Void for Face (min 260px max 320px), Right Col (1.15fr) */
-    grid-template-columns: 1fr minmax(260px, 320px) 1.15fr;
-    gap: 20px;
-    align-items: center;
-    margin-bottom: 45px;
-}
-
-/* The transparent center void that prevents text from covering your face */
-.about-face-spacer {
+/* Completely Clear Middle Gap for Headshot */
+.about-face-gap {
+    min-height: 220px;
     pointer-events: none;
-    min-height: 180px;
 }
 
-/* Separate Translucent Panels for Left and Right Paragraphs */
-.about-bio-col {
-    background: rgba(8, 13, 26, 0.75);
-    border: 1px solid rgba(245, 158, 11, 0.22);
-    border-radius: 10px;
-    padding: 22px 24px;
-    backdrop-filter: blur(5px);
-    -webkit-backdrop-filter: blur(5px);
-    box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.5);
+/* Right Column */
+.about-col-right {
+    display: flex;
+    align-items: center;
 }
 
-.about-bio-p {
-    font-size: 0.95rem;
+/* Paragraph Typography */
+.about-text-content {
+    font-size: 0.94rem;
     line-height: 1.75;
     color: #e2e8f0;
     margin: 0;
-    text-align: left;
+    text-shadow: 0 2px 8px rgba(0, 0, 0, 0.9);
 }
 
-.text-highlight-orange {
+.highlight-orange {
     color: #f59e0b;
-    font-weight: 600;
+    font-weight: 700;
 }
 
-/* --- Engineering Cards (Preserved) --- */
-.about-cards-grid {
+/* 3 Engineering Cards Row */
+.about-cards-row {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
     gap: 24px;
     align-items: stretch;
 }
 
-.eng-about-card {
-    background: rgba(10, 18, 36, 0.75);
+.preview-eng-card {
+    background: rgba(9, 16, 31, 0.78);
     border: 1px solid rgba(245, 158, 11, 0.35);
-    border-radius: 10px;
-    padding: 24px 20px;
-    box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.6), inset 0 1px 0 rgba(245, 158, 11, 0.15);
-    display: flex;
-    flex-direction: column;
-    transition: transform 0.25s ease, border-color 0.25s ease, box-shadow 0.25s ease;
+    border-radius: 12px;
+    padding: 24px 22px;
+    box-shadow: 0 12px 30px rgba(0, 0, 0, 0.65), inset 0 1px 0 rgba(245, 158, 11, 0.15);
+    backdrop-filter: blur(6px);
+    -webkit-backdrop-filter: blur(6px);
+    transition: transform 0.25s ease, border-color 0.25s ease;
 }
 
-.eng-about-card:hover {
+.preview-eng-card:hover {
     transform: translateY(-4px);
     border-color: rgba(245, 158, 11, 0.75);
-    box-shadow: 0 14px 30px -5px rgba(0, 0, 0, 0.7), 0 0 15px rgba(245, 158, 11, 0.15);
 }
 
-.eng-card-icon-box {
-    font-size: 1.75rem;
+.preview-card-header {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 10px;
+}
+
+.preview-card-icon {
+    font-size: 1.35rem;
     color: #f59e0b;
-    margin-bottom: 12px;
-    display: inline-block;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
-.eng-card-title {
-    font-size: 1.15rem;
+.preview-card-title {
+    font-size: 1.12rem;
     font-weight: 600;
     color: #ffffff;
-    margin: 0 0 8px 0;
+    margin: 0;
 }
 
-.eng-card-divider {
+.preview-card-underline {
     width: 32px;
     height: 2px;
     background: #f59e0b;
     border-radius: 1px;
-    margin-bottom: 12px;
+    margin-bottom: 14px;
 }
 
-.eng-card-desc {
-    font-size: 0.9rem;
+.preview-card-desc {
+    font-size: 0.88rem;
     line-height: 1.6;
     color: #cbd5e1;
     margin: 0;
 }
 
-/* --- Responsive Breakpoints --- */
-
-/* Laptops / Smaller Desktops */
-@media screen and (max-width: 1100px) {
-    .about-bio-grid {
-        grid-template-columns: 1fr minmax(200px, 240px) 1.1fr;
-        gap: 16px;
-    }
-    .about-bio-col {
-        padding: 18px 20px;
-    }
-    .about-bio-p {
-        font-size: 0.91rem;
-        line-height: 1.65;
-    }
-}
-
-/* Tablets: Transition cleanly to avoid crushing text */
-@media screen and (max-width: 860px) {
-    .about-bio-grid {
+/* Responsive Rules */
+@media screen and (max-width: 1080px) {
+    .about-hero-grid {
         grid-template-columns: 1fr;
-        gap: 18px;
+        gap: 20px;
     }
-    .about-face-spacer {
+    .about-face-gap {
         display: none;
     }
-    .about-cards-grid {
+    .about-cards-row {
         grid-template-columns: repeat(2, 1fr);
     }
 }
 
-/* Mobile Phones: Single-column stack */
-@media screen and (max-width: 600px) {
-    .about-section {
-        padding: 70px 5% 40px !important;
-    }
-    .about-cards-grid {
+@media screen and (max-width: 650px) {
+    .about-cards-row {
         grid-template-columns: 1fr;
         gap: 16px;
     }
-    .about-title {
-        font-size: 1.8rem;
+    .about-main-title {
+        font-size: 1.85rem;
     }
-    .about-bio-p {
-        font-size: 0.9rem;
+    .about-section {
+        padding: 75px 5% 40px !important;
     }
 }
