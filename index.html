@@ -497,21 +497,147 @@
 </div>
     </section>
     
-    <!-- Contact Section -->
-    <section id="contact" class="section">
-        <h2 class="section-title"> <span>Get In Touch</span></h2>
-        <div class="contact-card">
-            <p>I am actively seeking a <strong>2027 Industrial Placement</strong> in Mechanical Engineering. Feel free to reach out for inquiries or collaborations!</p>
-            <div class="contact-details">
-                <p><i class="fa-solid fa-envelope"></i> bokhtearuddinbadhon@gmail.com</p>
-                <p><i class="fa-solid fa-location-dot"></i> London, England, United Kingdom</p>
-            </div>
-            <div class="social-icons">
-                <a href="https://linkedin.com/in/bokhtearuddinbadhon" target="_blank"><i class="fa-brands fa-linkedin"></i></a>
-                <a href="https://github.com/bokhtearuddinbadhon" target="_blank"><i class="fa-brands fa-github"></i></a>
-            </div>
-            <a href="mailto:bokhtearuddinbadhon@gmail.com" class="btn primary-btn btn-large">Say Hello</a>
+<!-- Contact Section -->
+    <section id="contact" class="section contact-section">
+      <div class="contact-container">
+        
+        <!-- Section Header -->
+        <div class="contact-header">
+          <div class="contact-title-wrap">
+            <span class="tech-slash">//</span>
+            <h2 class="contact-title">Get In Touch</h2>
+          </div>
+          <p class="contact-subtitle">
+            I'm actively seeking a <strong>2027 Industrial Placement</strong> in Mechanical Engineering. Feel free to reach out regarding placement opportunities, engineering projects or professional collaborations.
+          </p>
         </div>
+
+        <!-- 3D Futuristic HUD Engineering Panel -->
+        <div class="hud-panel-frame">
+          <div class="hud-corner hud-corner-tl"></div>
+          <div class="hud-corner hud-corner-tr"></div>
+          <div class="hud-corner hud-corner-bl"></div>
+          <div class="hud-corner hud-corner-br"></div>
+          
+          <div class="hud-panel-content">
+            <!-- Left Column: Contact Information -->
+            <div class="contact-info-col">
+              
+              <!-- Email Card -->
+              <div class="info-card">
+                <div class="info-icon-box">
+                  <i class="fa-solid fa-envelope"></i>
+                </div>
+                <div class="info-details">
+                  <span class="info-label">Email</span>
+                  <a href="mailto:bokhtearuddinbadhon@gmail.com" class="info-val info-link">bokhtearuddinbadhon@gmail.com</a>
+                </div>
+                <button type="button" class="copy-btn" id="copyEmailBtn" aria-label="Copy email address" title="Copy to clipboard">
+                  <i class="fa-regular fa-clone"></i>
+                </button>
+              </div>
+
+              <!-- Location Card -->
+              <div class="info-card">
+                <div class="info-icon-box">
+                  <i class="fa-solid fa-location-dot"></i>
+                </div>
+                <div class="info-details">
+                  <span class="info-label">Location</span>
+                  <span class="info-val">London, England, United Kingdom</span>
+                </div>
+              </div>
+
+              <!-- Placement Card -->
+              <div class="info-card">
+                <div class="info-icon-box">
+                  <i class="fa-solid fa-calendar-check"></i>
+                </div>
+                <div class="info-details">
+                  <span class="info-label">Placement</span>
+                  <span class="info-val">Seeking a <strong>2027 Industrial Placement</strong> in Mechanical Engineering</span>
+                </div>
+              </div>
+
+              <!-- Social Links -->
+              <div class="connect-row">
+                <span class="connect-label">Connect With Me</span>
+                <div class="connect-links">
+                  <a href="https://www.linkedin.com/in/bokhtearuddinbadhon/" target="_blank" rel="noopener noreferrer" class="hud-social-btn" aria-label="LinkedIn">
+                    <i class="fa-brands fa-linkedin-in"></i>
+                  </a>
+                  <a href="https://github.com/bokhtearuddinbadhon" target="_blank" rel="noopener noreferrer" class="hud-social-btn" aria-label="GitHub">
+                    <i class="fa-brands fa-github"></i>
+                  </a>
+                </div>
+              </div>
+
+            </div>
+
+            <!-- Vertical HUD Divider -->
+            <div class="hud-divider"></div>
+
+            <!-- Right Column: Send a Message Form -->
+            <div class="contact-form-col">
+              <div class="form-header">
+                <i class="fa-solid fa-comment-dots form-header-icon"></i>
+                <h3 class="form-title">Send a Message</h3>
+              </div>
+
+              <form id="contactForm" class="hud-form" novalidate>
+                <!-- Anti-spam Honeypot field (hidden from real users) -->
+                <input type="text" name="_gotcha" class="form-honeypot" tabindex="-1" autocomplete="off" aria-hidden="true">
+
+                <!-- Row: Name & Email -->
+                <div class="form-row-dual">
+                  <div class="form-group">
+                    <label for="senderName" class="visually-hidden">Your Name</label>
+                    <div class="input-wrap">
+                      <i class="fa-solid fa-user input-icon"></i>
+                      <input type="text" id="senderName" name="name" class="hud-input" placeholder="Your Name" required>
+                    </div>
+                  </div>
+                  <div class="form-group">
+                    <label for="senderEmail" class="visually-hidden">Your Email</label>
+                    <div class="input-wrap">
+                      <i class="fa-solid fa-envelope input-icon"></i>
+                      <input type="email" id="senderEmail" name="_replyto" class="hud-input" placeholder="Your Email" required>
+                    </div>
+                  </div>
+                </div>
+
+                <!-- Subject -->
+                <div class="form-group">
+                  <label for="msgSubject" class="visually-hidden">Subject</label>
+                  <div class="input-wrap">
+                    <i class="fa-solid fa-tag input-icon"></i>
+                    <input type="text" id="msgSubject" name="subject" class="hud-input" placeholder="Subject" required>
+                  </div>
+                </div>
+
+                <!-- Message Area -->
+                <div class="form-group">
+                  <label for="senderMessage" class="visually-hidden">Your Message</label>
+                  <div class="input-wrap textarea-wrap">
+                    <i class="fa-solid fa-pen input-icon textarea-icon"></i>
+                    <textarea id="senderMessage" name="message" class="hud-textarea" rows="4" placeholder="Your Message..." required></textarea>
+                  </div>
+                </div>
+
+                <!-- Submit Button -->
+                <button type="submit" id="submitBtn" class="hud-submit-btn">
+                  <i class="fa-solid fa-paper-plane"></i>
+                  <span id="submitBtnText">Send Message</span>
+                </button>
+
+                <!-- Feedback Message Container -->
+                <div id="formStatus" class="form-status" aria-live="polite"></div>
+              </form>
+            </div>
+          </div>
+        </div>
+
+      </div>
     </section>
 
     <footer>
