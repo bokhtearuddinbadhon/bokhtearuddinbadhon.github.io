@@ -324,13 +324,15 @@ section,
     margin-bottom: 2.5rem !important;
 }
 
-/* --- Section 3: Technical Toolbox --- */
+/* --- Section 3: Technical Toolbox with F1 Car Background --- */
 #skills {
     position: relative;
     min-height: 100vh !important;
     display: flex;
     flex-direction: column;
     justify-content: center;
-    background-color: #0a0d14 !important;
+    background: linear-gradient(180deg, rgba(10, 13, 20, 0.82) 0%, rgba(10, 13, 20, 0.60) 50%, rgba(10, 13, 20, 0.90) 100%),
+                url('skills-bg.png') center/cover no-repeat !important;
+    overflow: hidden !important;
     z-index: 3;
 }
