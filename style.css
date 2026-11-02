@@ -72,13 +72,15 @@ body {
 
 .nav-links a:hover { color: var(--primary); }
 
-/* Hero Section */
+/* Hero Section with Jet Engine Background */
 .hero {
     min-height: 100vh;
     display: flex;
     align-items: center;
     padding: 0 10%;
-    margin-top: 2rem;
+    position: relative;
+    background: linear-gradient(135deg, rgba(10, 13, 20, 0.90) 0%, rgba(10, 13, 20, 0.65) 50%, rgba(10, 13, 20, 0.88) 100%),
+                url('hero-bg.jpg') center/cover no-repeat !important;
 }
 
 .badge {
