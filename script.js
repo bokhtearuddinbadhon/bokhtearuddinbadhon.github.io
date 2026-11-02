@@ -282,3 +282,195 @@ if (contactForm && submitBtn && formStatus) {
     }
   });
 }
+
+const ENGINEERING_PROJECTS = [
+  {
+    title: "The Aerovent",
+    category: "HVAC & Thermal Fluids",
+    image: "hero-bg.png", // Uses existing authentic project asset
+    icon: "fa-solid fa-wind",
+    description: "Co-developed a low-cost, modular heat-recovery ventilation unit with a ceramic core for low-income households in Ladywood, Birmingham to combat fuel poverty.",
+    skills: ["HVAC", "Thermal-Fluids", "Prototyping"],
+    caseStudyUrl: "aerovent.html"
+  },
+  {
+    title: "The Slider Support Project",
+    category: "Rigid-Body Statics & CAD",
+    image: "", // Leave blank to show mechanical HUD placeholder
+    icon: "fa-solid fa-arrows-left-right",
+    description: "Designed and physically evaluated a 3D-printed guided collar assembly under eccentric static loads to demonstrate rigid-body statics and degrees of freedom.",
+    skills: ["Fusion 360 CAD", "Rigid-Body Statics", "FDM 3D Printing", "Kinematics"],
+    caseStudyUrl: "slider-support.html"
+  },
+  {
+    title: "Exploded Flange & Rocker Arm CAD",
+    category: "Parametric CAD & Drafting",
+    image: "",
+    icon: "fa-solid fa-gear",
+    description: "Created detailed 3D parametric CAD models, exploded assembly drawings, and technical documentation adhering to engineering drafting standards.",
+    skills: ["Fusion 360", "Parametric CAD", "GD&T"],
+    caseStudyUrl: "https://github.com/bokhtearuddinbadhon"
+  },
+  {
+    title: "Whistle Manufacturing",
+    category: "Precision Workshop Machining",
+    image: "",
+    icon: "fa-solid fa-wrench",
+    description: "Executed precision workshop machining operations using aluminium stock. Managed turning, facing, boring, and vertical milling steps for strict quality inspection.",
+    skills: ["Machining", "Lathe", "Vertical Milling", "Metrology"],
+    caseStudyUrl: "whistle-manufacturing.html"
+  },
+  {
+    title: "Wind Turbine Performance Study",
+    category: "Aerodynamics & Energy",
+    image: "",
+    icon: "fa-solid fa-wind",
+    description: "Conducted laboratory testing using the Armfield RE12 system to evaluate energy conversion, Betz efficiency, and wake deceleration between HAWT and Savonius VAWT rotors.",
+    skills: ["Aerodynamics", "Armfield RE12", "HAWT vs VAWT", "Energy Balance"],
+    caseStudyUrl: "wind-turbine.html"
+  },
+  {
+    title: "StreetVault: Underground Hydraulic Parking",
+    category: "Fluid Power & Hydraulics",
+    image: "",
+    icon: "fa-solid fa-car-tunnel",
+    description: "Engineered an underground multi-layer vehicle parking vault actuated by synchronized hydraulics to eliminate residential street congestion across dense London boroughs.",
+    skills: ["Fluid Power", "Hydraulics", "Fusion 360", "Urban Design"],
+    caseStudyUrl: "street-vault.html"
+  },
+  {
+    title: "DC & AC Circuit Analysis",
+    category: "Electrical Metrology",
+    image: "",
+    icon: "fa-solid fa-bolt",
+    description: "Conducted physical bench testing across 5 laboratory experiments covering Ohm's law, KVL/KCL network validation, Thévenin/Norton equivalents, DSO waveforms, and ferrite-core coil impedance.",
+    skills: ["Circuit Analysis", "Oscilloscope", "Thévenin & Norton", "LCR Metrology"],
+    caseStudyUrl: "circuit-analysis.html"
+  },
+  {
+    title: "Venturi Flow Analysis & Bernoulli Experiment",
+    category: "Fluid Mechanics",
+    image: "",
+    icon: "fa-solid fa-water",
+    description: "Conducted fluid mechanics laboratory investigations (C1 & C2) comparing converging-diverging Venturi meters and sharp-edged orifice plates to quantify pressure recovery and discharge coefficients.",
+    skills: ["Fluid Mechanics", "Bernoulli's Principle", "TecQuipment", "MATLAB"],
+    caseStudyUrl: "venturi-flow.html"
+  },
+  {
+    title: "Applied Computer Programming & Numerical Methods",
+    category: "Computational Engineering",
+    image: "",
+    icon: "fa-solid fa-code",
+    description: "Developed computational C++ engineering solutions covering thermodynamic heat energy formulations, Monte Carlo spatial probability, iterative π convergence, and object-oriented class architectures.",
+    skills: ["C++", "Numerical Methods", "Monte Carlo", "OOP"],
+    caseStudyUrl: "computer-programming.html"
+  },
+  {
+    title: "Mild Steel Tensile Testing & Materials Mechanics",
+    category: "Materials & Solid Mechanics",
+    image: "",
+    icon: "fa-solid fa-atom",
+    description: "Conducted experimental uniaxial tensile testing using a Universal Testing Machine (UTM) and extensometer to analyze Hookean elasticity, yield transitions, strain hardening, necking, and ductile fracture morphology.",
+    skills: ["Materials Testing", "UTM Tensile", "Hooke's Law", "Fracture Mechanics"],
+    caseStudyUrl: "tensile-testing.html"
+  }
+  // <<< ADD PROJECT 11 HERE IN THE FUTURE >>>
+];
+
+function render3DProjectCards() {
+  const container = document.getElementById('featured-projects-grid');
+  if (!container) return;
+
+  const cardsHtml = ENGINEERING_PROJECTS.map(proj => {
+    const isExternal = proj.caseStudyUrl.startsWith('http');
+    const targetAttr = isExternal ? 'target="_blank" rel="noopener noreferrer"' : '';
+
+    const imageMarkup = proj.image ? `
+      <img src="${proj.image}" alt="${proj.title}" class="mech-thumb-img" loading="lazy">
+    ` : `
+      <div class="mech-thumb-placeholder">
+        <i class="${proj.icon}"></i>
+        <span class="mech-placeholder-text">// ${proj.category.toUpperCase()}</span>
+      </div>
+    `;
+
+    const tagsMarkup = proj.skills.map(tag => `
+      <span class="mech-tech-tag">${tag}</span>
+    `).join('');
+
+    return `
+      <div class="mech-card-wrapper" tabindex="0" role="article" aria-label="${proj.title}">
+        <div class="mech-card-frame">
+          <span class="mech-bolt top-left"></span>
+          <span class="mech-bolt top-right"></span>
+          <span class="mech-bolt bottom-left"></span>
+          <span class="mech-bolt bottom-right"></span>
+          <span class="mech-card-led"></span>
+
+          <div class="mech-visual-box">
+            ${imageMarkup}
+            <div class="mech-scanline"></div>
+          </div>
+
+          <div class="mech-header-row">
+            <i class="${proj.icon} mech-project-icon"></i>
+            <h3 class="mech-project-title">
+              <a href="${proj.caseStudyUrl}" ${targetAttr}>${proj.title}</a>
+            </h3>
+          </div>
+
+          <p class="mech-project-desc">${proj.description}</p>
+
+          <div class="mech-tech-tags">
+            ${tagsMarkup}
+          </div>
+
+          <div class="mech-action-wrap">
+            <a href="${proj.caseStudyUrl}" ${targetAttr} class="mech-case-study-btn">
+              <span>View Full Case Study &amp; Data</span>
+              <span class="mech-btn-arrow">&rarr;</span>
+            </a>
+          </div>
+        </div>
+      </div>
+    `;
+  }).join('');
+
+  container.innerHTML = cardsHtml;
+  init3DCardTilt();
+}
+
+function init3DCardTilt() {
+  const prefersReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  const isPointerFine = window.matchMedia('(pointer: fine)').matches;
+
+  if (prefersReduced || !isPointerFine) return;
+
+  const cardWrappers = document.querySelectorAll('.mech-card-wrapper');
+  cardWrappers.forEach(card => {
+    card.addEventListener('mousemove', (e) => {
+      const rect = card.getBoundingClientRect();
+      const x = e.clientX - rect.left;
+      const y = e.clientY - rect.top;
+
+      const centerX = rect.width / 2;
+      const centerY = rect.height / 2;
+
+      const rotateX = ((y - centerY) / centerY) * -8;
+      const rotateY = ((x - centerX) / centerX) * 8;
+
+      card.style.transform = `perspective(1000px) rotateX(${rotateX.toFixed(2)}deg) rotateY(${rotateY.toFixed(2)}deg) translateY(-5px)`;
+    });
+
+    card.addEventListener('mouseleave', () => {
+      card.style.transform = 'perspective(1000px) rotateX(0deg) rotateY(0deg) translateY(0px)';
+    });
+  });
+}
+
+// Automatically mount cards when DOM is loaded
+if (document.readyState === 'loading') {
+  document.addEventListener('DOMContentLoaded', render3DProjectCards);
+} else {
+  render3DProjectCards();
+}
