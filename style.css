@@ -285,16 +285,34 @@ section,  footer {
   background-color: transparent !important;
 }
 
+/* --- Global Smooth Offset for All Navbar Links --- */
+section, 
+#about, 
+#education, 
+#skills, 
+#projects, 
+#contact {
+    scroll-margin-top: 90px !important;
+}
+
+/* --- Clean Section Heights & Isolations --- */
+#about {
+    position: relative;
+    z-index: 1;
+}
+
 #education {
     position: relative;
-    padding-top: 7rem !important;
-    background: linear-gradient(180deg, rgba(8, 13, 26, 0.65) 0%, rgba(8, 13, 26, 0.88) 35%, rgba(8, 13, 26, 0.95) 100%),
+    min-height: 85vh;
+    padding: 5rem 10% 4rem !important;
+    background: linear-gradient(180deg, rgba(8, 13, 26, 0.70) 0%, rgba(8, 13, 26, 0.88) 30%, rgba(8, 13, 26, 0.96) 100%),
                 url('education-bg.png') top center / cover no-repeat !important;
     overflow: hidden !important;
+    z-index: 2;
 }
 
 #skills {
     position: relative;
     background-color: #0a0d14 !important;
-    z-index: 2;
+    z-index: 3;
 }
