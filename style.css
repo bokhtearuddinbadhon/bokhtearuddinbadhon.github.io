@@ -287,13 +287,14 @@ section,  footer {
 
 #education {
     position: relative;
-    background: linear-gradient(135deg, rgba(8, 13, 26, 0.90) 0%, rgba(8, 13, 26, 0.70) 50%, rgba(8, 13, 26, 0.90) 100%),
+    padding-top: 7rem !important;
+    background: linear-gradient(180deg, rgba(8, 13, 26, 0.65) 0%, rgba(8, 13, 26, 0.88) 35%, rgba(8, 13, 26, 0.95) 100%),
                 url('education-bg.png') top center / cover no-repeat !important;
     overflow: hidden !important;
 }
 
 #skills {
     position: relative;
-    background-color: var(--bg-dark) !important;
-    z-index: 1;
+    background-color: #0a0d14 !important;
+    z-index: 2;
 }
