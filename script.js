@@ -157,3 +157,137 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 });
+
+const copyEmailBtn = document.getElementById('copyEmailBtn');
+if (copyEmailBtn) {
+  copyEmailBtn.addEventListener('click', async () => {
+    const emailToCopy = 'bokhtearuddinbadhon@gmail.com';
+    try {
+      if (navigator.clipboard && window.isSecureContext) {
+        await navigator.clipboard.writeText(emailToCopy);
+      } else {
+        const tempTextArea = document.createElement('textarea');
+        tempTextArea.value = emailToCopy;
+        tempTextArea.style.position = 'fixed';
+        tempTextArea.style.left = '-9999px';
+        document.body.appendChild(tempTextArea);
+        tempTextArea.focus();
+        tempTextArea.select();
+        document.execCommand('copy');
+        document.body.removeChild(tempTextArea);
+      }
+      const icon = copyEmailBtn.querySelector('i');
+      if (icon) {
+        icon.className = 'fa-solid fa-check';
+        copyEmailBtn.style.borderColor = '#22c55e';
+        copyEmailBtn.style.color = '#22c55e';
+        setTimeout(() => {
+          icon.className = 'fa-regular fa-clone';
+          copyEmailBtn.style.borderColor = '';
+          copyEmailBtn.style.color = '';
+        }, 2200);
+      }
+    } catch (err) {
+      console.error('Failed to copy email:', err);
+    }
+  });
+}
+
+// 2. Real Email Formspree Delivery Engine
+const contactForm = document.getElementById('contactForm');
+const submitBtn = document.getElementById('submitBtn');
+const submitBtnText = document.getElementById('submitBtnText');
+const formStatus = document.getElementById('formStatus');
+
+if (contactForm && submitBtn && formStatus) {
+  contactForm.addEventListener('submit', async (e) => {
+    e.preventDefault();
+
+    // Check honeypot for bot protection
+    const honeypot = contactForm.querySelector('input[name="_gotcha"]');
+    if (honeypot && honeypot.value.trim() !== '') {
+      return;
+    }
+
+    const nameInput = document.getElementById('senderName');
+    const emailInput = document.getElementById('senderEmail');
+    const subjectInput = document.getElementById('msgSubject');
+    const messageInput = document.getElementById('senderMessage');
+
+    const name = nameInput ? nameInput.value.trim() : '';
+    const email = emailInput ? emailInput.value.trim() : '';
+    const subject = subjectInput ? subjectInput.value.trim() : '';
+    const message = messageInput ? messageInput.value.trim() : '';
+
+    // Validation checks
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    if (!name || !email || !subject || !message) {
+      formStatus.textContent = 'Please fill out all fields before sending.';
+      formStatus.className = 'form-status is-error';
+      return;
+    }
+
+    if (!emailRegex.test(email)) {
+      formStatus.textContent = 'Please enter a valid email address.';
+      formStatus.className = 'form-status is-error';
+      return;
+    }
+
+    // Loading State
+    submitBtn.disabled = true;
+    if (submitBtnText) submitBtnText.textContent = 'Transmitting Message...';
+    formStatus.textContent = 'Transmitting your message to Bokhtear Uddin Badhon...';
+    formStatus.className = 'form-status';
+
+    // FORMSPREE ENDPOINT SETUP
+    const FORMSPREE_ENDPOINT = 'PASTE_YOUR_FORMSPREE_ID_HERE';
+
+    if (FORMSPREE_ENDPOINT === 'PASTE_YOUR_FORMSPREE_ID_HERE') {
+      submitBtn.disabled = false;
+      if (submitBtnText) submitBtnText.textContent = 'Send Message';
+      formStatus.textContent = 'Formspree endpoint pending. Connect your form ID in script.js to deliver messages.';
+      formStatus.className = 'form-status is-error';
+      return;
+    }
+
+    try {
+      const response = await fetch(`https://formspree.io/f/${FORMSPREE_ENDPOINT}`, {
+        method: 'POST',
+        headers: {
+          'Accept': 'application/json',
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({
+          name: name,
+          _replyto: email,
+          subject: subject,
+          message: message
+        })
+      });
+
+      if (response.ok) {
+        formStatus.textContent = 'Message delivered successfully! Thank you for getting in touch.';
+        formStatus.className = 'form-status is-success';
+        contactForm.reset();
+        setTimeout(() => {
+          formStatus.textContent = '';
+          formStatus.className = 'form-status';
+        }, 6000);
+      } else {
+        const errorData = await response.json().catch(() => ({}));
+        let errorMsg = 'Failed to deliver message. Please reach out directly via bokhtearuddinbadhon@gmail.com.';
+        if (errorData && errorData.errors && errorData.errors.length > 0) {
+          errorMsg = errorData.errors.map(err => err.message).join(' ');
+        }
+        formStatus.textContent = errorMsg;
+        formStatus.className = 'form-status is-error';
+      }
+    } catch (networkError) {
+      formStatus.textContent = 'Network communication error. Please try again or email directly.';
+      formStatus.className = 'form-status is-error';
+    } finally {
+      submitBtn.disabled = false;
+      if (submitBtnText) submitBtnText.textContent = 'Send Message';
+    }
+  });
+}
