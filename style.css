@@ -1635,26 +1635,27 @@ section,
 }
 
 /* ==========================================================================
-   ABOUT ME SECTION REDESIGN (MATCHING APPROVED PREVIEW)
+   ABOUT ME SECTION — PARAGRAPH | FACE | PARAGRAPH
    ========================================================================== */
 
-/* Main Container Constraint & Stacking */
+/* Main Container Constraint */
 .about-section {
     position: relative;
     z-index: 2;
-    padding: 90px 8% 60px !important;
+    padding: 90px 6% 60px !important;
 }
 
 .about-container {
-    max-width: 1200px;
+    max-width: 1280px;
     margin: 0 auto;
     position: relative;
     z-index: 3;
 }
 
-/* Heading with Subtle Orange Underline */
+/* Heading */
 .about-header-wrap {
-    margin-bottom: 24px;
+    margin-bottom: 28px;
+    text-align: left;
 }
 
 .about-title {
@@ -1662,7 +1663,6 @@ section,
     font-weight: 700;
     color: #f59e0b;
     margin: 0 0 10px 0;
-    text-transform: none;
     letter-spacing: 0.5px;
 }
 
@@ -1673,27 +1673,39 @@ section,
     border-radius: 2px;
 }
 
-/* Biography Styling (Non-overlapping max-width & soft gradient backing) */
-.about-bio-wrap {
-    max-width: 720px;
+/* --- Face-Safe Biography Layout (CSS Grid) --- */
+.about-bio-grid {
+    display: grid;
+    /* Left Col (1fr), Center Void for Face (min 260px max 320px), Right Col (1.15fr) */
+    grid-template-columns: 1fr minmax(260px, 320px) 1.15fr;
+    gap: 20px;
+    align-items: center;
     margin-bottom: 45px;
-    padding: 16px 20px;
-    background: linear-gradient(90deg, rgba(8, 13, 26, 0.72) 0%, rgba(8, 13, 26, 0.35) 85%, transparent 100%);
-    border-radius: 8px;
-    backdrop-filter: blur(4px);
-    -webkit-backdrop-filter: blur(4px);
+}
+
+/* The transparent center void that prevents text from covering your face */
+.about-face-spacer {
+    pointer-events: none;
+    min-height: 180px;
+}
+
+/* Separate Translucent Panels for Left and Right Paragraphs */
+.about-bio-col {
+    background: rgba(8, 13, 26, 0.75);
+    border: 1px solid rgba(245, 158, 11, 0.22);
+    border-radius: 10px;
+    padding: 22px 24px;
+    backdrop-filter: blur(5px);
+    -webkit-backdrop-filter: blur(5px);
+    box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.5);
 }
 
 .about-bio-p {
-    font-size: 0.98rem;
+    font-size: 0.95rem;
     line-height: 1.75;
     color: #e2e8f0;
-    margin: 0 0 16px 0;
+    margin: 0;
     text-align: left;
-}
-
-.about-bio-p:last-child {
-    margin-bottom: 0;
 }
 
 .text-highlight-orange {
@@ -1701,7 +1713,7 @@ section,
     font-weight: 600;
 }
 
-/* Three Engineering Cards Grid */
+/* --- Engineering Cards (Preserved) --- */
 .about-cards-grid {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
@@ -1709,12 +1721,11 @@ section,
     align-items: stretch;
 }
 
-/* Dark Navy Translucent Panels with Subtle Metallic Orange Borders */
 .eng-about-card {
     background: rgba(10, 18, 36, 0.75);
     border: 1px solid rgba(245, 158, 11, 0.35);
     border-radius: 10px;
-    padding: 26px 22px;
+    padding: 24px 20px;
     box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.6), inset 0 1px 0 rgba(245, 158, 11, 0.15);
     display: flex;
     flex-direction: column;
@@ -1727,15 +1738,13 @@ section,
     box-shadow: 0 14px 30px -5px rgba(0, 0, 0, 0.7), 0 0 15px rgba(245, 158, 11, 0.15);
 }
 
-/* Orange Technical Icons */
 .eng-card-icon-box {
-    font-size: 1.8rem;
+    font-size: 1.75rem;
     color: #f59e0b;
-    margin-bottom: 14px;
+    margin-bottom: 12px;
     display: inline-block;
 }
 
-/* Card Titles & Short Underlines */
 .eng-card-title {
     font-size: 1.15rem;
     font-weight: 600;
@@ -1751,7 +1760,6 @@ section,
     margin-bottom: 12px;
 }
 
-/* Card Descriptions */
 .eng-card-desc {
     font-size: 0.9rem;
     line-height: 1.6;
@@ -1759,29 +1767,50 @@ section,
     margin: 0;
 }
 
-/* Responsive Breakpoints */
-@media screen and (max-width: 992px) {
-    .about-cards-grid {
-        grid-template-columns: repeat(2, 1fr);
+/* --- Responsive Breakpoints --- */
+
+/* Laptops / Smaller Desktops */
+@media screen and (max-width: 1100px) {
+    .about-bio-grid {
+        grid-template-columns: 1fr minmax(200px, 240px) 1.1fr;
+        gap: 16px;
     }
-    .about-bio-wrap {
-        max-width: 100%;
+    .about-bio-col {
+        padding: 18px 20px;
+    }
+    .about-bio-p {
+        font-size: 0.91rem;
+        line-height: 1.65;
     }
 }
 
-@media screen and (max-width: 650px) {
+/* Tablets: Transition cleanly to avoid crushing text */
+@media screen and (max-width: 860px) {
+    .about-bio-grid {
+        grid-template-columns: 1fr;
+        gap: 18px;
+    }
+    .about-face-spacer {
+        display: none;
+    }
+    .about-cards-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+/* Mobile Phones: Single-column stack */
+@media screen and (max-width: 600px) {
     .about-section {
-        padding: 70px 6% 40px !important;
+        padding: 70px 5% 40px !important;
     }
     .about-cards-grid {
         grid-template-columns: 1fr;
-        gap: 18px;
+        gap: 16px;
     }
     .about-title {
         font-size: 1.8rem;
     }
     .about-bio-p {
-        font-size: 0.92rem;
-        line-height: 1.65;
+        font-size: 0.9rem;
     }
 }
