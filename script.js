@@ -53,3 +53,107 @@ function draw() {
 
 // অ্যানিমেশন লুপ চালু করা হলো
 draw();
+/* =========================================================
+   3D PRECISION ENGINEERING PANELS & SKILL MODAL LOGIC
+   ========================================================= */
+
+// URL Routing Map: Replace null with your dedicated page URLs when ready
+const SKILL_PAGE_ROUTES = {
+    "Fusion 360": null,             // e.g. "skills/fusion-360.html"
+    "2D Drafting": null,            // e.g. "skills/drafting.html"
+    "ANSYS FEA": null,              // e.g. "skills/ansys-fea.html"
+    "Parametric Design": null,      // e.g. "skills/parametric-design.html"
+    "MATLAB": null,                 // e.g. "skills/matlab.html"
+    "Python": null,                 // e.g. "skills/python.html"
+    "C++": null,                    // e.g. "skills/cpp.html"
+    "Applied AI": null,             // e.g. "skills/applied-ai.html"
+    "Automotive Diagnostics": null, // e.g. "skills/automotive-diagnostics.html"
+    "Machining": null,              // e.g. "skills/machining.html"
+    "Welding & Fabrication": null,  // e.g. "skills/welding-fabrication.html"
+    "Industrial Maintenance": null, // e.g. "skills/industrial-maintenance.html"
+    "Metrology": null               // e.g. "skills/metrology.html"
+};
+
+document.addEventListener('DOMContentLoaded', () => {
+    // 1. Modal Elements
+    const modalBackdrop = document.getElementById('skill-modal');
+    const modalTitle = document.getElementById('modal-skill-title');
+    const modalCategory = document.getElementById('modal-skill-category');
+    const modalCloseBtn = document.getElementById('modal-close');
+    const modalAckBtn = document.getElementById('modal-ack-btn');
+    const skillButtons = document.querySelectorAll('.skill-btn');
+
+    function openSkillModal(skillName, categoryName) {
+        if (!modalBackdrop) return;
+        if (modalTitle) modalTitle.textContent = skillName;
+        if (modalCategory) modalCategory.textContent = categoryName;
+        modalBackdrop.classList.add('is-active');
+        modalBackdrop.setAttribute('aria-hidden', 'false');
+        if (modalCloseBtn) modalCloseBtn.focus();
+    }
+
+    function closeSkillModal() {
+        if (!modalBackdrop) return;
+        modalBackdrop.classList.remove('is-active');
+        modalBackdrop.setAttribute('aria-hidden', 'true');
+    }
+
+    skillButtons.forEach(btn => {
+        btn.addEventListener('click', (e) => {
+            e.preventDefault();
+            const skill = btn.getAttribute('data-skill');
+            const category = btn.getAttribute('data-category');
+            
+            // Check if a dedicated route exists
+            if (SKILL_PAGE_ROUTES[skill]) {
+                window.location.href = SKILL_PAGE_ROUTES[skill];
+            } else {
+                openSkillModal(skill, category);
+            }
+        });
+    });
+
+    if (modalCloseBtn) modalCloseBtn.addEventListener('click', closeSkillModal);
+    if (modalAckBtn) modalAckBtn.addEventListener('click', closeSkillModal);
+
+    if (modalBackdrop) {
+        modalBackdrop.addEventListener('click', (e) => {
+            if (e.target === modalBackdrop) closeSkillModal();
+        });
+    }
+
+    window.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape' && modalBackdrop && modalBackdrop.classList.contains('is-active')) {
+            closeSkillModal();
+        }
+    });
+
+    // 2. Subtle 3D Tilt Effect on Desktop Hover
+    const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    const isPointerFine = window.matchMedia('(pointer: fine)').matches;
+
+    if (!prefersReducedMotion && isPointerFine) {
+        const panels = document.querySelectorAll('.tech-panel');
+
+        panels.forEach(panel => {
+            panel.addEventListener('mousemove', (e) => {
+                const rect = panel.getBoundingClientRect();
+                const x = e.clientX - rect.left;
+                const y = e.clientY - rect.top;
+                
+                const centerX = rect.width / 2;
+                const centerY = rect.height / 2;
+                
+                // Controlled tilt angles (max +/- 7 degrees)
+                const rotateX = ((y - centerY) / centerY) * -7;
+                const rotateY = ((x - centerX) / centerX) * 7;
+                
+                panel.style.transform = `perspective(1000px) rotateX(${rotateX.toFixed(2)}deg) rotateY(${rotateY.toFixed(2)}deg) translateY(-4px)`;
+            });
+
+            panel.addEventListener('mouseleave', () => {
+                panel.style.transform = 'perspective(1000px) rotateX(0deg) rotateY(0deg) translateY(0px)';
+            });
+        });
+    }
+});
