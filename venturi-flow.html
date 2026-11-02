@@ -1,0 +1,619 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Venturi Flow Analysis & Bernoulli Experiment | Bokhtear Uddin Badhon</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        body {
+            background-color: #0b1120 !important;
+            position: relative;
+            min-height: 100vh;
+            margin: 0;
+            padding: 0;
+        }
+
+        /* Fluid Mechanics Venturi Flow Canvas */
+        #venturi-canvas {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            z-index: 0;
+            pointer-events: none;
+        }
+
+        .project-detail-container {
+            max-width: 980px;
+            margin: 80px auto 60px;
+            padding: 0 24px;
+            color: #e2e8f0;
+            line-height: 1.7;
+            position: relative;
+            z-index: 1;
+        }
+
+        .back-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            color: #f59e0b;
+            text-decoration: none;
+            font-weight: 600;
+            margin-bottom: 25px;
+            transition: transform 0.2s;
+        }
+        .back-link:hover {
+            transform: translateX(-5px);
+        }
+
+        .detail-header {
+            margin-bottom: 30px;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            padding-bottom: 25px;
+        }
+
+        .detail-badge {
+            display: inline-block;
+            background: rgba(245, 158, 11, 0.15);
+            color: #f59e0b;
+            border: 1px solid #f59e0b;
+            border-radius: 20px;
+            padding: 4px 14px;
+            font-size: 0.82rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            margin-bottom: 12px;
+        }
+
+        .detail-title {
+            font-size: 2.2rem;
+            margin-bottom: 10px;
+            color: #ffffff;
+            font-weight: 700;
+        }
+
+        .detail-subtitle {
+            font-size: 1.05rem;
+            color: #94a3b8;
+        }
+
+        /* Presentation Viewer */
+        .deck-viewer-container {
+            background: rgba(15, 23, 42, 0.88);
+            border: 1px solid rgba(245, 158, 11, 0.35);
+            border-radius: 12px;
+            padding: 16px;
+            margin: 35px 0 45px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.6);
+            backdrop-filter: blur(8px);
+        }
+
+        .deck-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 12px;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+
+        .deck-header h3 {
+            margin: 0;
+            font-size: 1.05rem;
+            color: #f59e0b;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .pdf-frame {
+            width: 100%;
+            height: 540px;
+            border: none;
+            border-radius: 8px;
+            background: #1e293b;
+        }
+
+        .project-meta-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(210px, 1fr));
+            gap: 15px;
+            background: rgba(15, 23, 42, 0.8);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 10px;
+            padding: 20px;
+            margin-bottom: 40px;
+            backdrop-filter: blur(8px);
+        }
+
+        .meta-item strong {
+            display: block;
+            color: #f59e0b;
+            font-size: 0.8rem;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            margin-bottom: 4px;
+        }
+
+        .meta-item span {
+            color: #cbd5e1;
+            font-size: 0.95rem;
+        }
+
+        .detail-section {
+            margin-bottom: 40px;
+            background: rgba(15, 23, 42, 0.8);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            border-radius: 10px;
+            padding: 24px;
+            backdrop-filter: blur(8px);
+        }
+
+        .detail-section h2 {
+            font-size: 1.4rem;
+            color: #ffffff;
+            margin-bottom: 16px;
+            border-left: 4px solid #f59e0b;
+            padding-left: 12px;
+            font-weight: 600;
+        }
+
+        .formula-card {
+            background: rgba(11, 19, 36, 0.95);
+            border-left: 3px solid #38bdf8;
+            padding: 12px 18px;
+            margin: 10px 0;
+            border-radius: 0 8px 8px 0;
+            font-family: 'Courier New', Courier, monospace;
+            color: #38bdf8;
+            font-size: 0.95rem;
+        }
+
+        .table-responsive {
+            overflow-x: auto;
+            margin: 20px 0;
+        }
+
+        .deck-table {
+            width: 100%;
+            border-collapse: collapse;
+            font-size: 0.88rem;
+            background: rgba(11, 19, 36, 0.7);
+            border-radius: 8px;
+            overflow: hidden;
+            text-align: left;
+        }
+
+        .deck-table th, .deck-table td {
+            padding: 10px 14px;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+        }
+
+        .deck-table th {
+            background: rgba(11, 19, 36, 0.95);
+            color: #f59e0b;
+            font-weight: 600;
+        }
+
+        .deck-table tr:hover {
+            background: rgba(255, 255, 255, 0.04);
+        }
+
+        .step-list {
+            list-style: none;
+            padding: 0;
+            counter-reset: step-counter;
+        }
+
+        .step-list li {
+            counter-increment: step-counter;
+            margin-bottom: 12px;
+            display: flex;
+            align-items: flex-start;
+            gap: 12px;
+        }
+
+        .step-list li::before {
+            content: counter(step-counter);
+            background: #f59e0b;
+            color: #0f172a;
+            font-weight: 700;
+            width: 24px;
+            height: 24px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.8rem;
+            flex-shrink: 0;
+            margin-top: 2px;
+        }
+
+        .project-actions {
+            display: flex;
+            gap: 15px;
+            flex-wrap: wrap;
+            margin-top: 40px;
+            padding-top: 25px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .btn-action {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 12px 22px;
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: 0.2s ease;
+        }
+
+        .btn-primary-action {
+            background: #f59e0b;
+            color: #0f172a;
+        }
+
+        .btn-primary-action:hover {
+            background: #d97706;
+        }
+
+        .btn-secondary-action {
+            background: rgba(255, 255, 255, 0.08);
+            color: #ffffff;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+
+        .btn-secondary-action:hover {
+            background: rgba(255, 255, 255, 0.15);
+        }
+    </style>
+</head>
+<body>
+    <!-- Real-Time Venturi Streamlines & Manometer Fluid Canvas -->
+    <canvas id="venturi-canvas"></canvas>
+
+    <div class="project-detail-container">
+        <a href="index.html#projects" class="back-link"><i class="fa-solid fa-arrow-left"></i> Back to Main Portfolio</a>
+
+        <header class="detail-header">
+            <span class="detail-badge"><i class="fa-solid fa-water"></i> Fluid Mechanics &amp; Thermodynamics</span>
+            <h1 class="detail-title">Venturi Flow Analysis &amp; Bernoulli Experiment</h1>
+            <p class="detail-subtitle">Differential-Pressure Flow Metrology | TecQuipment Experiments C1 &amp; C2</p>
+        </header>
+
+        <!-- Slide Deck Embed -->
+        <div class="deck-viewer-container">
+            <div class="deck-header">
+                <h3><i class="fa-solid fa-file-powerpoint"></i> Practical Project Portfolio Deck</h3>
+                <a href="Bokhtear_Fluid_Mechanics_Engineering_Portfolio.pdf" target="_blank" class="back-link" style="margin: 0; font-size: 0.88rem;">
+                    <i class="fa-solid fa-up-right-from-square"></i> Open Fullscreen / Download Deck
+                </a>
+            </div>
+            <iframe class="pdf-frame" src="Bokhtear_Fluid_Mechanics_Engineering_Portfolio.pdf#toolbar=1" type="application/pdf">
+                <p>Your browser does not support inline PDFs. <a href="Bokhtear_Fluid_Mechanics_Engineering_Portfolio.pdf" style="color: #f59e0b;">Download the portfolio PDF here.</a></p>
+            </iframe>
+        </div>
+
+        <div class="project-meta-grid">
+            <div class="meta-item">
+                <strong>Institution &amp; Module</strong>
+                <span>London South Bank University | Fluid Mechanics &amp; Thermodynamics</span>
+            </div>
+            <div class="meta-item">
+                <strong>Experimental Apparatus</strong>
+                <span>TecQuipment Venturi, Orifice Plate &amp; Hydraulic Bench</span>
+            </div>
+            <div class="meta-item">
+                <strong>Inlet / Throat Geometry</strong>
+                <span>D1 = 26 mm | D2 = 16 mm (m = A2/A1 ≈ 0.379)</span>
+            </div>
+            <div class="meta-item">
+                <strong>Investigated Meters</strong>
+                <span>Converging-Diverging Venturi vs Sharp-Edged Orifice Plate</span>
+            </div>
+        </div>
+
+        <section class="detail-section">
+            <h2>Governing Fluid Mechanics &amp; Theoretical Model</h2>
+            <p>
+                As an incompressible fluid traverses a constriction, continuity enforces velocity acceleration with a corresponding static pressure drop according to Bernoulli's principle. Accounting for the velocity-of-approach factor:
+            </p>
+            <div class="formula-card">Continuity: Q = A1 &times; v1 = A2 &times; v2</div>
+            <div class="formula-card">Ideal Bernoulli Head: H = z + (p / (&rho;g)) + (v&sup2; / (2g)) = constant</div>
+            <div class="formula-card">Theoretical Volumetric Flow Rate: Q_th = A2 &times; &radic;[(2g &Delta;h) / (1 - (A2/A1)&sup2;)]</div>
+            <div class="formula-card">Discharge Coefficient: Cd = Q_actual / Q_theoretical</div>
+        </section>
+
+        <section class="detail-section">
+            <h2>Experiment C1: Longitudinal Piezometric Head Distribution</h2>
+            <p>
+                Static pressure head was measured across 11 manometer tapping positions (A to K) under steady flow (Q = 0.443 L/s). Static pressure dropped sharply to its lowest value at throat tapping D (24 mm water) where velocity peaked, followed by diffuser deceleration:
+            </p>
+            <div class="table-responsive">
+                <table class="deck-table">
+                    <thead>
+                        <tr>
+                            <th>Tapping</th>
+                            <th>A (Inlet)</th>
+                            <th>B</th>
+                            <th>C</th>
+                            <th>D (Throat)</th>
+                            <th>E</th>
+                            <th>F</th>
+                            <th>G</th>
+                            <th>H</th>
+                            <th>I</th>
+                            <th>J</th>
+                            <th>K (Diffuser)</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><strong>Position (mm)</strong></td>
+                            <td>0</td><td>20</td><td>32</td><td>46</td><td>61</td><td>76</td><td>91</td><td>106</td><td>121</td><td>136</td><td>156</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Diameter (mm)</strong></td>
+                            <td>26.00</td><td>23.20</td><td>18.40</td><td>16.00</td><td>16.80</td><td>18.47</td><td>20.16</td><td>21.84</td><td>23.53</td><td>25.24</td><td>26.00</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Head hn (mm)</strong></td>
+                            <td>259</td><td>245</td><td>158</td><td><strong>24</strong></td><td>40</td><td>118</td><td>160</td><td>186</td><td>200</td><td>211</td><td>216</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <p style="font-size: 0.9rem; color: #94a3b8;">
+                *Physical Loss Evidence: Downstream head recovers to 216 mm at K compared to 259 mm at inlet A. The 43 mm head deficit confirms irreversible viscous boundary-layer shear and flow separation in a real fluid.
+            </p>
+        </section>
+
+        <section class="detail-section">
+            <h2>Experiment C2: Comparative Flow Metrology (Venturi vs Orifice)</h2>
+            <p>
+                Actual volumetric flow rate was measured gravimetrically using 6 kg water collection runs across six operating regimes to evaluate device discharge coefficients:
+            </p>
+            <div class="table-responsive">
+                <table class="deck-table">
+                    <thead>
+                        <tr>
+                            <th>Test Run</th>
+                            <th>Mass (kg)</th>
+                            <th>Time (s)</th>
+                            <th>Actual Q (m&sup3;/s)</th>
+                            <th>Venturi &Delta;h (m)</th>
+                            <th>Venturi Cd</th>
+                            <th>Orifice &Delta;h (m)</th>
+                            <th>Orifice Cd</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr><td>Run 1</td><td>6</td><td>12.24</td><td>0.000490</td><td>0.276</td><td><strong>0.973</strong></td><td>0.315</td><td>0.618</td></tr>
+                        <tr><td>Run 2</td><td>6</td><td>13.51</td><td>0.000444</td><td>0.236</td><td>0.952</td><td>0.269</td><td>0.606</td></tr>
+                        <tr><td>Run 3</td><td>6</td><td>14.96</td><td>0.000401</td><td>0.187</td><td>0.967</td><td>0.215</td><td>0.613</td></tr>
+                        <tr><td>Run 4</td><td>6</td><td>16.67</td><td>0.000360</td><td>0.162</td><td>0.933</td><td>0.174</td><td>0.611</td></tr>
+                        <tr><td>Run 5</td><td>6</td><td>18.87</td><td>0.000318</td><td>0.112</td><td>0.992</td><td>0.132</td><td>0.619</td></tr>
+                        <tr><td>Run 6</td><td>6</td><td>25.42</td><td>0.000236</td><td>0.066</td><td>0.957</td><td>0.079</td><td>0.594</td></tr>
+                    </tbody>
+                </table>
+            </div>
+        </section>
+
+        <section class="detail-section">
+            <h2>Comparative Engineering Evaluation</h2>
+            <div class="table-responsive">
+                <table class="deck-table">
+                    <thead>
+                        <tr>
+                            <th>Design Parameter</th>
+                            <th>Venturi Meter (Converging-Diverging)</th>
+                            <th>Orifice Plate (Sharp-Edged Constriction)</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><strong>Discharge Coefficient</strong></td>
+                            <td>High (Average Cd &approx; 0.962); matches ideal flow model.</td>
+                            <td>Lower (Average Cd &approx; 0.610); substantial flow contraction.</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Fluid Dynamics</strong></td>
+                            <td>Streamlined gradual expansion minimizes boundary layer separation.</td>
+                            <td>Sudden area contraction forms a <em>vena contracta</em> and high wake turbulence.</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Permanent Head Loss</strong></td>
+                            <td>Low permanent energy dissipation; optimal for continuous pumping systems.</td>
+                            <td>High irreversible pressure loss; higher parasitic pumping power costs.</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Practical Installation</strong></td>
+                            <td>Bulky, longer axial footprint, higher upfront capital manufacturing cost.</td>
+                            <td>Compact, low installation cost, clamped easily between pipe flanges.</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </section>
+
+        <section class="detail-section">
+            <h2>Measurement Uncertainty &amp; Experimental Control</h2>
+            <ul>
+                <li><strong>Hydraulic Calibration:</strong> Checked zero datum on multi-tube manometer tubes and purged entrained air bubbles before recording.</li>
+                <li><strong>Timing Error Mitigation:</strong> Gravimetric mass collection (6 kg) over extended intervals (12.24 s to 25.42 s) mitigated manual stopwatch human reaction time error (&plusmn;0.2 s).</li>
+                <li><strong>Parallax Control:</strong> Manometer piezometric head levels were read at eye-level against the metric back-plate to minimize optical refraction through the water column.</li>
+            </ul>
+        </section>
+
+        <div class="project-actions">
+            <a href="Bokhtear_Fluid_Mechanics_Engineering_Portfolio.pdf" download class="btn-action btn-primary-action">
+                <i class="fa-solid fa-file-pdf"></i> Download Full Portfolio Deck (PDF)
+            </a>
+            <a href="index.html#contact" class="btn-action btn-secondary-action">
+                <i class="fa-solid fa-envelope"></i> Contact Me About This Project
+            </a>
+        </div>
+    </div>
+
+    <!-- Canvas Animation: Streamline Venturi Velocity Acceleration & Manometer Tubes -->
+    <script>
+        const canvas = document.getElementById('venturi-canvas');
+        const ctx = canvas.getContext('2d');
+
+        function resize() {
+            canvas.width = window.innerWidth;
+            canvas.height = window.innerHeight;
+        }
+        window.addEventListener('resize', resize);
+        resize();
+
+        // Technical Grid
+        function drawGrid() {
+            ctx.strokeStyle = 'rgba(56, 189, 248, 0.04)';
+            ctx.lineWidth = 1;
+            const step = 45;
+            for (let x = 0; x < canvas.width; x += step) {
+                ctx.beginPath();
+                ctx.moveTo(x, 0);
+                ctx.lineTo(x, canvas.height);
+                ctx.stroke();
+            }
+            for (let y = 0; y < canvas.height; y += step) {
+                ctx.beginPath();
+                ctx.moveTo(0, y);
+                ctx.lineTo(canvas.width, y);
+                ctx.stroke();
+            }
+        }
+
+        // Animated Fluid Particles in Venturi Tube
+        const particles = [];
+        const particleCount = 65;
+        for (let i = 0; i < particleCount; i++) {
+            particles.push({
+                relX: Math.random(),
+                offsetY: (Math.random() - 0.5) * 0.75,
+                baseSpeed: 0.0022 + Math.random() * 0.0016
+            });
+        }
+
+        let timeTick = 0;
+
+        function getVenturiRadius(normX, maxR, minR) {
+            // normX goes from 0 (inlet) to 1 (outlet)
+            // Throat around normX = 0.42
+            if (normX < 0.2) return maxR;
+            if (normX < 0.42) {
+                const t = (normX - 0.2) / 0.22;
+                return maxR - (maxR - minR) * (0.5 - 0.5 * Math.cos(Math.PI * t));
+            }
+            if (normX < 0.88) {
+                const t = (normX - 0.42) / 0.46;
+                return minR + (maxR - minR) * (0.5 - 0.5 * Math.cos(Math.PI * t));
+            }
+            return maxR;
+        }
+
+        function drawVenturiApparatus() {
+            const startX = canvas.width * 0.08;
+            const endX = canvas.width * 0.92;
+            const tubeLen = endX - startX;
+            const centerY = canvas.height * 0.65;
+            const inletR = Math.min(canvas.height * 0.16, 110);
+            const throatR = inletR * (16 / 26);
+
+            // Draw Venturi Profile Contours
+            ctx.lineWidth = 2.5;
+            ctx.strokeStyle = 'rgba(56, 189, 248, 0.45)';
+
+            // Upper duct wall
+            ctx.beginPath();
+            for (let i = 0; i <= 60; i++) {
+                const normX = i / 60;
+                const px = startX + normX * tubeLen;
+                const r = getVenturiRadius(normX, inletR, throatR);
+                if (i === 0) ctx.moveTo(px, centerY - r);
+                else ctx.lineTo(px, centerY - r);
+            }
+            ctx.stroke();
+
+            // Lower duct wall
+            ctx.beginPath();
+            for (let i = 0; i <= 60; i++) {
+                const normX = i / 60;
+                const px = startX + normX * tubeLen;
+                const r = getVenturiRadius(normX, inletR, throatR);
+                if (i === 0) ctx.moveTo(px, centerY + r);
+                else ctx.lineTo(px, centerY + r);
+            }
+            ctx.stroke();
+
+            // Manometer Piezometer Tappings
+            const tappingNormX = [0.15, 0.30, 0.42, 0.60, 0.78];
+            const tappingLevels = [0.82, 0.58, 0.20, 0.55, 0.72]; // Pressure distribution
+
+            for (let j = 0; j < tappingNormX.length; j++) {
+                const tx = startX + tappingNormX[j] * tubeLen;
+                const tr = getVenturiRadius(tappingNormX[j], inletR, throatR);
+                const tapTop = centerY - tr;
+                const tubeHeight = canvas.height * 0.32;
+                const tubeYTop = tapTop - tubeHeight;
+
+                // Glass tube outline
+                ctx.strokeStyle = 'rgba(148, 163, 184, 0.25)';
+                ctx.lineWidth = 1.5;
+                ctx.strokeRect(tx - 4, tubeYTop, 8, tubeHeight);
+
+                // Water column inside manometer
+                const waterH = tubeHeight * tappingLevels[j] + Math.sin(timeTick * 2 + j) * 2;
+                ctx.fillStyle = 'rgba(56, 189, 248, 0.3)';
+                ctx.fillRect(tx - 3, tapTop - waterH, 6, waterH);
+
+                // Meniscus marker
+                ctx.strokeStyle = 'rgba(245, 158, 11, 0.8)';
+                ctx.lineWidth = 2;
+                ctx.beginPath();
+                ctx.moveTo(tx - 5, tapTop - waterH);
+                ctx.lineTo(tx + 5, tapTop - waterH);
+                ctx.stroke();
+            }
+
+            // Streamline flow particles
+            for (let p of particles) {
+                const r = getVenturiRadius(p.relX, inletR, throatR);
+                const speedMult = Math.pow(inletR / r, 1.8);
+                p.relX += p.baseSpeed * speedMult;
+                if (p.relX > 1.0) p.relX = 0;
+
+                const curR = getVenturiRadius(p.relX, inletR, throatR);
+                const px = startX + p.relX * tubeLen;
+                const py = centerY + p.offsetY * (curR * 0.85);
+
+                const tailLen = 14 * speedMult;
+                ctx.strokeStyle = `rgba(56, 189, 248, ${0.15 + (curR < inletR * 0.8 ? 0.35 : 0.1)})`;
+                ctx.lineWidth = 1.6;
+                ctx.beginPath();
+                ctx.moveTo(px, py);
+                ctx.lineTo(px - tailLen, py);
+                ctx.stroke();
+            }
+        }
+
+        function animate() {
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+            drawGrid();
+            drawVenturiApparatus();
+            timeTick += 0.02;
+            requestAnimationFrame(animate);
+        }
+
+        animate();
+    </script>
+</body>
+</html>
