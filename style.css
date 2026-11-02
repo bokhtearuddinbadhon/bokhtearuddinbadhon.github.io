@@ -284,8 +284,16 @@ body {
 section,  footer {
   background-color: transparent !important;
 }
+
 #education {
     position: relative;
-    background: linear-gradient(135deg, rgba(8, 13, 26, 0.88) 0%, rgba(8, 13, 26, 0.65) 50%, rgba(8, 13, 26, 0.88) 100%),
-                url('education-bg.png') center/cover no-repeat !important;
+    background: linear-gradient(135deg, rgba(8, 13, 26, 0.90) 0%, rgba(8, 13, 26, 0.70) 50%, rgba(8, 13, 26, 0.90) 100%),
+                url('education-bg.png') top center / cover no-repeat !important;
+    overflow: hidden !important;
+}
+
+#skills {
+    position: relative;
+    background-color: var(--bg-dark) !important;
+    z-index: 1;
 }
