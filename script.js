@@ -240,16 +240,7 @@ if (contactForm && submitBtn && formStatus) {
     formStatus.className = 'form-status';
 
     // FORMSPREE ENDPOINT SETUP
-    const FORMSPREE_ENDPOINT = 'PASTE_YOUR_FORMSPREE_ID_HERE';
-
-    if (FORMSPREE_ENDPOINT === 'PASTE_YOUR_FORMSPREE_ID_HERE') {
-      submitBtn.disabled = false;
-      if (submitBtnText) submitBtnText.textContent = 'Send Message';
-      formStatus.textContent = 'Formspree endpoint pending. Connect your form ID in script.js to deliver messages.';
-      formStatus.className = 'form-status is-error';
-      return;
-    }
-
+   const FORMSPREE_ENDPOINT = 'xeaappnp';
     try {
       const response = await fetch(`https://formspree.io/f/${FORMSPREE_ENDPOINT}`, {
         method: 'POST',
