@@ -376,3 +376,12 @@ section,
     position: relative;
     z-index: 1;
 }
+
+/* --- Section 5: Contact with Drone Wireframe Background --- */
+#contact {
+    position: relative;
+    background: linear-gradient(180deg, rgba(10, 13, 20, 0.88) 0%, rgba(10, 13, 20, 0.65) 50%, rgba(10, 13, 20, 0.92) 100%),
+                url('contact-bg.png') center/cover no-repeat !important;
+    overflow: hidden;
+    z-index: 5;
+}
