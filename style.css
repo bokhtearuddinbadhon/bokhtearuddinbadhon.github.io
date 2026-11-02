@@ -336,3 +336,43 @@ section,
     overflow: hidden !important;
     z-index: 3;
 }
+
+/* --- Projects Section Background Video --- */
+#projects {
+    position: relative;
+    overflow: hidden;
+    z-index: 4;
+}
+
+.projects-bg-video-container {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    z-index: 0;
+    pointer-events: none;
+}
+
+.projects-bg-video {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    opacity: 0.35;
+}
+
+.projects-video-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(180deg, rgba(10, 13, 20, 0.90) 0%, rgba(10, 13, 20, 0.65) 50%, rgba(10, 13, 20, 0.92) 100%);
+}
+
+#projects .section-title,
+#projects .project-grid {
+    position: relative;
+    z-index: 1;
+}
