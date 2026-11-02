@@ -314,7 +314,7 @@ section,
     justify-content: center;
     padding: 6rem 10% 4rem !important;
     background: linear-gradient(180deg, rgba(8, 13, 26, 0.65) 0%, rgba(8, 13, 26, 0.85) 30%, rgba(8, 13, 26, 0.95) 100%),
-                url('education-bg.png') top center / cover no-repeat !important;
+                url('education-bg.png') top center / contain no-repeat !important;
     overflow: hidden !important;
     z-index: 2;
 }
