@@ -1,0 +1,520 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DC & AC Circuit Analysis | Bokhtear Uddin Badhon</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        body {
+            background-color: #0b1120 !important;
+            position: relative;
+            min-height: 100vh;
+            margin: 0;
+            padding: 0;
+            color: #e2e8f0;
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+        }
+
+        /* Continuous Oscilloscope Waveform Background Canvas */
+        #scope-canvas {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            z-index: 0;
+            pointer-events: none;
+        }
+
+        .project-detail-container {
+            max-width: 980px;
+            margin: 80px auto 60px;
+            padding: 0 24px;
+            line-height: 1.7;
+            position: relative;
+            z-index: 1;
+        }
+
+        .back-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            color: #f59e0b;
+            text-decoration: none;
+            font-weight: 600;
+            margin-bottom: 25px;
+            transition: transform 0.2s;
+        }
+        .back-link:hover {
+            transform: translateX(-5px);
+        }
+
+        .detail-header {
+            margin-bottom: 30px;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            padding-bottom: 25px;
+        }
+        .detail-badge {
+            display: inline-block;
+            background: rgba(245, 158, 11, 0.15);
+            color: #f59e0b;
+            border: 1px solid #f59e0b;
+            border-radius: 20px;
+            padding: 4px 14px;
+            font-size: 0.82rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            margin-bottom: 12px;
+        }
+        .detail-title {
+            font-size: 2.2rem;
+            margin-bottom: 10px;
+            color: #ffffff;
+            font-weight: 700;
+        }
+        .detail-subtitle {
+            font-size: 1.05rem;
+            color: #94a3b8;
+        }
+
+        /* Slide Deck Viewer Container */
+        .deck-viewer-container {
+            background: rgba(15, 23, 42, 0.88);
+            border: 1px solid rgba(245, 158, 11, 0.35);
+            border-radius: 12px;
+            padding: 16px;
+            margin: 35px 0 45px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.6);
+            backdrop-filter: blur(8px);
+        }
+        .deck-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 12px;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+        .deck-header h3 {
+            margin: 0;
+            font-size: 1.05rem;
+            color: #f59e0b;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        .pdf-frame {
+            width: 100%;
+            height: 540px;
+            border: none;
+            border-radius: 8px;
+            background: #1e293b;
+        }
+
+        .project-meta-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(210px, 1fr));
+            gap: 15px;
+            background: rgba(15, 23, 42, 0.8);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 10px;
+            padding: 20px;
+            margin-bottom: 40px;
+            backdrop-filter: blur(8px);
+        }
+        .meta-item strong {
+            display: block;
+            color: #f59e0b;
+            font-size: 0.8rem;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            margin-bottom: 4px;
+        }
+        .meta-item span {
+            color: #cbd5e1;
+            font-size: 0.95rem;
+        }
+
+        .detail-section {
+            margin-bottom: 40px;
+            background: rgba(15, 23, 42, 0.8);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            border-radius: 10px;
+            padding: 24px;
+            backdrop-filter: blur(8px);
+        }
+        .detail-section h2 {
+            font-size: 1.4rem;
+            color: #ffffff;
+            margin-bottom: 16px;
+            border-left: 4px solid #f59e0b;
+            padding-left: 12px;
+            font-weight: 600;
+        }
+
+        .formula-card {
+            background: rgba(11, 19, 36, 0.95);
+            border-left: 3px solid #38bdf8;
+            padding: 12px 18px;
+            margin: 10px 0;
+            border-radius: 0 8px 8px 0;
+            font-family: 'Courier New', Courier, monospace;
+            color: #38bdf8;
+            font-size: 0.95rem;
+        }
+
+        .table-responsive {
+            overflow-x: auto;
+            margin: 20px 0;
+        }
+        .deck-table {
+            width: 100%;
+            border-collapse: collapse;
+            font-size: 0.88rem;
+            background: rgba(11, 19, 36, 0.7);
+            border-radius: 8px;
+            overflow: hidden;
+            text-align: left;
+        }
+        .deck-table th, .deck-table td {
+            padding: 10px 14px;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+        }
+        .deck-table th {
+            background: rgba(11, 19, 36, 0.95);
+            color: #f59e0b;
+            font-weight: 600;
+        }
+        .deck-table tr:hover {
+            background: rgba(255, 255, 255, 0.04);
+        }
+
+        .step-list {
+            list-style: none;
+            padding: 0;
+            counter-reset: step-counter;
+        }
+        .step-list li {
+            counter-increment: step-counter;
+            margin-bottom: 12px;
+            display: flex;
+            align-items: flex-start;
+            gap: 12px;
+        }
+        .step-list li::before {
+            content: counter(step-counter);
+            background: #f59e0b;
+            color: #0f172a;
+            font-weight: 700;
+            width: 24px;
+            height: 24px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.8rem;
+            flex-shrink: 0;
+            margin-top: 2px;
+        }
+
+        .project-actions {
+            display: flex;
+            gap: 15px;
+            flex-wrap: wrap;
+            margin-top: 40px;
+            padding-top: 25px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        .btn-action {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 12px 22px;
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: 0.2s ease;
+        }
+        .btn-primary-action {
+            background: #f59e0b;
+            color: #0f172a;
+        }
+        .btn-primary-action:hover {
+            background: #d97706;
+        }
+        .btn-secondary-action {
+            background: rgba(255, 255, 255, 0.08);
+            color: #ffffff;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+        .btn-secondary-action:hover {
+            background: rgba(255, 255, 255, 0.15);
+        }
+    </style>
+</head>
+<body>
+    <!-- Real-Time Continuous Oscilloscope Grid & Sine Wave Canvas -->
+    <canvas id="scope-canvas"></canvas>
+
+    <div class="project-detail-container">
+        <a href="index.html#projects" class="back-link"><i class="fa-solid fa-arrow-left"></i> Back to Main Portfolio</a>
+        
+        <header class="detail-header">
+            <span class="detail-badge"><i class="fa-solid fa-bolt"></i> Electrical Circuit Analysis</span>
+            <h1 class="detail-title">DC &amp; AC Circuit Analysis &amp; Network Validation</h1>
+            <p class="detail-subtitle">Hands-on Investigation of Resistive Networks, Network Theorems, and Reactive AC Impedance</p>
+        </header>
+
+        <!-- Slide Deck Embed -->
+        <div class="deck-viewer-container">
+            <div class="deck-header">
+                <h3><i class="fa-solid fa-file-powerpoint"></i> Practical Project Portfolio Deck</h3>
+                <a href="Electrical_Circuit_Analysis_Engineering_Portfolio_2026.pdf" target="_blank" class="back-link" style="margin: 0; font-size: 0.88rem;">
+                    <i class="fa-solid fa-up-right-from-square"></i> Open Fullscreen / Download Deck
+                </a>
+            </div>
+            <iframe class="pdf-frame" src="Electrical_Circuit_Analysis_Engineering_Portfolio_2026.pdf#toolbar=1" type="application/pdf">
+                <p>Your browser does not support inline PDFs. <a href="Electrical_Circuit_Analysis_Engineering_Portfolio_2026.pdf" style="color: #f59e0b;">Download the deck here.</a></p>
+            </iframe>
+        </div>
+
+        <!-- Apparatus & Environmental Metadata -->
+        <div class="project-meta-grid">
+            <div class="meta-item">
+                <strong>Institution &amp; Level</strong>
+                <span>London South Bank University | BEng Mechanical Engineering</span>
+            </div>
+            <div class="meta-item">
+                <strong>Laboratory Module</strong>
+                <span>Electrical Circuit Analysis (2025–26)</span>
+            </div>
+            <div class="meta-item">
+                <strong>Test Instrumentation</strong>
+                <span>GW Instek GPS-3303, Tektronix TDS 2002C, TTi 1604 DMM</span>
+            </div>
+            <div class="meta-item">
+                <strong>Key Focus Areas</strong>
+                <span>Ohm's Law, KVL/KCL, Thévenin/Norton, AC Phase &amp; Ferrite Cores</span>
+            </div>
+        </div>
+
+        <!-- 01: Investigation Overview -->
+        <section class="detail-section">
+            <h2>1. Project Scope &amp; Engineering Workflow</h2>
+            <p>
+                As mechanical systems increasingly interface with mechatronic actuators, sensors, and electronic feedback controllers, practical fluency in circuit instrumentation and network modeling is essential. This rigorous five-experiment portfolio systematically progressed from steady-state DC verification to dynamic alternating-current oscilloscope measurements.
+            </p>
+            <ol class="step-list">
+                <li><strong>Ohm's Law &amp; Power Law:</strong> Characterized DC power dissipation curves ($P = V^2/R$) across standard E12 resistors and evaluated loading in voltage and current divider circuits.</li>
+                <li><strong>Kirchhoff's Laws (KVL &amp; KCL):</strong> Constructed multi-loop planar bridge networks, evaluated mesh residual voltages, and verified conservation of current at key junctions.</li>
+                <li><strong>Thévenin &amp; Norton Source Transformation:</strong> Simplified a complex multi-node bridge into single-source equivalents ($V_{Th} = 10.720\text{ V}, R_{Th} \approx 2.972\text{ k}\Omega, I_N = 3.608\text{ mA}$) and evaluated terminal load response.</li>
+                <li><strong>AC Waveform Analysis:</strong> Employed high-speed DSO triggering and calibrated cursors to quantify peak-to-peak voltages, frequency errors ($1.86\%$), and RMS correlation against true-RMS bench multimeters ($0.84\%$).</li>
+                <li><strong>Impedance &amp; Magnetic Permeability:</strong> Integrated a $1\,\Omega$ non-inductive shunt resistor (NIR) to isolate current waveforms, measuring a $+193\%$ inductance increase when inserting a high-permeability ferrite rod.</li>
+            </ol>
+        </section>
+
+        <!-- 02: DC Network Governing Equations -->
+        <section class="detail-section">
+            <h2>2. Governing Mathematical Models</h2>
+            <div class="formula-card">Ohm's Law &amp; DC Power: V = I \cdot R \quad \text{and} \quad P = I^2 R = \frac{V^2}{R}</div>
+            <div class="formula-card">Kirchhoff's Laws: \sum V_{\text{loop}} = 0 \quad \text{and} \quad \sum I_{\text{node}} = 0</div>
+            <div class="formula-card">Thévenin &amp; Norton Equivalence: R_{Th} = \frac{V_{o/c}}{I_{s/c}}, \quad I_L = \frac{V_{Th}}{R_{Th} + R_L}</div>
+            <div class="formula-card">AC Impedance &amp; Reactance: |Z| = \frac{V_{\text{coil}}}{I}, \quad X_L = |Z|\sin(\phi), \quad L = \frac{X_L}{2\pi f}</div>
+            <div class="formula-card">Magnetic Circuit Reluctance: L = \frac{N^2}{\mathcal{R}} \quad \text{where} \quad \mathcal{R} = \frac{l}{\mu A}</div>
+        </section>
+
+        <!-- 03: Experimental Results Log -->
+        <section class="detail-section">
+            <h2>3. Measured Data &amp; Verification Matrix</h2>
+            <div class="table-responsive">
+                <table class="deck-table">
+                    <thead>
+                        <tr>
+                            <th>Experiment / Test Target</th>
+                            <th>Theoretical Target</th>
+                            <th>Measured Value</th>
+                            <th>Experimental Residual / Deviation</th>
+                            <th>Physical Origin</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><strong>Exp 1: 1.0 kΩ Resistor</strong></td>
+                            <td>$1000\,\Omega$ nominal</td>
+                            <td>$979.0\,\Omega$</td>
+                            <td>$-2.13\%$ error</td>
+                            <td>E12 manufacturing band ($\pm 5\%$)</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Exp 2: KVL Loop 1</strong></td>
+                            <td>$0.000\text{ V}$</td>
+                            <td>$-0.003\text{ V}$</td>
+                            <td>$\approx 0.02\%$ residual</td>
+                            <td>DMM digit truncation &amp; lead drop</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Exp 2: KCL Node 3</strong></td>
+                            <td>$0.000\text{ mA}$</td>
+                            <td>$0.000\text{ mA}$</td>
+                            <td>$0.00\%$ residual</td>
+                            <td>Confirmed via measured $R$ branch values</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Exp 3: Thévenin Voc &amp; Isc</strong></td>
+                            <td>$11.9\text{ V} \, / \, 4.0\text{ mA}$</td>
+                            <td>$10.720\text{ V} \, / \, 3.608\text{ mA}$</td>
+                            <td>$\approx 10\%$ shift</td>
+                            <td>Power supply internal resistance &amp; breadboard leads</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Exp 4: AC Signal Frequency</strong></td>
+                            <td>$1.019\text{ kHz}$ (Gen)</td>
+                            <td>$1.000\text{ kHz}$ (DSO)</td>
+                            <td>$1.86\%$ deviation</td>
+                            <td>Timebase resolution &amp; cursor alignment</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Exp 5: Coil A Inductance</strong></td>
+                            <td>$332.1\,\mu\text{H}$ (LCR meter)</td>
+                            <td>$326.3\,\mu\text{H}$ (Oscilloscope)</td>
+                            <td>$1.7\%$ error</td>
+                            <td>Well within specified $\pm 6\%$ accuracy band</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Exp 5: Ferrite Core Insertion</strong></td>
+                            <td>$326.3\,\mu\text{H}$ (Air Core)</td>
+                            <td>$955.7\,\mu\text{H}$ (Ferrite)</td>
+                            <td><strong>+193% Increase</strong></td>
+                            <td>High magnetic permeability ($\mu_r$) reducing $\mathcal{R}$</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </section>
+
+        <!-- 04: Engineering Reflections & Error Diagnostics -->
+        <section class="detail-section">
+            <h2>4. Engineering Diagnostics &amp; Placement Reflection</h2>
+            <ul>
+                <li><strong>Instrument Loading Effects:</strong> Confirmed why high-impedance ($10\text{ M}\Omega$) voltmeters are mandatory when measuring divider networks; low input impedance shunts current and loads down sensitive nodal voltages.</li>
+                <li><strong>Ammeter Burden Resistance:</strong> In the current divider experiment, observed branch currents slightly lower than theoretical ($3.29\text{ mA}$ vs $3.33\text{ mA}$) due to the internal sensing resistor of the DMM in series.</li>
+                <li><strong>Phase Displacement Mechanics:</strong> Directly visualized inductive current lagging applied voltage by $48.4^\circ$ on the DSO. In pure resistance, the phase was verified at $0.0^\circ$, proving energy dissipation without phase lag.</li>
+                <li><strong>Critical Evaluation of Outliers:</strong> In Experiment 3, a large deviation in the $4.7\text{ k}\Omega$ load comparison demonstrated that real-world engineering requires rigorous diagnosis of breadboard wiring and resistor color-code reading rather than hiding anomalies.</li>
+            </ul>
+        </section>
+
+        <div class="project-actions">
+            <a href="Electrical_Circuit_Analysis_Engineering_Portfolio_2026.pdf" download class="btn-action btn-primary-action">
+                <i class="fa-solid fa-file-pdf"></i> Download Full Deck (PDF)
+            </a>
+            <a href="index.html#contact" class="btn-action btn-secondary-action">
+                <i class="fa-solid fa-envelope"></i> Contact Regarding This Project
+            </a>
+        </div>
+    </div>
+
+    <!-- Oscilloscope CRT Reticle & Dynamic Waveform Script -->
+    <script>
+        const canvas = document.getElementById('scope-canvas');
+        const ctx = canvas.getContext('2d');
+
+        function resize() {
+            canvas.width = window.innerWidth;
+            canvas.height = window.innerHeight;
+        }
+        window.addEventListener('resize', resize);
+        resize();
+
+        let t = 0;
+
+        function drawScopeGrid() {
+            const w = canvas.width;
+            const h = canvas.height;
+            const gridSize = 45;
+
+            ctx.strokeStyle = 'rgba(56, 189, 248, 0.04)';
+            ctx.lineWidth = 1;
+
+            // Reticle grid
+            for (let x = 0; x < w; x += gridSize) {
+                ctx.beginPath();
+                ctx.moveTo(x, 0);
+                ctx.lineTo(x, h);
+                ctx.stroke();
+            }
+            for (let y = 0; y < h; y += gridSize) {
+                ctx.beginPath();
+                ctx.moveTo(0, y);
+                ctx.lineTo(w, y);
+                ctx.stroke();
+            }
+
+            // Central crosshairs
+            ctx.strokeStyle = 'rgba(245, 158, 11, 0.08)';
+            ctx.lineWidth = 1.5;
+            ctx.beginPath();
+            ctx.moveTo(w / 2, 0);
+            ctx.lineTo(w / 2, h);
+            ctx.moveTo(0, h / 2);
+            ctx.lineTo(w, h / 2);
+            ctx.stroke();
+        }
+
+        function drawWaveforms() {
+            const w = canvas.width;
+            const h = canvas.height;
+            const centerY = h * 0.52;
+            const amplitude1 = Math.min(h * 0.18, 130);
+            const amplitude2 = amplitude1 * 0.55;
+            const wavelength = Math.max(w * 0.35, 300);
+
+            // Channel 1: Voltage Waveform (Yellow/Amber)
+            ctx.beginPath();
+            ctx.strokeStyle = 'rgba(245, 158, 11, 0.45)';
+            ctx.lineWidth = 2.5;
+            ctx.shadowBlur = 12;
+            ctx.shadowColor = 'rgba(245, 158, 11, 0.6)';
+
+            for (let x = 0; x <= w; x += 3) {
+                const angle = ((x / wavelength) * Math.PI * 2) - t;
+                const y = centerY + Math.sin(angle) * amplitude1;
+                if (x === 0) ctx.moveTo(x, y);
+                else ctx.lineTo(x, y);
+            }
+            ctx.stroke();
+
+            // Channel 2: Current Waveform (Cyan - Lagging Phase ~48.4 deg)
+            const phaseShift = (48.4 * Math.PI) / 180;
+            ctx.beginPath();
+            ctx.strokeStyle = 'rgba(56, 189, 248, 0.45)';
+            ctx.lineWidth = 2.5;
+            ctx.shadowBlur = 12;
+            ctx.shadowColor = 'rgba(56, 189, 248, 0.6)';
+
+            for (let x = 0; x <= w; x += 3) {
+                const angle = ((x / wavelength) * Math.PI * 2) - t - phaseShift;
+                const y = centerY + Math.sin(angle) * amplitude2;
+                if (x === 0) ctx.moveTo(x, y);
+                else ctx.lineTo(x, y);
+            }
+            ctx.stroke();
+
+            // Reset glow
+            ctx.shadowBlur = 0;
+        }
+
+        function animate() {
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+            drawScopeGrid();
+            drawWaveforms();
+            t += 0.025; // Continuous AC signal time evolution
+            requestAnimationFrame(animate);
+        }
+
+        animate();
+    </script>
+</body>
+</html>
