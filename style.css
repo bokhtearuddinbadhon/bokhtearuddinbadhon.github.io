@@ -292,27 +292,45 @@ section,
 #skills, 
 #projects, 
 #contact {
-    scroll-margin-top: 90px !important;
+    scroll-margin-top: 80px !important;
 }
 
-/* --- Clean Section Heights & Isolations --- */
+/* --- Section 1: About Me (Full Screen Isolation) --- */
 #about {
     position: relative;
+    min-height: 100vh !important;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
     z-index: 1;
 }
 
+/* --- Section 2: Education (Full Screen Blueprint with Centered Header) --- */
 #education {
     position: relative;
-    min-height: 85vh;
-    padding: 5rem 10% 4rem !important;
-    background: linear-gradient(180deg, rgba(8, 13, 26, 0.70) 0%, rgba(8, 13, 26, 0.88) 30%, rgba(8, 13, 26, 0.96) 100%),
+    min-height: 100vh !important;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 6rem 10% 4rem !important;
+    background: linear-gradient(180deg, rgba(8, 13, 26, 0.65) 0%, rgba(8, 13, 26, 0.85) 30%, rgba(8, 13, 26, 0.95) 100%),
                 url('education-bg.png') top center / cover no-repeat !important;
     overflow: hidden !important;
     z-index: 2;
 }
 
+#education .section-title {
+    text-align: center !important;
+    margin-bottom: 2.5rem !important;
+}
+
+/* --- Section 3: Technical Toolbox --- */
 #skills {
     position: relative;
+    min-height: 100vh !important;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
     background-color: #0a0d14 !important;
     z-index: 3;
 }
