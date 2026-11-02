@@ -371,12 +371,346 @@ section,
     background: linear-gradient(180deg, rgba(10, 13, 20, 0.90) 0%, rgba(10, 13, 20, 0.65) 50%, rgba(10, 13, 20, 0.92) 100%);
 }
 
-#projects .section-title,
-#projects .project-grid {
+#projects .projects-header-wrap,
+#projects .mech-projects-grid {
     position: relative;
-    z-index: 1;
+    z-index: 2;
 }
 
+/* =========================================================
+   3D MECHANICAL ENGINEERING PROJECTS GRID & CARD STYLES
+   ========================================================= */
+
+.projects-header-wrap {
+    text-align: center;
+    margin-bottom: 3rem;
+    position: relative;
+    z-index: 2;
+}
+
+.projects-mech-title {
+    font-size: 2.2rem;
+    font-weight: 700;
+    color: #ffffff;
+    margin-bottom: 0.5rem;
+    letter-spacing: 0.5px;
+}
+
+.projects-title-icon {
+    color: #f59e0b;
+    margin-right: 10px;
+    filter: drop-shadow(0 0 10px rgba(245, 158, 11, 0.6));
+}
+
+.projects-mech-subtitle {
+    font-size: 0.82rem;
+    font-weight: 700;
+    letter-spacing: 2px;
+    color: #38bdf8;
+    text-transform: uppercase;
+    font-family: monospace;
+}
+
+/* 4 cards on desktop, 2 on tablet, 1 on mobile */
+.mech-projects-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 24px;
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 0 16px;
+    perspective: 1200px;
+    position: relative;
+    z-index: 2;
+}
+
+/* 3D Mechanical Card Shell */
+.mech-card-wrapper {
+    position: relative;
+    height: 100%;
+    transform-style: preserve-3d;
+    outline: none;
+    transition: transform 0.35s cubic-bezier(0.2, 0.8, 0.2, 1), box-shadow 0.35s ease;
+}
+
+.mech-card-wrapper:focus-visible {
+    box-shadow: 0 0 0 3px #00f2fe;
+    border-radius: 18px;
+}
+
+/* Industrial Brushed Metal Frame with Silver Chamfer & Cyan Border */
+.mech-card-frame {
+    position: relative;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    padding: 16px;
+    background: linear-gradient(165deg, rgba(20, 30, 48, 0.90) 0%, rgba(10, 17, 30, 0.95) 50%, rgba(5, 9, 18, 0.98) 100%);
+    border: 2px solid rgba(56, 189, 248, 0.45);
+    border-radius: 18px;
+    box-shadow: 
+        inset 0 1px 1px rgba(255, 255, 255, 0.2),
+        inset 0 0 25px rgba(0, 0, 0, 0.85),
+        0 18px 35px rgba(0, 0, 0, 0.75),
+        0 0 20px rgba(0, 242, 254, 0.15);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    overflow: hidden;
+    transition: border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+/* Chamfered Inset Bevel Line */
+.mech-card-frame::before {
+    content: '';
+    position: absolute;
+    inset: 4px;
+    border: 1px solid rgba(0, 242, 254, 0.2);
+    border-radius: 14px;
+    pointer-events: none;
+}
+
+/* Mechanical Screws / Corner Rivets */
+.mech-bolt {
+    position: absolute;
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: radial-gradient(circle, #cbd5e1 20%, #475569 70%, #0f172a 100%);
+    box-shadow: inset 0 1px 1px rgba(255, 255, 255, 0.6), 0 1px 2px rgba(0, 0, 0, 0.9);
+    z-index: 3;
+}
+
+.mech-bolt::after {
+    content: '';
+    position: absolute;
+    top: 3.5px;
+    left: 1.5px;
+    width: 5px;
+    height: 1px;
+    background: #090e17;
+    transform: rotate(45deg);
+}
+
+.mech-bolt.top-left { top: 8px; left: 8px; }
+.mech-bolt.top-right { top: 8px; right: 8px; }
+.mech-bolt.bottom-left { bottom: 8px; left: 8px; }
+.mech-bolt.bottom-right { bottom: 8px; right: 8px; }
+
+/* Orange Status LED Accent */
+.mech-card-led {
+    position: absolute;
+    top: 9px;
+    right: 24px;
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background: #f59e0b;
+    box-shadow: 0 0 8px #f59e0b, 0 0 14px rgba(245, 158, 11, 0.8);
+    z-index: 3;
+}
+
+/* Card Visual Thumbnail Box */
+.mech-visual-box {
+    position: relative;
+    width: 100%;
+    height: 140px;
+    border-radius: 10px;
+    overflow: hidden;
+    border: 1px solid rgba(0, 242, 254, 0.3);
+    background: radial-gradient(circle at center, #0e172a 0%, #060a14 100%);
+    margin-bottom: 14px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.mech-thumb-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.4s ease;
+}
+
+.mech-card-wrapper:hover .mech-thumb-img {
+    transform: scale(1.06);
+}
+
+.mech-thumb-placeholder {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    color: #38bdf8;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(135deg, rgba(14, 23, 42, 0.95), rgba(8, 13, 26, 0.98));
+}
+
+.mech-thumb-placeholder i {
+    font-size: 2.2rem;
+    color: #f59e0b;
+    filter: drop-shadow(0 0 8px rgba(245, 158, 11, 0.6));
+}
+
+.mech-placeholder-text {
+    font-family: monospace;
+    font-size: 0.72rem;
+    letter-spacing: 1.5px;
+    color: #38bdf8;
+}
+
+.mech-scanline {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(rgba(18, 16, 16, 0) 50%, rgba(0, 242, 254, 0.05) 50%);
+    background-size: 100% 3px;
+    pointer-events: none;
+    z-index: 2;
+}
+
+/* Header & Title */
+.mech-header-row {
+    display: flex;
+    align-items: flex-start;
+    gap: 10px;
+    margin-bottom: 8px;
+}
+
+.mech-project-icon {
+    color: #f59e0b;
+    font-size: 1.15rem;
+    margin-top: 3px;
+    flex-shrink: 0;
+    filter: drop-shadow(0 0 6px rgba(245, 158, 11, 0.5));
+}
+
+.mech-project-title {
+    font-size: 1.05rem;
+    font-weight: 700;
+    color: #ffffff;
+    line-height: 1.35;
+    margin: 0;
+}
+
+.mech-project-title a {
+    color: inherit;
+    text-decoration: none;
+    transition: color 0.2s ease;
+}
+
+.mech-project-title a:hover {
+    color: #38bdf8;
+}
+
+/* Card Body Description */
+.mech-project-desc {
+    color: #94a3b8;
+    font-size: 0.85rem;
+    line-height: 1.5;
+    margin-bottom: 12px;
+    flex-grow: 1;
+}
+
+/* Cyan Engineering Tech Tags */
+.mech-tech-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+    margin-bottom: 16px;
+}
+
+.mech-tech-tag {
+    background: rgba(56, 189, 248, 0.12);
+    border: 1px solid rgba(56, 189, 248, 0.35);
+    color: #38bdf8;
+    font-size: 0.75rem;
+    font-weight: 600;
+    padding: 3px 8px;
+    border-radius: 4px;
+    letter-spacing: 0.3px;
+    white-space: nowrap;
+}
+
+/* Case Study Action Button */
+.mech-action-wrap {
+    margin-top: auto;
+}
+
+.mech-case-study-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    width: 100%;
+    padding: 9px 12px;
+    background: rgba(245, 158, 11, 0.08);
+    border: 1.5px solid #f59e0b;
+    border-radius: 8px;
+    color: #f59e0b;
+    text-decoration: none;
+    font-size: 0.85rem;
+    font-weight: 700;
+    letter-spacing: 0.4px;
+    transition: all 0.25s ease;
+    box-shadow: 0 0 10px rgba(245, 158, 11, 0.15);
+    text-align: center;
+}
+
+.mech-case-study-btn:hover {
+    background: #f59e0b;
+    color: #0b1120;
+    box-shadow: 0 0 18px rgba(245, 158, 11, 0.7);
+    transform: translateY(-2px);
+}
+
+.mech-btn-arrow {
+    transition: transform 0.2s ease;
+}
+
+.mech-case-study-btn:hover .mech-btn-arrow {
+    transform: translateX(4px);
+}
+
+/* Hover Elevation & Glowing Edge Effects on Desktop */
+@media (hover: hover) and (pointer: fine) {
+    .mech-card-wrapper:hover .mech-card-frame {
+        border-color: rgba(0, 242, 254, 0.85);
+        box-shadow: 
+            inset 0 1px 1px rgba(255, 255, 255, 0.3),
+            0 24px 45px rgba(0, 0, 0, 0.8),
+            0 0 28px rgba(0, 242, 254, 0.35);
+    }
+}
+
+/* Responsive Grid Breakpoints */
+@media (max-width: 1200px) {
+    .mech-projects-grid {
+        grid-template-columns: repeat(2, 1fr);
+        max-width: 820px;
+    }
+}
+
+@media (max-width: 650px) {
+    .mech-projects-grid {
+        grid-template-columns: 1fr;
+        max-width: 420px;
+    }
+    .projects-mech-title {
+        font-size: 1.8rem;
+    }
+}
+
+/* Accessibility: Respect Reduced-Motion Preference */
+@media (prefers-reduced-motion: reduce) {
+    .mech-card-wrapper,
+    .mech-thumb-img,
+    .mech-case-study-btn,
+    .mech-btn-arrow {
+        transition: none !important;
+        transform: none !important;
+    }
+}
 /* --- Section 5: Contact with Drone Wireframe Background --- */
 #contact {
     position: relative;
