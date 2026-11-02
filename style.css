@@ -783,3 +783,509 @@ section,
         transform: none !important;
     }
 }
+/* =========================================================
+   FUTURISTIC 3D ENGINEERING HUD CONTACT SECTION
+   ========================================================= */
+
+.contact-section {
+    padding: 80px 20px 100px;
+    position: relative;
+    z-index: 2;
+}
+
+.contact-container {
+    max-width: 1180px;
+    margin: 0 auto;
+}
+
+/* Header & Subtitle */
+.contact-header {
+    text-align: left;
+    margin-bottom: 34px;
+}
+
+.contact-title-wrap {
+    display: inline-flex;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 12px;
+}
+
+.tech-slash {
+    color: #f97316;
+    font-size: 2.2rem;
+    font-weight: 800;
+    letter-spacing: -2px;
+    text-shadow: 0 0 12px rgba(249, 115, 22, 0.65);
+    user-select: none;
+}
+
+.contact-title {
+    font-size: 2.2rem;
+    font-weight: 700;
+    color: #ffffff;
+    margin: 0;
+    letter-spacing: 0.5px;
+}
+
+.contact-subtitle {
+    color: #cbd5e1;
+    font-size: 1.02rem;
+    line-height: 1.6;
+    max-width: 780px;
+    margin: 0;
+}
+
+.contact-subtitle strong {
+    color: #ffffff;
+}
+
+/* Outer 3D HUD Engineering Frame */
+.hud-panel-frame {
+    position: relative;
+    background: rgba(8, 14, 28, 0.72);
+    border: 1.5px solid rgba(14, 165, 233, 0.45);
+    border-radius: 18px;
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+    box-shadow: 
+        0 24px 60px rgba(0, 0, 0, 0.75),
+        inset 0 1px 0 rgba(255, 255, 255, 0.08),
+        inset 0 0 35px rgba(14, 165, 233, 0.06),
+        0 0 25px rgba(14, 165, 233, 0.18);
+    padding: 36px 38px;
+    transition: border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.hud-panel-frame:hover {
+    border-color: rgba(14, 165, 233, 0.75);
+    box-shadow: 
+        0 28px 70px rgba(0, 0, 0, 0.82),
+        inset 0 1px 0 rgba(255, 255, 255, 0.12),
+        inset 0 0 45px rgba(14, 165, 233, 0.12),
+        0 0 35px rgba(14, 165, 233, 0.28);
+}
+
+/* Glowing Orange Chamfered HUD Corner Accents */
+.hud-corner {
+    position: absolute;
+    width: 22px;
+    height: 22px;
+    pointer-events: none;
+    z-index: 3;
+}
+
+.hud-corner-tl {
+    top: -2px;
+    left: -2px;
+    border-top: 3.5px solid #f97316;
+    border-left: 3.5px solid #f97316;
+    border-top-left-radius: 18px;
+    filter: drop-shadow(0 0 8px rgba(249, 115, 22, 0.95));
+}
+
+.hud-corner-tr {
+    top: -2px;
+    right: -2px;
+    border-top: 3.5px solid #f97316;
+    border-right: 3.5px solid #f97316;
+    border-top-right-radius: 18px;
+    filter: drop-shadow(0 0 8px rgba(249, 115, 22, 0.95));
+}
+
+.hud-corner-bl {
+    bottom: -2px;
+    left: -2px;
+    border-bottom: 3.5px solid #f97316;
+    border-left: 3.5px solid #f97316;
+    border-bottom-left-radius: 18px;
+    filter: drop-shadow(0 0 8px rgba(249, 115, 22, 0.95));
+}
+
+.hud-corner-br {
+    bottom: -2px;
+    right: -2px;
+    border-bottom: 3.5px solid #f97316;
+    border-right: 3.5px solid #f97316;
+    border-bottom-right-radius: 18px;
+    filter: drop-shadow(0 0 8px rgba(249, 115, 22, 0.95));
+}
+
+/* Grid Layout: Left Cards + Divider + Right Form */
+.hud-panel-content {
+    display: grid;
+    grid-template-columns: 1fr 1px 1.18fr;
+    gap: 36px;
+    align-items: stretch;
+}
+
+/* Vertical HUD Center Line */
+.hud-divider {
+    background: linear-gradient(180deg, rgba(249, 115, 22, 0.1) 0%, rgba(249, 115, 22, 0.85) 50%, rgba(249, 115, 22, 0.1) 100%);
+    box-shadow: 0 0 10px rgba(249, 115, 22, 0.65);
+    width: 2px;
+    border-radius: 2px;
+}
+
+/* Left Column: Contact Cards */
+.contact-info-col {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+}
+
+.info-card {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    padding: 16px 18px;
+    background: rgba(13, 22, 42, 0.68);
+    border: 1px solid rgba(56, 189, 248, 0.28);
+    border-radius: 12px;
+    box-shadow: inset 0 0 15px rgba(0, 0, 0, 0.4);
+    transition: border-color 0.25s ease, transform 0.25s ease, box-shadow 0.25s ease;
+}
+
+.info-card:hover {
+    border-color: rgba(56, 189, 248, 0.7);
+    transform: translateY(-2px);
+    box-shadow: 
+        0 10px 22px rgba(0, 0, 0, 0.5),
+        0 0 16px rgba(56, 189, 248, 0.22);
+}
+
+.info-icon-box {
+    width: 44px;
+    height: 44px;
+    flex-shrink: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 10px;
+    background: rgba(249, 115, 22, 0.14);
+    border: 1px solid rgba(249, 115, 22, 0.45);
+    color: #f97316;
+    font-size: 1.15rem;
+    box-shadow: 0 0 12px rgba(249, 115, 22, 0.3);
+}
+
+.info-details {
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1;
+    min-width: 0;
+}
+
+.info-label {
+    font-size: 0.78rem;
+    font-weight: 700;
+    color: #f1f5f9;
+    letter-spacing: 0.5px;
+    margin-bottom: 2px;
+}
+
+.info-val {
+    font-size: 0.9rem;
+    color: #94a3b8;
+    line-height: 1.4;
+    word-break: break-word;
+}
+
+.info-val strong {
+    color: #f97316;
+}
+
+.info-link {
+    color: #38bdf8;
+    text-decoration: none;
+    transition: color 0.2s ease, text-shadow 0.2s ease;
+}
+
+.info-link:hover {
+    color: #7dd3fc;
+    text-shadow: 0 0 8px rgba(56, 189, 248, 0.6);
+}
+
+/* Copy Button */
+.copy-btn {
+    background: transparent;
+    border: 1px solid rgba(56, 189, 248, 0.3);
+    color: #94a3b8;
+    width: 34px;
+    height: 34px;
+    border-radius: 8px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    flex-shrink: 0;
+}
+
+.copy-btn:hover {
+    color: #38bdf8;
+    border-color: #38bdf8;
+    background: rgba(56, 189, 248, 0.12);
+    box-shadow: 0 0 10px rgba(56, 189, 248, 0.3);
+}
+
+/* Connect With Me Social Row */
+.connect-row {
+    margin-top: auto;
+    padding-top: 10px;
+    display: flex;
+    align-items: center;
+    gap: 16px;
+}
+
+.connect-label {
+    font-size: 0.95rem;
+    font-weight: 700;
+    color: #f1f5f9;
+    letter-spacing: 0.4px;
+}
+
+.connect-links {
+    display: flex;
+    gap: 10px;
+}
+
+.hud-social-btn {
+    width: 40px;
+    height: 40px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 8px;
+    background: rgba(13, 22, 42, 0.85);
+    border: 1px solid rgba(56, 189, 248, 0.35);
+    color: #38bdf8;
+    font-size: 1.15rem;
+    text-decoration: none;
+    transition: all 0.25s ease;
+}
+
+.hud-social-btn:hover {
+    color: #ffffff;
+    border-color: #f97316;
+    background: rgba(249, 115, 22, 0.2);
+    box-shadow: 0 0 14px rgba(249, 115, 22, 0.55);
+    transform: translateY(-2px);
+}
+
+/* Right Column: Send a Message Form */
+.contact-form-col {
+    display: flex;
+    flex-direction: column;
+}
+
+.form-header {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 20px;
+}
+
+.form-header-icon {
+    color: #f97316;
+    font-size: 1.25rem;
+    filter: drop-shadow(0 0 8px rgba(249, 115, 22, 0.6));
+}
+
+.form-title {
+    font-size: 1.25rem;
+    font-weight: 700;
+    color: #ffffff;
+    margin: 0;
+    letter-spacing: 0.4px;
+}
+
+.hud-form {
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+}
+
+.form-row-dual {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 14px;
+}
+
+.input-wrap {
+    position: relative;
+    display: flex;
+    align-items: center;
+}
+
+.input-icon {
+    position: absolute;
+    left: 14px;
+    color: #64748b;
+    font-size: 0.92rem;
+    pointer-events: none;
+    transition: color 0.25s ease;
+}
+
+.textarea-wrap {
+    align-items: flex-start;
+}
+
+.textarea-icon {
+    top: 14px;
+}
+
+.hud-input,
+.hud-textarea {
+    width: 100%;
+    background: rgba(10, 18, 36, 0.88);
+    border: 1px solid rgba(56, 189, 248, 0.28);
+    border-radius: 8px;
+    padding: 12px 14px 12px 38px;
+    color: #ffffff;
+    font-size: 0.92rem;
+    outline: none;
+    font-family: inherit;
+    box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.4);
+    transition: border-color 0.25s ease, box-shadow 0.25s ease, background 0.25s ease;
+}
+
+.hud-textarea {
+    resize: vertical;
+    min-height: 110px;
+}
+
+.hud-input::placeholder,
+.hud-textarea::placeholder {
+    color: #64748b;
+}
+
+.hud-input:focus,
+.hud-textarea:focus {
+    border-color: #38bdf8;
+    background: rgba(14, 25, 48, 0.95);
+    box-shadow: 
+        0 0 0 1px #38bdf8,
+        0 0 14px rgba(56, 189, 248, 0.35);
+}
+
+.hud-input:focus + .input-icon,
+.hud-textarea:focus + .input-icon,
+.input-wrap:focus-within .input-icon {
+    color: #f97316;
+}
+
+/* HoneyPot Spam Protection */
+.form-honeypot {
+    display: none !important;
+    position: absolute;
+    left: -9999px;
+}
+
+/* Submit Button */
+.hud-submit-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    width: 100%;
+    padding: 13px 24px;
+    background: linear-gradient(90deg, #ea580c 0%, #f97316 50%, #fb923c 100%);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    border-radius: 8px;
+    color: #0f172a;
+    font-weight: 700;
+    font-size: 0.98rem;
+    letter-spacing: 0.5px;
+    cursor: pointer;
+    box-shadow: 0 4px 20px rgba(249, 115, 22, 0.45);
+    transition: transform 0.2s ease, box-shadow 0.2s ease, opacity 0.2s ease;
+    margin-top: 4px;
+}
+
+.hud-submit-btn:hover:not(:disabled) {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 26px rgba(249, 115, 22, 0.65);
+}
+
+.hud-submit-btn:active:not(:disabled) {
+    transform: translateY(0);
+}
+
+.hud-submit-btn:disabled {
+    opacity: 0.65;
+    cursor: not-allowed;
+}
+
+/* Form Status Message */
+.form-status {
+    min-height: 24px;
+    font-size: 0.88rem;
+    text-align: center;
+    border-radius: 6px;
+    padding: 0;
+    transition: all 0.3s ease;
+}
+
+.form-status.is-success {
+    background: rgba(34, 197, 94, 0.15);
+    border: 1px solid #22c55e;
+    color: #4ade80;
+    padding: 10px 14px;
+}
+
+.form-status.is-error {
+    background: rgba(239, 68, 68, 0.15);
+    border: 1px solid #ef4444;
+    color: #f87171;
+    padding: 10px 14px;
+}
+
+/* Screen Reader Utility */
+.visually-hidden {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+    border: 0;
+}
+
+/* Responsive Breakpoints */
+@media (max-width: 900px) {
+    .hud-panel-content {
+        grid-template-columns: 1fr;
+        gap: 28px;
+    }
+
+    .hud-divider {
+        display: none;
+    }
+
+    .hud-panel-frame {
+        padding: 28px 22px;
+    }
+}
+
+@media (max-width: 580px) {
+    .form-row-dual {
+        grid-template-columns: 1fr;
+    }
+
+    .contact-title {
+        font-size: 1.8rem;
+    }
+
+    .tech-slash {
+        font-size: 1.8rem;
+    }
+
+    .connect-row {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 10px;
+    }
+}
