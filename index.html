@@ -143,7 +143,7 @@
     <section id="projects" class="section">
         <!-- Differential Gearbox Background Video -->
         <div class="projects-bg-video-container">
-            <video autoplay loop muted playsinline class="projects-bg-video">
+            <video autoplay loop muted playsinline preload="auto" class="projects-bg-video" onended="this.currentTime=0; this.play();">
                 <source src="differential-assembly.mp4" type="video/mp4">
             </video>
             <div class="projects-video-overlay"></div>
