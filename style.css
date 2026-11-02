@@ -224,6 +224,11 @@ body {
 .social-icons { font-size: 1.8rem; margin: 1.5rem 0; }
 .social-icons a { color: var(--text-main); margin: 0 10px; transition: 0.3s; }
 .social-icons a:hover { color: var(--primary); }
+#about {
+    position: relative;
+    background: linear-gradient(135deg, rgba(8, 13, 26, 0.88) 0%, rgba(8, 13, 26, 0.65) 50%, rgba(8, 13, 26, 0.85) 100%),
+                url('about-bg.png') center/cover no-repeat !important;
+}
 
 footer {
     text-align: center;
