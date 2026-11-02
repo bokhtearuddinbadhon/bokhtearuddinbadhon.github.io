@@ -1,0 +1,502 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Computer Programming & Computational Engineering | Bokhtear Uddin Badhon</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        body {
+            background-color: #080d1a !important;
+            position: relative;
+            min-height: 100vh;
+            margin: 0;
+            padding: 0;
+            color: #e2e8f0;
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+        }
+
+        #code-canvas {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            z-index: 0;
+            pointer-events: none;
+        }
+
+        .project-detail-container {
+            max-width: 980px;
+            margin: 80px auto 60px;
+            padding: 0 24px;
+            line-height: 1.7;
+            position: relative;
+            z-index: 1;
+        }
+
+        .back-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            color: #f59e0b;
+            text-decoration: none;
+            font-weight: 600;
+            margin-bottom: 25px;
+            transition: transform 0.2s;
+        }
+        .back-link:hover {
+            transform: translateX(-5px);
+        }
+
+        .detail-header {
+            margin-bottom: 30px;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            padding-bottom: 25px;
+        }
+
+        .detail-badge {
+            display: inline-block;
+            background: rgba(245, 158, 11, 0.15);
+            color: #f59e0b;
+            border: 1px solid #f59e0b;
+            border-radius: 20px;
+            padding: 4px 14px;
+            font-size: 0.82rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            margin-bottom: 12px;
+        }
+
+        .detail-title {
+            font-size: 2.2rem;
+            margin-bottom: 10px;
+            color: #ffffff;
+            font-weight: 700;
+        }
+
+        .detail-subtitle {
+            font-size: 1.05rem;
+            color: #94a3b8;
+        }
+
+        .media-card {
+            background: rgba(15, 23, 42, 0.88);
+            border: 1px solid rgba(245, 158, 11, 0.35);
+            border-radius: 12px;
+            padding: 18px;
+            margin: 30px 0 40px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.6);
+            backdrop-filter: blur(8px);
+        }
+
+        .media-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 14px;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+
+        .media-header h3 {
+            margin: 0;
+            font-size: 1.05rem;
+            color: #f59e0b;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .pdf-frame {
+            width: 100%;
+            height: 560px;
+            border: none;
+            border-radius: 8px;
+            background: #1e293b;
+        }
+
+        .project-meta-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(210px, 1fr));
+            gap: 15px;
+            background: rgba(15, 23, 42, 0.8);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 10px;
+            padding: 20px;
+            margin-bottom: 40px;
+            backdrop-filter: blur(8px);
+        }
+
+        .meta-item strong {
+            display: block;
+            color: #f59e0b;
+            font-size: 0.8rem;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            margin-bottom: 4px;
+        }
+
+        .meta-item span {
+            color: #cbd5e1;
+            font-size: 0.95rem;
+        }
+
+        .detail-section {
+            margin-bottom: 40px;
+            background: rgba(15, 23, 42, 0.8);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            border-radius: 10px;
+            padding: 24px;
+            backdrop-filter: blur(8px);
+        }
+
+        .detail-section h2 {
+            font-size: 1.4rem;
+            color: #ffffff;
+            margin-bottom: 16px;
+            border-left: 4px solid #f59e0b;
+            padding-left: 12px;
+            font-weight: 600;
+        }
+
+        .step-list {
+            list-style: none;
+            padding: 0;
+            counter-reset: step-counter;
+        }
+
+        .step-list li {
+            counter-increment: step-counter;
+            margin-bottom: 16px;
+            display: flex;
+            align-items: flex-start;
+            gap: 12px;
+        }
+
+        .step-list li::before {
+            content: counter(step-counter);
+            background: #f59e0b;
+            color: #0f172a;
+            font-weight: 700;
+            width: 24px;
+            height: 24px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.8rem;
+            flex-shrink: 0;
+            margin-top: 2px;
+        }
+
+        .table-responsive {
+            overflow-x: auto;
+            margin: 20px 0;
+        }
+
+        .deck-table {
+            width: 100%;
+            border-collapse: collapse;
+            font-size: 0.88rem;
+            background: rgba(11, 19, 36, 0.7);
+            border-radius: 8px;
+            overflow: hidden;
+            text-align: left;
+        }
+
+        .deck-table th, .deck-table td {
+            padding: 11px 14px;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+        }
+
+        .deck-table th {
+            background: rgba(11, 19, 36, 0.95);
+            color: #f59e0b;
+            font-weight: 600;
+        }
+
+        .deck-table tr:hover {
+            background: rgba(255, 255, 255, 0.04);
+        }
+
+        .project-actions {
+            display: flex;
+            gap: 15px;
+            flex-wrap: wrap;
+            margin-top: 40px;
+            padding-top: 25px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .btn-action {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 12px 22px;
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: 0.2s ease;
+        }
+
+        .btn-primary-action {
+            background: #f59e0b;
+            color: #0f172a;
+        }
+        .btn-primary-action:hover {
+            background: #d97706;
+        }
+
+        .btn-secondary-action {
+            background: rgba(255, 255, 255, 0.08);
+            color: #ffffff;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+        .btn-secondary-action:hover {
+            background: rgba(255, 255, 255, 0.15);
+        }
+    </style>
+</head>
+<body>
+    <canvas id="code-canvas"></canvas>
+
+    <div class="project-detail-container">
+        <a href="index.html#projects" class="back-link"><i class="fa-solid fa-arrow-left"></i> Back to Main Portfolio</a>
+
+        <header class="detail-header">
+            <span class="detail-badge"><i class="fa-solid fa-terminal"></i> First-Year Mechanical Engineering Computing</span>
+            <h1 class="detail-title">Applied Computer Programming &amp; Numerical Methods</h1>
+            <p class="detail-subtitle">C++ Computational Problem-Solving: Algorithms, Numerical Convergence, Monte Carlo Simulations &amp; Object-Oriented Design</p>
+        </header>
+
+        <div class="media-card">
+            <div class="media-header">
+                <h3><i class="fa-solid fa-file-pdf"></i> Computer Programming Engineering Portfolio Deck</h3>
+                <a href="Computer_Programming_Engineering_Portfolio.pdf" target="_blank" class="back-link" style="margin: 0; font-size: 0.88rem;">
+                    <i class="fa-solid fa-up-right-from-square"></i> Open Fullscreen / Download Deck
+                </a>
+            </div>
+            <iframe class="pdf-frame" src="Computer_Programming_Engineering_Portfolio.pdf#toolbar=1" type="application/pdf">
+                <p>Your browser does not support inline PDFs. <a href="Computer_Programming_Engineering_Portfolio.pdf" style="color: #f59e0b;">Download the portfolio PDF here.</a></p>
+            </iframe>
+        </div>
+
+        <div class="project-meta-grid">
+            <div class="meta-item">
+                <strong>Institution &amp; Module</strong>
+                <span>London South Bank University | MED_4_SMM</span>
+            </div>
+            <div class="meta-item">
+                <strong>Language &amp; Tools</strong>
+                <span>C++ (C++17/20), OnlineGDB, GCC, Clang</span>
+            </div>
+            <div class="meta-item">
+                <strong>Core Focus</strong>
+                <span>Engineering Computations &amp; Simulation Pipelines</span>
+            </div>
+            <div class="meta-item">
+                <strong>Placement Target</strong>
+                <span>Seeking 2027 Industrial Placement</span>
+            </div>
+        </div>
+
+        <section class="detail-section">
+            <h2>Computational Architecture &amp; Methodology</h2>
+            <ol class="step-list">
+                <li><strong>Engineering Physics to Executable Code:</strong> Translated governing thermodynamic and mechanics relationships (e.g. sensible heat energy Q = mcΔT) into structured, unit-controlled C++ algorithms.</li>
+                <li><strong>Defensive Logic &amp; Input Validation:</strong> Guarded critical mathematical operations against runtime failure (such as division by zero and out-of-range bounds) using robust relational and boolean operators.</li>
+                <li><strong>Numerical Series &amp; Iterative Convergence:</strong> Implemented mathematical series for π approximation, tracking error thresholds and convergence rates across successive iterations.</li>
+                <li><strong>Stochastic Modeling (Monte Carlo):</strong> Formulated random-sampling simulation models (e.g. virtual dart and frequency distribution experiments) to quantify probability and event occurrences.</li>
+                <li><strong>Spatial Coordinate Geometry &amp; 2D Arrays:</strong> Applied Euclidean distance formulations to multi-dimensional coordinate arrays to find the minimum distance between pairs of spatial points.</li>
+                <li><strong>Data Pipelines &amp; CSV Export:</strong> Streamed generated numerical datasets (e.g. trigonometric cosine sweeps) into external CSV files via std::ofstream for post-processing and graphing.</li>
+                <li><strong>Object-Oriented Design &amp; Polymorphism:</strong> Structured modular systems using classes, encapsulation, constructors, inheritance, and virtual functions to model multi-state mechanical and banking logic.</li>
+            </ol>
+        </section>
+
+        <section class="detail-section">
+            <h2>Computational Curriculum Matrix</h2>
+            <div class="table-responsive">
+                <table class="deck-table">
+                    <thead>
+                        <tr>
+                            <th>Phase / Week</th>
+                            <th>Engineering Problem</th>
+                            <th>Key C++ Concept / Method</th>
+                            <th>Output &amp; Validation</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Week 01 – 02</td>
+                            <td>Thermodynamic Heat Transfer (Q = mcΔT)</td>
+                            <td>Scientific constants, std::setprecision, <cmath></td>
+                            <td>Formatted numerical heat energy in Joules</td>
+                        </tr>
+                        <tr>
+                            <td>Week 03 – 04</td>
+                            <td>Trigonometric Force Decomposition</td>
+                            <td>Loop iteration, radian conversion, <iomanip></td>
+                            <td>Tabular sine, cosine, tangent sweeps (20° to 80°)</td>
+                        </tr>
+                        <tr>
+                            <td>Week 04</td>
+                            <td>Monte Carlo Spatial Probability</td>
+                            <td>rand(), srand(time(0)), sampling bounds</td>
+                            <td>Convergence to geometric probability threshold</td>
+                        </tr>
+                        <tr>
+                            <td>Week 06</td>
+                            <td>Numerical Approximation of π</td>
+                            <td>Mathematical series summation, loop convergence</td>
+                            <td>Error boundary tracking against benchmark π</td>
+                        </tr>
+                        <tr>
+                            <td>Week 08</td>
+                            <td>Spatial Closest-Point Algorithm</td>
+                            <td>2D arrays, Euclidean metric, min-tracking</td>
+                            <td>Identified minimum spatial distance pair</td>
+                        </tr>
+                        <tr>
+                            <td>Week 08</td>
+                            <td>CSV Simulation Data Export</td>
+                            <td>std::ofstream, file stream pipeline</td>
+                            <td>Exported clean CSV data ready for spreadsheets</td>
+                        </tr>
+                        <tr>
+                            <td>Week 09 – 11</td>
+                            <td>Object-Oriented Systems &amp; Sort Timing</td>
+                            <td>Classes, encapsulation, inheritance, vector<T></td>
+                            <td>Selection vs Insertion vs Bubble sort benchmark</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </section>
+
+        <div class="project-actions">
+            <a href="Computer_Programming_Engineering_Portfolio.pdf" download class="btn-action btn-primary-action">
+                <i class="fa-solid fa-file-pdf"></i> Download Programming Deck
+            </a>
+            <a href="index.html#contact" class="btn-action btn-secondary-action">
+                <i class="fa-solid fa-envelope"></i> Contact Me About This Work
+            </a>
+        </div>
+    </div>
+
+    <script>
+        const canvas = document.getElementById('code-canvas');
+        const ctx = canvas.getContext('2d');
+
+        function resize() {
+            canvas.width = window.innerWidth;
+            canvas.height = window.innerHeight;
+        }
+        window.addEventListener('resize', resize);
+        resize();
+
+        const snippets = [
+            "double Q = mass * c * deltaT;",
+            "double rad = deg * (M_PI / 180.0);",
+            "double dist = sqrt(dx*dx + dy*dy);",
+            "for(int i = 0; i < N; ++i) sum += 1.0/(k*k);",
+            "pi_est = sqrt(6.0 * sum);",
+            "ofstream csvFile('output.csv');",
+            "csvFile << x << ',' << cos(x) << '\\n';",
+            "class MechanicalSystem : public BaseEngine {",
+            "virtual void executeStep() override;",
+            "double randVal = (double)rand() / RAND_MAX;"
+        ];
+
+        const particles = [];
+        const numParticles = 45;
+
+        for (let i = 0; i < numParticles; i++) {
+            particles.push({
+                x: Math.random() * window.innerWidth,
+                y: Math.random() * window.innerHeight,
+                text: snippets[Math.floor(Math.random() * snippets.length)],
+                speed: 0.35 + Math.random() * 0.45,
+                opacity: 0.12 + Math.random() * 0.25,
+                size: 11 + Math.random() * 3
+            });
+        }
+
+        let time = 0;
+
+        function drawComputationalCanvas() {
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+            // Matrix / Blueprint Grid
+            ctx.strokeStyle = 'rgba(56, 189, 248, 0.035)';
+            ctx.lineWidth = 1;
+            const grid = 60;
+            for (let x = 0; x < canvas.width; x += grid) {
+                ctx.beginPath();
+                ctx.moveTo(x, 0);
+                ctx.lineTo(x, canvas.height);
+                ctx.stroke();
+            }
+            for (let y = 0; y < canvas.height; y += grid) {
+                ctx.beginPath();
+                ctx.moveTo(0, y);
+                ctx.lineTo(canvas.width, y);
+                ctx.stroke();
+            }
+
+            // Monte Carlo target circle visualization in top corner
+            const cx = canvas.width * 0.82;
+            const cy = canvas.height * 0.42;
+            const radius = 110;
+
+            ctx.save();
+            ctx.strokeStyle = 'rgba(245, 158, 11, 0.22)';
+            ctx.lineWidth = 1.2;
+            ctx.strokeRect(cx - radius, cy - radius, radius * 2, radius * 2);
+
+            ctx.beginPath();
+            ctx.arc(cx, cy, radius, 0, Math.PI * 2);
+            ctx.strokeStyle = 'rgba(56, 189, 248, 0.3)';
+            ctx.stroke();
+
+            ctx.setLineDash([3, 3]);
+            ctx.beginPath();
+            ctx.moveTo(cx - radius, cy);
+            ctx.lineTo(cx + radius, cy);
+            ctx.moveTo(cx, cy - radius);
+            ctx.lineTo(cx, cy + radius);
+            ctx.strokeStyle = 'rgba(148, 163, 184, 0.25)';
+            ctx.stroke();
+            ctx.setLineDash([]);
+
+            ctx.font = '10px monospace';
+            ctx.fillStyle = 'rgba(245, 158, 11, 0.6)';
+            ctx.fillText('MONTE CARLO SAMPLING DOMAIN', cx - radius, cy - radius - 10);
+            ctx.fillStyle = 'rgba(56, 189, 248, 0.6)';
+            ctx.fillText('PI CONVERGENCE: ~3.14159', cx - radius, cy + radius + 18);
+            ctx.restore();
+
+            // Floating code lines
+            particles.forEach(p => {
+                ctx.font = `${p.size}px monospace`;
+                ctx.fillStyle = `rgba(56, 189, 248, ${p.opacity})`;
+                ctx.fillText(p.text, p.x, p.y);
+
+                p.y -= p.speed;
+                if (p.y < -20) {
+                    p.y = canvas.height + 20;
+                    p.x = Math.random() * canvas.width;
+                    p.text = snippets[Math.floor(Math.random() * snippets.length)];
+                }
+            });
+
+            time += 0.015;
+            requestAnimationFrame(drawComputationalCanvas);
+        }
+
+        drawComputationalCanvas();
+    </script>
+</body>
+</html>
