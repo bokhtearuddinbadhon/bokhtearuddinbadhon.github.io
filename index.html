@@ -105,35 +105,237 @@
         </div>
     </section>
 
-    <!-- Skills & Tools -->
+   <!-- Skills & Tools (3D Precision Industrial Engineering Panels) -->
     <section id="skills" class="section">
-        <h2 class="section-title"> <span>Technical Toolbox</span></h2>
-        <div class="skills-wrapper">
-            <div class="skill-category">
-                <h3><i class="fa-solid fa-cube"></i> CAD & Simulation</h3>
-                <div class="tags">
-                    <span>Autodesk Fusion 360</span>
-                    <span>ANSYS FEA</span>
-                    <span>2D Drafting & Parametric Design</span>
+        <div class="toolbox-header-wrap">
+            <h2 class="section-title">
+                <i class="fa-solid fa-gear toolbox-title-gear"></i>
+                <span>Technical <span class="title-accent-orange">Toolbox</span></span>
+            </h2>
+            <p class="section-subtitle">
+                <span class="sub-hash">//</span> SELECT A SKILL TO EXPLORE PROJECTS &amp; TECHNICAL EVIDENCE <span class="sub-hash">//</span>
+            </p>
+        </div>
+
+        <div class="engineering-panels-grid">
+            <!-- PANEL 1: CAD & Simulation -->
+            <div class="tech-panel" data-panel="cad" tabindex="0" role="region" aria-label="CAD and Simulation Panel">
+                <div class="panel-bezel">
+                    <span class="bolt top-left"></span>
+                    <span class="bolt top-right"></span>
+                    <span class="bolt bottom-left"></span>
+                    <span class="bolt bottom-right"></span>
+                    <span class="panel-ambient-led orange-led"></span>
+
+                    <!-- Technical Visual 1: CAD Turbine Assembly Graphic -->
+                    <div class="panel-screen">
+                        <svg class="tech-svg" viewBox="0 0 200 130" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                            <defs>
+                                <radialGradient id="cyanCore" cx="50%" cy="50%" r="50%">
+                                    <stop offset="0%" stop-color="#00f2fe" stop-opacity="0.35"/>
+                                    <stop offset="100%" stop-color="#00f2fe" stop-opacity="0"/>
+                                </radialGradient>
+                            </defs>
+                            <circle cx="100" cy="65" r="52" fill="url(#cyanCore)" stroke="#00f2fe" stroke-width="1.2" stroke-dasharray="4,2"/>
+                            <circle cx="100" cy="65" r="36" stroke="#38bdf8" stroke-width="1.4"/>
+                            <circle cx="100" cy="65" r="15" fill="#080d1a" stroke="#00f2fe" stroke-width="2"/>
+                            <g stroke="#38bdf8" stroke-width="1.6" stroke-linecap="round">
+                                <path d="M100,50 C96,34 84,23 72,19"/>
+                                <path d="M115,65 C131,61 142,49 146,37"/>
+                                <path d="M100,80 C104,96 116,107 128,111"/>
+                                <path d="M85,65 C69,69 58,81 54,93"/>
+                                <path d="M111,54 C125,42 132,28 134,15"/>
+                                <path d="M89,76 C75,88 68,102 66,115"/>
+                            </g>
+                            <line x1="18" y1="65" x2="35" y2="65" stroke="#f59e0b" stroke-width="1"/>
+                            <line x1="165" y1="65" x2="182" y2="65" stroke="#f59e0b" stroke-width="1"/>
+                            <text x="100" y="125" text-anchor="middle" fill="#38bdf8" font-size="8" font-family="monospace">CAD // TURBINE ASSEMBLY</text>
+                        </svg>
+                        <div class="screen-scanline"></div>
+                    </div>
+
+                    <div class="panel-header">
+                        <div class="panel-category-tag">
+                            <i class="fa-solid fa-cube header-icon-orange"></i>
+                            <span class="panel-title-text">CAD &amp; SIMULATION</span>
+                        </div>
+                    </div>
+
+                    <div class="skill-buttons-list">
+                        <button type="button" class="skill-btn" data-skill="Fusion 360" data-category="CAD &amp; Simulation">
+                            <span class="btn-left">
+                                <i class="fa-solid fa-cube btn-lead-icon orange-icon"></i>
+                                <span class="skill-label">Fusion 360</span>
+                            </span>
+                            <i class="fa-solid fa-chevron-right chevron-icon"></i>
+                        </button>
+                        <button type="button" class="skill-btn" data-skill="2D Drafting" data-category="CAD &amp; Simulation">
+                            <span class="btn-left">
+                                <i class="fa-solid fa-compass-drafting btn-lead-icon cyan-icon"></i>
+                                <span class="skill-label">2D Drafting</span>
+                            </span>
+                            <i class="fa-solid fa-chevron-right chevron-icon"></i>
+                        </button>
+                        <button type="button" class="skill-btn" data-skill="ANSYS FEA" data-category="CAD &amp; Simulation">
+                            <span class="btn-left">
+                                <i class="fa-solid fa-triangle-exclamation btn-lead-icon orange-icon"></i>
+                                <span class="skill-label">ANSYS FEA</span>
+                            </span>
+                            <i class="fa-solid fa-chevron-right chevron-icon"></i>
+                        </button>
+                        <button type="button" class="skill-btn" data-skill="Parametric Design" data-category="CAD &amp; Simulation">
+                            <span class="btn-left">
+                                <i class="fa-solid fa-layer-group btn-lead-icon cyan-icon"></i>
+                                <span class="skill-label">Parametric Design</span>
+                            </span>
+                            <i class="fa-solid fa-chevron-right chevron-icon"></i>
+                        </button>
+                    </div>
                 </div>
             </div>
-            <div class="skill-category">
-                <h3><i class="fa-solid fa-code"></i> Programming & AI</h3>
-                <div class="tags">
-                    <span>Python</span>
-                    <span>C++</span>
-                    <span>MATLAB</span>
-                    <span>Google AI Certified</span>
+
+            <!-- PANEL 2: Programming & AI -->
+            <div class="tech-panel" data-panel="code" tabindex="0" role="region" aria-label="Programming and AI Panel">
+                <div class="panel-bezel">
+                    <span class="bolt top-left"></span>
+                    <span class="bolt top-right"></span>
+                    <span class="bolt bottom-left"></span>
+                    <span class="bolt bottom-right"></span>
+                    <span class="panel-ambient-led orange-led"></span>
+
+                    <!-- Technical Visual 2: Laptop Displaying Code & AI Graphic -->
+                    <div class="panel-screen">
+                        <svg class="tech-svg" viewBox="0 0 200 130" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                            <rect x="38" y="20" width="124" height="78" rx="4" fill="#080d1a" stroke="#00f2fe" stroke-width="1.5"/>
+                            <polygon points="26,102 174,102 162,110 38,110" fill="#1e293b" stroke="#38bdf8" stroke-width="1"/>
+                            <line x1="46" y1="32" x2="80" y2="32" stroke="#f59e0b" stroke-width="2" stroke-linecap="round"/>
+                            <line x1="86" y1="32" x2="118" y2="32" stroke="#38bdf8" stroke-width="2" stroke-linecap="round"/>
+                            <line x1="46" y1="42" x2="128" y2="42" stroke="#38bdf8" stroke-width="1.5" stroke-linecap="round" stroke-opacity="0.8"/>
+                            <line x1="54" y1="52" x2="96" y2="52" stroke="#00f2fe" stroke-width="1.5" stroke-linecap="round"/>
+                            <line x1="54" y1="62" x2="140" y2="62" stroke="#94a3b8" stroke-width="1.5" stroke-linecap="round" stroke-opacity="0.7"/>
+                            <line x1="46" y1="72" x2="92" y2="72" stroke="#f59e0b" stroke-width="1.5" stroke-linecap="round"/>
+                            <!-- Neural nodes -->
+                            <circle cx="135" cy="38" r="3" fill="#00f2fe"/>
+                            <circle cx="150" cy="45" r="2.5" fill="#f59e0b"/>
+                            <circle cx="140" cy="56" r="2.5" fill="#00f2fe"/>
+                            <line x1="135" y1="38" x2="150" y2="45" stroke="#00f2fe" stroke-width="0.8"/>
+                            <line x1="150" y1="45" x2="140" y2="56" stroke="#00f2fe" stroke-width="0.8"/>
+                            <text x="100" y="125" text-anchor="middle" fill="#38bdf8" font-size="8" font-family="monospace">SYS // COMPUTATIONAL ML</text>
+                        </svg>
+                        <div class="screen-scanline"></div>
+                    </div>
+
+                    <div class="panel-header">
+                        <div class="panel-category-tag">
+                            <i class="fa-solid fa-code header-icon-orange"></i>
+                            <span class="panel-title-text">PROGRAMMING &amp; AI</span>
+                        </div>
+                    </div>
+
+                    <div class="skill-buttons-list">
+                        <button type="button" class="skill-btn" data-skill="MATLAB" data-category="Programming &amp; AI">
+                            <span class="btn-left">
+                                <i class="fa-solid fa-calculator btn-lead-icon orange-icon"></i>
+                                <span class="skill-label">MATLAB</span>
+                            </span>
+                            <i class="fa-solid fa-chevron-right chevron-icon"></i>
+                        </button>
+                        <button type="button" class="skill-btn" data-skill="Python" data-category="Programming &amp; AI">
+                            <span class="btn-left">
+                                <i class="fa-brands fa-python btn-lead-icon cyan-icon"></i>
+                                <span class="skill-label">Python</span>
+                            </span>
+                            <i class="fa-solid fa-chevron-right chevron-icon"></i>
+                        </button>
+                        <button type="button" class="skill-btn" data-skill="C++" data-category="Programming &amp; AI">
+                            <span class="btn-left">
+                                <i class="fa-solid fa-terminal btn-lead-icon cyan-icon"></i>
+                                <span class="skill-label">C++</span>
+                            </span>
+                            <i class="fa-solid fa-chevron-right chevron-icon"></i>
+                        </button>
+                        <button type="button" class="skill-btn" data-skill="Applied AI" data-category="Programming &amp; AI">
+                            <span class="btn-left">
+                                <i class="fa-solid fa-microchip btn-lead-icon cyan-icon"></i>
+                                <span class="skill-label">Applied AI</span>
+                            </span>
+                            <i class="fa-solid fa-chevron-right chevron-icon"></i>
+                        </button>
+                    </div>
                 </div>
             </div>
-            <div class="skill-category">
-                <h3><i class="fa-solid fa-industry"></i> Machining & Practical</h3>
-                <div class="tags">
-                    <span>Lathe Turning & Milling</span>
-                    <span>Automotive Diagnostics</span>
-                    <span>Industrial Pump Maintenance</span>
-                    <span>Welding & Pipe Fitting</span>
-                    <span>Precision Metrology</span>
+
+            <!-- PANEL 3: Practical Engineering -->
+            <div class="tech-panel" data-panel="practical" tabindex="0" role="region" aria-label="Practical Engineering Panel">
+                <div class="panel-bezel">
+                    <span class="bolt top-left"></span>
+                    <span class="bolt top-right"></span>
+                    <span class="bolt bottom-left"></span>
+                    <span class="bolt bottom-right"></span>
+                    <span class="panel-ambient-led orange-led"></span>
+
+                    <!-- Technical Visual 3: Precision Machining Spindle / Workpiece Sparks Graphic -->
+                    <div class="panel-screen">
+                        <svg class="tech-svg" viewBox="0 0 200 130" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                            <rect x="24" y="30" width="30" height="70" rx="2" fill="#1e293b" stroke="#38bdf8" stroke-width="1.5"/>
+                            <rect x="54" y="44" width="12" height="42" fill="#0f172a" stroke="#00f2fe" stroke-width="1"/>
+                            <rect x="66" y="48" width="58" height="34" fill="#0b1324" stroke="#38bdf8" stroke-width="1.2"/>
+                            <line x1="66" y1="65" x2="124" y2="65" stroke="#38bdf8" stroke-width="1" stroke-dasharray="3,3"/>
+                            <polygon points="124,72 142,60 148,64 130,78" fill="#f59e0b" stroke="#f59e0b" stroke-width="1"/>
+                            <path d="M124,70 Q120,58 114,56" fill="none" stroke="#00f2fe" stroke-width="1.2"/>
+                            <path d="M125,73 Q128,79 135,81" fill="none" stroke="#f59e0b" stroke-width="1.2"/>
+                            <circle cx="124" cy="72" r="2.5" fill="#ffffff"/>
+                            <polygon points="166,54 146,65 166,76" fill="#1e293b" stroke="#38bdf8" stroke-width="1.2"/>
+                            <rect x="166" y="46" width="16" height="38" fill="#0f172a" stroke="#38bdf8" stroke-width="1"/>
+                            <text x="100" y="125" text-anchor="middle" fill="#38bdf8" font-size="8" font-family="monospace">MFG // LATHE &amp; SPINDLE</text>
+                        </svg>
+                        <div class="screen-scanline"></div>
+                    </div>
+
+                    <div class="panel-header">
+                        <div class="panel-category-tag">
+                            <i class="fa-solid fa-wrench header-icon-orange"></i>
+                            <span class="panel-title-text">PRACTICAL ENGINEERING</span>
+                        </div>
+                    </div>
+
+                    <div class="skill-buttons-list">
+                        <button type="button" class="skill-btn" data-skill="Automotive Diagnostics" data-category="Practical Engineering">
+                            <span class="btn-left">
+                                <i class="fa-solid fa-car-side btn-lead-icon orange-icon"></i>
+                                <span class="skill-label">Automotive Diagnostics</span>
+                            </span>
+                            <i class="fa-solid fa-chevron-right chevron-icon"></i>
+                        </button>
+                        <button type="button" class="skill-btn" data-skill="Machining" data-category="Practical Engineering">
+                            <span class="btn-left">
+                                <i class="fa-solid fa-gears btn-lead-icon orange-icon"></i>
+                                <span class="skill-label">Machining</span>
+                            </span>
+                            <i class="fa-solid fa-chevron-right chevron-icon"></i>
+                        </button>
+                        <button type="button" class="skill-btn" data-skill="Welding &amp; Fabrication" data-category="Practical Engineering">
+                            <span class="btn-left">
+                                <i class="fa-solid fa-fire btn-lead-icon orange-icon"></i>
+                                <span class="skill-label">Welding &amp; Fabrication</span>
+                            </span>
+                            <i class="fa-solid fa-chevron-right chevron-icon"></i>
+                        </button>
+                        <button type="button" class="skill-btn" data-skill="Industrial Maintenance" data-category="Practical Engineering">
+                            <span class="btn-left">
+                                <i class="fa-solid fa-screwdriver-wrench btn-lead-icon orange-icon"></i>
+                                <span class="skill-label">Industrial Maintenance</span>
+                            </span>
+                            <i class="fa-solid fa-chevron-right chevron-icon"></i>
+                        </button>
+                        <button type="button" class="skill-btn" data-skill="Metrology" data-category="Practical Engineering">
+                            <span class="btn-left">
+                                <i class="fa-solid fa-ruler-combined btn-lead-icon orange-icon"></i>
+                                <span class="skill-label">Metrology</span>
+                            </span>
+                            <i class="fa-solid fa-chevron-right chevron-icon"></i>
+                        </button>
+                    </div>
                 </div>
             </div>
         </div>
@@ -331,5 +533,30 @@
             });
         }
     </script>
+    <!-- Dedicated Skill Page Coming Soon Modal -->
+    <div id="skill-modal" class="skill-modal-backdrop" aria-hidden="true" role="dialog" aria-labelledby="modal-skill-title">
+        <div class="skill-modal-panel">
+            <span class="bolt top-left"></span>
+            <span class="bolt top-right"></span>
+            <span class="bolt bottom-left"></span>
+            <span class="bolt bottom-right"></span>
+            <button type="button" class="modal-close-btn" id="modal-close" aria-label="Close dialog">&times;</button>
+            <div class="modal-header">
+                <span class="modal-badge"><i class="fa-solid fa-microchip"></i> TECHNICAL EVIDENCE</span>
+                <h3 id="modal-skill-title">Skill Name</h3>
+                <p id="modal-skill-category" class="modal-category">Category</p>
+            </div>
+            <div class="modal-body">
+                <div class="modal-status-box">
+                    <span class="status-pulse"></span>
+                    <span>DEDICATED SKILL PAGE COMING SOON</span>
+                </div>
+                <p>This technical node is being connected to real project repositories, CAD models, lab test data, and workshop documentation.</p>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn primary-btn" id="modal-ack-btn">Understood</button>
+            </div>
+        </div>
+    </div>
 </body>
 </html>
