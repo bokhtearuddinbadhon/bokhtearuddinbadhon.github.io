@@ -287,7 +287,7 @@ const ENGINEERING_PROJECTS = [
   {
     title: "The Aerovent",
     category: "HVAC & Thermal Fluids",
-    image: "hero-bg.png", // Uses existing authentic project asset
+    image: "aerovent.webp",
     icon: "fa-solid fa-wind",
     description: "Co-developed a low-cost, modular heat-recovery ventilation unit with a ceramic core for low-income households in Ladywood, Birmingham to combat fuel poverty.",
     skills: ["HVAC", "Thermal-Fluids", "Prototyping"],
@@ -296,7 +296,7 @@ const ENGINEERING_PROJECTS = [
   {
     title: "The Slider Support Project",
     category: "Rigid-Body Statics & CAD",
-    image: "", // Leave blank to show mechanical HUD placeholder
+    image: "slider-support.webp",
     icon: "fa-solid fa-arrows-left-right",
     description: "Designed and physically evaluated a 3D-printed guided collar assembly under eccentric static loads to demonstrate rigid-body statics and degrees of freedom.",
     skills: ["Fusion 360 CAD", "Rigid-Body Statics", "FDM 3D Printing", "Kinematics"],
@@ -305,7 +305,7 @@ const ENGINEERING_PROJECTS = [
   {
     title: "Whistle Manufacturing",
     category: "Precision Workshop Machining",
-    image: "",
+    image: "whistle-manufacturing.webp",
     icon: "fa-solid fa-wrench",
     description: "Executed precision workshop machining operations using aluminium stock. Managed turning, facing, boring, and vertical milling steps for strict quality inspection.",
     skills: ["Machining", "Lathe", "Vertical Milling", "Metrology"],
@@ -314,7 +314,7 @@ const ENGINEERING_PROJECTS = [
   {
     title: "Wind Turbine Performance Study",
     category: "Aerodynamics & Energy",
-    image: "",
+    image: "wind-turbine.webp",
     icon: "fa-solid fa-wind",
     description: "Conducted laboratory testing using the Armfield RE12 system to evaluate energy conversion, Betz efficiency, and wake deceleration between HAWT and Savonius VAWT rotors.",
     skills: ["Aerodynamics", "Armfield RE12", "HAWT vs VAWT", "Energy Balance"],
@@ -323,7 +323,7 @@ const ENGINEERING_PROJECTS = [
   {
     title: "StreetVault: Underground Hydraulic Parking",
     category: "Fluid Power & Hydraulics",
-    image: "",
+    image: "streetvault.webp",
     icon: "fa-solid fa-car-tunnel",
     description: "Engineered an underground multi-layer vehicle parking vault actuated by synchronized hydraulics to eliminate residential street congestion across dense London boroughs.",
     skills: ["Fluid Power", "Hydraulics", "Fusion 360", "Urban Design"],
@@ -332,7 +332,7 @@ const ENGINEERING_PROJECTS = [
   {
     title: "DC & AC Circuit Analysis",
     category: "Electrical Metrology",
-    image: "",
+    image: "dc-and-ac-circuits.webp",
     icon: "fa-solid fa-bolt",
     description: "Conducted physical bench testing across 5 laboratory experiments covering Ohm's law, KVL/KCL network validation, Thévenin/Norton equivalents, DSO waveforms, and ferrite-core coil impedance.",
     skills: ["Circuit Analysis", "Oscilloscope", "Thévenin & Norton", "LCR Metrology"],
@@ -341,7 +341,7 @@ const ENGINEERING_PROJECTS = [
   {
     title: "Venturi Flow Analysis & Bernoulli Experiment",
     category: "Fluid Mechanics",
-    image: "",
+    image: "venturi-flow.webp",
     icon: "fa-solid fa-water",
     description: "Conducted fluid mechanics laboratory investigations (C1 & C2) comparing converging-diverging Venturi meters and sharp-edged orifice plates to quantify pressure recovery and discharge coefficients.",
     skills: ["Fluid Mechanics", "Bernoulli's Principle", "TecQuipment", "MATLAB"],
@@ -350,7 +350,7 @@ const ENGINEERING_PROJECTS = [
   {
     title: "Applied Computer Programming & Numerical Methods",
     category: "Computational Engineering",
-    image: "",
+    image: "computer-programming.webp",
     icon: "fa-solid fa-code",
     description: "Developed computational C++ engineering solutions covering thermodynamic heat energy formulations, Monte Carlo spatial probability, iterative π convergence, and object-oriented class architectures.",
     skills: ["C++", "Numerical Methods", "Monte Carlo", "OOP"],
@@ -359,7 +359,7 @@ const ENGINEERING_PROJECTS = [
   {
     title: "Mild Steel Tensile Testing & Materials Mechanics",
     category: "Materials & Solid Mechanics",
-    image: "",
+    image: "tensile-testing.webp",
     icon: "fa-solid fa-atom",
     description: "Conducted experimental uniaxial tensile testing using a Universal Testing Machine (UTM) and extensometer to analyze Hookean elasticity, yield transitions, strain hardening, necking, and ductile fracture morphology.",
     skills: ["Materials Testing", "UTM Tensile", "Hooke's Law", "Fracture Mechanics"],
