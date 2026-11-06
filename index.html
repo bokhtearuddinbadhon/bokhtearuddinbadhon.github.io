@@ -650,14 +650,6 @@
 
 <!-- Projects Section -->
     <section id="projects" class="section">
-        <!-- Differential Gearbox Background Video -->
-        <div class="projects-bg-video-container">
-            <video id="projects-video" loop muted playsinline preload="none" class="projects-bg-video">
-                <source src="differential-assembly.mp4" type="video/mp4">
-            </video>
-            <div class="projects-video-overlay"></div>
-        </div>
-
         <!-- Section Header -->
         <div class="projects-header-wrap">
             <h2 class="section-title projects-mech-title">
@@ -827,20 +819,6 @@
     </footer>
 
     <script src="script.js?v=20261106"></script>
-    <!-- Seamless Background Video Cycle Engine -->
-    <script>
-        const bgVid = document.getElementById('projects-video');
-        if (bgVid) {
-            bgVid.muted = true;
-            bgVid.play().catch(() => {});
-            bgVid.addEventListener('timeupdate', function() {
-                if (bgVid.duration && bgVid.currentTime >= bgVid.duration - 0.08) {
-                    bgVid.currentTime = 0;
-                    bgVid.play().catch(() => {});
-                }
-            });
-        }
-    </script>
     <!-- Dedicated Skill Page Coming Soon Modal -->
     <div id="skill-modal" class="skill-modal-backdrop" aria-hidden="true" role="dialog" aria-labelledby="modal-skill-title">
         <div class="skill-modal-panel">
