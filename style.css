@@ -1799,118 +1799,140 @@ section,
     }
 }
 
-/* ===== WORK EXPERIENCE SECTION ===== */
+/* ===== WORK EXPERIENCE - FINAL DESIGN ===== */
 
-#experience {
+#experience.experience-section {
   position: relative;
   isolation: isolate;
-  scroll-margin-top: 90px;
   padding: 100px 24px;
-  background:
+  scroll-margin-top: 90px;
+
+  background-image:
     linear-gradient(
-      90deg,
-      rgba(5, 11, 22, 0.94),
-      rgba(5, 11, 22, 0.70)
+      rgba(5, 11, 22, 0.76),
+      rgba(5, 11, 22, 0.88)
     ),
-    url("experience-engine-bg.webp")
-    center center / cover no-repeat;
+    url("experience-engine-bg.webp");
+
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
   color: #ffffff;
 }
 
-.experience-inner {
-  max-width: 1200px;
+#experience .experience-inner {
+  width: 100%;
+  max-width: 1050px;
   margin: 0 auto;
+  padding: 30px 20px;
+  background: rgba(7, 15, 29, 0.72);
+  border-radius: 20px;
 }
 
-.experience-heading {
+#experience .experience-heading {
   text-align: center;
-  margin-bottom: 45px;
+  margin-bottom: 25px;
 }
 
-.experience-eyebrow {
-  color: #22d3ee;
+#experience .experience-eyebrow {
+  color: #00d9ff;
   font-size: 12px;
   font-weight: 700;
-  letter-spacing: 3px;
+  letter-spacing: 1px;
+  margin-bottom: 10px;
 }
 
-.experience-heading h2 {
+#experience .experience-heading h2 {
   color: #ffffff;
-  font-size: clamp(32px, 4vw, 48px);
-  margin: 12px 0;
+  font-size: clamp(28px, 3vw, 38px);
+  font-weight: 750;
+  margin: 8px 0;
 }
 
-.experience-heading h2 span {
-  color: #f59e0b;
-}
-
-.experience-heading > p:last-child {
-  color: #cbd5e1;
-}
-
-.experience-grid {
-  display: grid;
-  grid-template-columns: repeat(3, minmax(0, 1fr));
-  gap: 22px;
-  align-items: stretch;
-}
-
-.experience-card {
-  min-width: 0;
-  padding: 28px;
-  background: rgba(9, 22, 39, 0.94);
-  border: 1px solid rgba(34, 211, 238, 0.35);
-  border-radius: 16px;
-  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.25);
-}
-
-.experience-tag {
-  color: #22d3ee;
-  font-size: 11px;
-  font-weight: 700;
-  letter-spacing: 1.5px;
-}
-
-.experience-card h3 {
-  color: #ffffff;
-  font-size: 21px;
-  margin: 18px 0 8px;
-}
-
-.experience-company {
-  color: #f59e0b;
-  font-weight: 600;
-}
-
-.experience-date {
-  color: #b7c5d6;
-  font-size: 13px;
-  margin: 8px 0 18px;
-}
-
-.experience-card ul {
-  padding-left: 20px;
+#experience .experience-heading > p:last-child {
+  color: #a9b9cc;
+  font-size: 15px;
   margin: 0;
 }
 
-.experience-card li {
-  color: #e2e8f0;
-  line-height: 1.65;
-  margin-bottom: 12px;
-  font-size: 14px;
+#experience .experience-grid {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  gap: 16px;
 }
 
-@media (max-width: 900px) {
-  #experience {
-    padding: 70px 18px;
+#experience .experience-card {
+  min-width: 0;
+  padding: 24px;
+  background: rgba(17, 34, 55, 0.96);
+  border: 1px solid rgba(0, 217, 255, 0.38);
+  border-radius: 15px;
+  box-shadow: none;
+}
+
+#experience .experience-card-top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  margin-bottom: 20px;
+}
+
+#experience .experience-card-top i {
+  color: #00d9ff;
+  font-size: 19px;
+}
+
+#experience .experience-card-top span {
+  color: #9caec4;
+  font-size: 12px;
+  text-align: right;
+}
+
+#experience .experience-card h3 {
+  color: #ffffff;
+  font-size: 21px;
+  font-weight: 700;
+  margin: 0 0 12px;
+}
+
+#experience .experience-company {
+  color: #f59e0b;
+  font-size: 15px;
+  font-weight: 600;
+  margin: 0 0 12px;
+}
+
+#experience .experience-summary {
+  color: #cbd5e1;
+  font-size: 15px;
+  line-height: 1.7;
+  margin: 0;
+}
+
+@media (max-width: 768px) {
+  #experience.experience-section {
+    padding: 65px 14px;
     background-position: 65% center;
   }
 
-  .experience-grid {
-    grid-template-columns: 1fr;
+  #experience .experience-inner {
+    padding: 22px 12px;
   }
 
-  .experience-card {
-    padding: 24px;
+  #experience .experience-card {
+    padding: 20px 16px;
+  }
+
+  #experience .experience-card h3 {
+    font-size: 19px;
+  }
+
+  #experience .experience-summary {
+    font-size: 14px;
+  }
+
+  #experience .experience-card-top {
+    align-items: flex-start;
   }
 }
