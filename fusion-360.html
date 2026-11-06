@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fusion 360 | CAD and FEA | Bokhtear Uddin Badhon</title>
+    <meta name="description" content="Explore Bokhtear Uddin Badhon's Fusion 360 CAD and FEA work, including an initial hook static-stress case study.">
+    <link rel="canonical" href="https://bokhtearuddinbadhon.github.io/fusion-360.html">
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        body { background:#080d1a !important; color:#e2e8f0; min-height:100vh; margin:0; }
+        .fusion-wrap { max-width:1120px; margin:72px auto 64px; padding:0 24px; position:relative; z-index:1; }
+        .fusion-back { color:#f59e0b; text-decoration:none; font-weight:700; display:inline-flex; gap:9px; align-items:center; margin-bottom:30px; }
+        .fusion-kicker { color:#22d3ee; text-transform:uppercase; letter-spacing:.18em; font:700 .82rem/1.4 monospace; }
+        .fusion-wrap h1 { color:#fff; font-size:clamp(2.2rem,5vw,3.5rem); margin:10px 0 12px; }
+        .fusion-intro { max-width:760px; color:#a9b8ca; font-size:1.08rem; line-height:1.7; margin:0 0 34px; }
+        .fusion-options { display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:22px; }
+        .fusion-option { min-height:275px; padding:28px; display:flex; flex-direction:column; border:1px solid rgba(34,211,238,.32); border-radius:18px; background:linear-gradient(145deg,rgba(19,34,54,.97),rgba(8,15,29,.98)); box-shadow:0 16px 42px rgba(0,0,0,.28); color:inherit; text-decoration:none; transition:transform .2s ease,border-color .2s ease,box-shadow .2s ease; }
+        .fusion-option:hover,.fusion-option:focus-visible { transform:translateY(-4px); border-color:#f59e0b; box-shadow:0 20px 48px rgba(0,0,0,.4); outline:none; }
+        .fusion-option i { color:#f59e0b; font-size:1.65rem; }
+        .fusion-option h2 { color:#fff; margin:20px 0 10px; font-size:1.55rem; }
+        .fusion-option p { color:#b8c5d5; line-height:1.65; margin:0 0 22px; }
+        .fusion-option ul { padding-left:19px; margin:0 0 24px; color:#d5deea; line-height:1.75; }
+        .fusion-option .fusion-link { color:#22d3ee; font-weight:800; margin-top:auto; display:flex; align-items:center; gap:9px; }
+        .fusion-foot { margin-top:30px; color:#8294aa; font-size:.9rem; }
+        @media(max-width:720px){ .fusion-options{grid-template-columns:1fr}.fusion-option{min-height:0}.fusion-wrap{margin-top:42px;padding:0 18px} }
+        @media(prefers-reduced-motion:reduce){.fusion-option{transition:none}.fusion-option:hover{transform:none}}
+    </style>
+</head>
+<body>
+    <main class="fusion-wrap">
+        <a class="fusion-back" href="index.html#skills"><i class="fa-solid fa-arrow-left" aria-hidden="true"></i> Back to Skills</a>
+        <div class="fusion-kicker">Technical toolbox / CAD &amp; simulation</div>
+        <h1>Autodesk Fusion 360</h1>
+        <p class="fusion-intro">Choose an area to explore. CAD &amp; Design opens the existing engineering project gallery; FEA &amp; Simulation opens my hook static-stress case study, with the original Fusion 360 evidence and downloadable presentation.</p>
+        <div class="fusion-options">
+            <a class="fusion-option" href="index.html#projects" aria-label="Explore CAD and Design projects">
+                <i class="fa-solid fa-cube" aria-hidden="true"></i>
+                <h2>CAD &amp; Design</h2>
+                <p>Part and assembly modelling, dimensioned geometry, and design evidence from my engineering projects.</p>
+                <ul>
+                    <li>Slider Support project</li>
+                    <li>Parametric CAD and mechanical assemblies</li>
+                    <li>Featured project gallery</li>
+                </ul>
+                <span class="fusion-link">Explore CAD projects <i class="fa-solid fa-arrow-right" aria-hidden="true"></i></span>
+            </a>
+            <a class="fusion-option" href="hook-fea.html" aria-label="Open the hook FEA and simulation case study">
+                <i class="fa-solid fa-chart-line" aria-hidden="true"></i>
+                <h2>FEA &amp; Simulation</h2>
+                <p>Review the initial mild-steel hook model, loading and support conditions, stress result, and factor-of-safety check.</p>
+                <ul>
+                    <li>Fusion 360 linear static stress</li>
+                    <li>Maximum von Mises stress: 71.261 MPa</li>
+                    <li>Minimum factor of safety: 2.905</li>
+                </ul>
+                <span class="fusion-link">View hook FEA case study <i class="fa-solid fa-arrow-right" aria-hidden="true"></i></span>
+            </a>
+        </div>
+        <p class="fusion-foot">Coursework simulation evidence; the result is limited to the stated model and load case.</p>
+    </main>
+</body>
+</html>

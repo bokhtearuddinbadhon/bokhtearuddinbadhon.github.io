@@ -59,7 +59,7 @@ draw();
 
 // URL Routing Map: Replace null with your dedicated page URLs when ready
 const SKILL_PAGE_ROUTES = {
-    "Fusion 360": null,             // e.g. "skills/fusion-360.html"
+    "Fusion 360": "fusion-360.html",
     "2D Drafting": null,            // e.g. "skills/drafting.html"
     "ANSYS FEA": null,              // e.g. "skills/ansys-fea.html"
     "Parametric Design": null,      // e.g. "skills/parametric-design.html"
@@ -364,8 +364,16 @@ const ENGINEERING_PROJECTS = [
     description: "Conducted experimental uniaxial tensile testing using a Universal Testing Machine (UTM) and extensometer to analyze Hookean elasticity, yield transitions, strain hardening, necking, and ductile fracture morphology.",
     skills: ["Materials Testing", "UTM Tensile", "Hooke's Law", "Fracture Mechanics"],
     caseStudyUrl: "tensile-testing.html"
+  },
+  {
+    title: "Initial Hook Design: Static-Stress Analysis",
+    category: "FEA & Static Stress",
+    image: "hook-fea-stress.jpeg",
+    icon: "fa-solid fa-cube",
+    description: "Modelled an initial mild-steel hook in Autodesk Fusion 360 and evaluated one coursework static load case. The recorded maximum von Mises stress was 71.261 MPa and the minimum factor of safety was 2.905 against a target of 2.00.",
+    skills: ["Fusion 360", "Linear Static FEA", "Von Mises Stress", "Factor of Safety"],
+    caseStudyUrl: "hook-fea.html"
   }
-  // <<< ADD PROJECT 11 HERE IN THE FUTURE >>>
 ];
 
 function render3DProjectCards() {
