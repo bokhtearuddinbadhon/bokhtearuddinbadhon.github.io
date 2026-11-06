@@ -303,15 +303,6 @@ const ENGINEERING_PROJECTS = [
     caseStudyUrl: "slider-support.html"
   },
   {
-    title: "Exploded Flange & Rocker Arm CAD",
-    category: "Parametric CAD & Drafting",
-    image: "",
-    icon: "fa-solid fa-gear",
-    description: "Created detailed 3D parametric CAD models, exploded assembly drawings, and technical documentation adhering to engineering drafting standards.",
-    skills: ["Fusion 360", "Parametric CAD", "GD&T"],
-    caseStudyUrl: "https://github.com/bokhtearuddinbadhon"
-  },
-  {
     title: "Whistle Manufacturing",
     category: "Precision Workshop Machining",
     image: "",
