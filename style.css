@@ -1156,7 +1156,7 @@ section,
 /* Outer 3D HUD Engineering Frame */
 .hud-panel-frame {
     position: relative;
-    background: rgba(8, 14, 28, 0.72);
+    background: rgba(8, 14, 28, 0.35);
     border: 1.5px solid rgba(14, 165, 233, 0.45);
     border-radius: 18px;
     backdrop-filter: blur(16px);
