@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fusion 360 Hook Static-Stress Study | Bokhtear Uddin Badhon</title>
+    <meta name="description" content="A Fusion 360 linear static-stress case study of an initial mild-steel hook design, including the original model, boundary conditions, von Mises stress, and factor-of-safety result.">
+    <link rel="canonical" href="https://bokhtearuddinbadhon.github.io/hook-static-stress.html">
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        body{background:#080d1a!important;color:#e2e8f0;min-height:100vh;margin:0}
+        .fea-wrap{max-width:1120px;margin:58px auto 70px;padding:0 24px;position:relative;z-index:1;line-height:1.65}
+        .fea-back{color:#f59e0b;text-decoration:none;font-weight:700;display:inline-flex;gap:9px;align-items:center;margin-bottom:25px}
+        .fea-kicker{color:#22d3ee;text-transform:uppercase;letter-spacing:.16em;font:700 .8rem/1.5 monospace}
+        .fea-wrap h1{font-size:clamp(2rem,4.5vw,3.2rem);line-height:1.12;color:#fff;margin:10px 0 12px}
+        .fea-lead{max-width:850px;color:#b6c4d4;font-size:1.08rem;margin:0 0 22px}
+        .fea-actions{display:flex;flex-wrap:wrap;gap:12px;margin:22px 0 30px}
+        .fea-btn{display:inline-flex;align-items:center;gap:9px;border-radius:9px;padding:11px 16px;text-decoration:none;font-weight:800;border:1px solid #f59e0b;color:#101827;background:#f59e0b}
+        .fea-btn.secondary{color:#dff9ff;background:#0c1c2e;border-color:#22d3ee}
+        .fea-btn:hover,.fea-btn:focus-visible{filter:brightness(1.08);outline:2px solid #fff;outline-offset:2px}
+        .fea-stats{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:13px;margin:0 0 30px}
+        .fea-stat{padding:18px;border:1px solid rgba(34,211,238,.24);border-radius:12px;background:rgba(17,31,49,.88)}
+        .fea-stat strong{display:block;color:#f59e0b;font-size:.75rem;text-transform:uppercase;letter-spacing:.08em;margin-bottom:6px}
+        .fea-stat span{display:block;color:#fff;font-size:1.25rem;font-weight:800;line-height:1.25}
+        .fea-panel{padding:24px;margin:22px 0;border:1px solid rgba(255,255,255,.1);border-radius:15px;background:rgba(15,23,42,.85);box-shadow:0 12px 32px rgba(0,0,0,.2)}
+        .fea-panel h2{margin:0 0 15px;color:#fff;font-size:1.45rem}
+        .fea-panel h3{color:#f59e0b;margin:19px 0 6px;font-size:1.05rem}
+        .fea-panel p{color:#c1ccda;margin:8px 0 13px}
+        .fea-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:16px}
+        .fea-grid ul{color:#c1ccda;margin:8px 0;padding-left:21px;line-height:1.8}
+        .fea-warning{border-left:4px solid #f59e0b;padding:12px 15px;background:rgba(245,158,11,.08);color:#e6edf5;border-radius:0 8px 8px 0;margin-top:16px}
+        .fea-viewer{overflow:hidden;border:1px solid rgba(34,211,238,.3);border-radius:12px;background:#111c2b}
+        .fea-viewer iframe{width:100%;height:min(72vw,740px);min-height:430px;border:0;display:block;background:#182235}
+        .fea-viewer-note{padding:12px 16px;color:#aebccd;font-size:.92rem}
+        .fea-gallery{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:18px}
+        .fea-figure{margin:0;overflow:hidden;background:#0a1220;border:1px solid rgba(255,255,255,.12);border-radius:12px}
+        .fea-figure img{width:100%;height:auto;display:block;background:#fff}
+        .fea-figure figcaption{padding:12px 14px;color:#b9c6d5;font-size:.92rem}
+        .fea-footer{color:#8092a8;font-size:.9rem;margin-top:28px}
+        @media(max-width:780px){.fea-stats{grid-template-columns:repeat(2,minmax(0,1fr))}.fea-grid,.fea-gallery{grid-template-columns:1fr}.fea-wrap{padding:0 17px;margin-top:38px}.fea-viewer iframe{height:70vh;min-height:380px}}
+        @media(max-width:420px){.fea-stats{grid-template-columns:1fr}.fea-actions{display:grid}.fea-btn{justify-content:center}}
+    </style>
+</head>
+<body>
+    <main class="fea-wrap">
+        <a class="fea-back" href="hook-fea.html"><i class="fa-solid fa-arrow-left" aria-hidden="true"></i> Back to FEA &amp; Simulation studies</a>
+        <div class="fea-kicker">FEA &amp; simulation / coursework case study</div>
+        <h1>Initial Hook Design: Static-Stress Analysis</h1>
+        <p class="fea-lead">I modelled the initial hook in Autodesk Fusion 360 and evaluated it with a linear static-stress study. This page presents the baseline geometry, assigned material, boundary conditions, and results from that submitted study.</p>
+        <div class="fea-actions">
+            <a class="fea-btn" href="hook-fea-case-study.pdf" target="_blank" rel="noopener"><i class="fa-solid fa-file-pdf" aria-hidden="true"></i> View slide deck</a>
+            <a class="fea-btn secondary" href="hook-fea-case-study.pptx" download><i class="fa-solid fa-file-powerpoint" aria-hidden="true"></i> Download editable PowerPoint</a>
+        </div>
+
+        <section class="fea-stats" aria-label="Key case-study results">
+            <div class="fea-stat"><strong>Initial mass</strong><span>504.085 g</span></div>
+            <div class="fea-stat"><strong>Maximum von Mises</strong><span>71.261 MPa</span></div>
+            <div class="fea-stat"><strong>Minimum factor of safety</strong><span>2.905</span></div>
+            <div class="fea-stat"><strong>Coursework target</strong><span>2.00</span></div>
+        </section>
+
+        <section class="fea-panel" aria-labelledby="fea-method-title">
+            <h2 id="fea-method-title">Model and analysis setup</h2>
+            <div class="fea-grid">
+                <div>
+                    <h3>Geometry and material</h3>
+                    <ul>
+                        <li>Overall profile: 100 mm high × 60 mm wide</li>
+                        <li>Section depth: 20 mm; inside transition: R5 mm</li>
+                        <li>Mild Steel from the Fusion 360 material library</li>
+                        <li>Young's modulus: 220 GPa; Poisson's ratio: 0.275</li>
+                        <li>Yield strength used for the coursework FoS: 207 MPa</li>
+                        <li>Initial volume: 64,214.602 mm³</li>
+                    </ul>
+                </div>
+                <div>
+                    <h3>Boundary conditions and mesh</h3>
+                    <ul>
+                        <li>Study type: Linear Static Stress</li>
+                        <li>Top face fixed with Ux, Uy and Uz restrained</li>
+                        <li>3000 N downward force applied on the hook crook face</li>
+                        <li>Automatic parabolic mesh with curved elements</li>
+                        <li>Solver data reported 228 tetrahedral elements</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <section class="fea-panel" aria-labelledby="fea-results-title">
+            <h2 id="fea-results-title">Results and mechanical interpretation</h2>
+            <p>The maximum von Mises stress was <strong>71.261 MPa</strong>, located at x = 20.381 mm, y = 20.000 mm, z = 23.087 mm in the Fusion 360 model coordinates. The reported minimum stress was 0.004 MPa.</p>
+            <p>The applied force acts away from the fixed upright, so the hook carries bending. The highest reported stress occurs at the inside transition, where the load path turns through the curved section. The result is consistent with a local stress concentration at that geometry.</p>
+            <h3>Factor-of-safety check</h3>
+            <p>Using the coursework yield strength and the simulated maximum stress:</p>
+            <p><strong>FoS = 207 MPa ÷ 71.261 MPa = 2.90485 ≈ 2.905</strong></p>
+            <p>That result exceeds the stated target of 2.00 in this study setup. Fusion 360 also reported a minimum safety factor of 2.905.</p>
+            <div class="fea-warning"><strong>Scope and limits:</strong> this is evidence from one coursework static load case. No mesh-convergence study or physical validation was reported. It is not a certified lifting rating or a claim that the part is safe for real lifting use.</div>
+        </section>
+
+        <section class="fea-panel" aria-labelledby="fea-evidence-title">
+            <h2 id="fea-evidence-title">Fusion 360 evidence</h2>
+            <div class="fea-gallery">
+                <figure class="fea-figure"><img src="hook-fea-geometry.jpeg" alt="Fusion 360 dimensioned sketch of the initial hook profile" loading="lazy"><figcaption>Dimensioned hook profile used for the initial design.</figcaption></figure>
+                <figure class="fea-figure"><img src="hook-fea-setup.jpeg" alt="Fusion 360 static-stress setup with fixed support and downward load" loading="lazy"><figcaption>Fixed support and downward force defined in the Fusion 360 study.</figcaption></figure>
+                <figure class="fea-figure"><img src="hook-fea-stress.jpeg" alt="Fusion 360 von Mises stress result showing the hook contour and legend" loading="lazy"><figcaption>Von Mises stress contour; the peak is at the inside transition.</figcaption></figure>
+                <figure class="fea-figure"><img src="hook-fea-safety-factor.jpeg" alt="Fusion 360 safety-factor result for the initial hook design" loading="lazy"><figcaption>Safety-factor result compared with the coursework target of 2.00.</figcaption></figure>
+            </div>
+        </section>
+
+        <section class="fea-panel" aria-labelledby="fea-deck-title">
+            <h2 id="fea-deck-title">Slide deck</h2>
+            <div class="fea-viewer">
+                <iframe src="hook-fea-case-study.pdf" title="Hook static-stress case-study slide deck" loading="lazy"></iframe>
+                <div class="fea-viewer-note">If the preview does not load in your browser, use “View slide deck” or download the editable PowerPoint above.</div>
+            </div>
+        </section>
+
+        <p class="fea-footer">Case study based on my submitted CW1 Task 1 initial design. Later design variants are outside this baseline analysis.</p>
+    </main>
+</body>
+</html>
