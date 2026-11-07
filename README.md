@@ -26,7 +26,7 @@ Then visit <http://localhost:8000/>.
 
 ## Deployment
 
-The repository is published with GitHub Pages from its configured publishing source. The site is static, so it does not require a build step. Push changes to the configured branch/source and check the repository's Actions or Pages deployment status before relying on the live update.
+The repository is published with GitHub Pages from its configured publishing source. GitHub Pages currently runs its standard Jekyll-based deployment workflow; the repository does not need a separate package installation or project build command. Push changes to the configured branch/source and check the repository's Actions or Pages deployment status before relying on the live update.
 
 ## Contact form
 
