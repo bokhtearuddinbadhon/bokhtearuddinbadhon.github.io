@@ -43,7 +43,7 @@
       ]
     }
     </script>
-    <link rel="stylesheet" href="style.css?v=2">
+    <link rel="stylesheet" href="style.css?v=3">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
   /* Mechanical background canvas styling */
@@ -59,3 +59,790 @@
     background: transparent !important;
   }
 </style>
+</head>
+<body>
+    <canvas id="mech-background"></canvas>
+    
+    <!-- Navigation Header -->
+    <nav class="navbar">
+        <div class="logo"><i class="fa-solid fa-gear fa-spin"></i> Bokhtear<span>Badhon</span></div>
+        <ul class="nav-links">
+            <li><a href="#about">About</a></li>
+            <li><a href="#education">Education</a></li>
+            <li><a href="#experience">Experience</a></li>
+            <li><a href="#skills">Skills</a></li>
+            <li><a href="#projects">Projects</a></li>
+            <li><a href="#contact">Contact</a></li>
+        </ul>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="hero-content">
+            <span class="badge"><i class="fa-solid fa-graduation-cap badge-cap-icon"></i> Mechanical Engineering Student</span>
+            <h1>Hi, I'm <span>Bokhtear Uddin Badhon</span></h1>
+            <h2>BEng (Hons) Mechanical Engineering | Practical Engineering Experience | Seeking 2027 Placement</h2>
+            <p>BEng (Hons) Mechanical Engineering student combining hands-on experience in automotive diagnostics, industrial maintenance and mechanical systems with developing skills in CAD, simulation and engineering analysis. Seeking a 2027 industrial placement to apply practical problem-solving and technical knowledge to real-world engineering challenges.</p>
+            <div class="hero-btns">
+                <a href="#projects" class="btn primary-btn"><i class="fa-solid fa-briefcase"></i> View Projects</a>
+                <a href="CV.pdf" download class="btn secondary-btn"><i class="fa-solid fa-file-arrow-down"></i> Download CV</a>
+            </div>
+        </div>
+    </section>
+
+<!-- About Section -->
+    <style>
+      #about {
+        position: relative;
+        z-index: 2;
+        padding: 90px 5% 50px !important;
+        min-height: 100vh;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        box-sizing: border-box;
+      }
+      .about-inner {
+        max-width: 1360px;
+        margin: 0 auto;
+        width: 100%;
+      }
+      /* Top Row: Paragraph 1 | Face Gap | Paragraph 2 */
+      .about-split-grid {
+        display: grid;
+        grid-template-columns: minmax(320px, 1.05fr) minmax(260px, 340px) minmax(340px, 1.25fr);
+        align-items: center;
+        gap: 24px;
+        margin-bottom: 45px;
+      }
+      .about-left-col {
+        display: flex;
+        flex-direction: column;
+      }
+      .about-heading-box {
+        margin-bottom: 14px;
+      }
+      .about-title-text {
+        font-size: 2.2rem;
+        font-weight: 700;
+        color: #f59e0b;
+        margin: 0 0 6px 0;
+      }
+      .about-orange-divider {
+        width: 55px;
+        height: 3px;
+        background: #f59e0b;
+        border-radius: 2px;
+      }
+      .about-face-safe-gap {
+        min-height: 220px;
+        pointer-events: none;
+      }
+      .about-right-col {
+        display: flex;
+        align-items: center;
+      }
+      .about-para {
+        font-size: 0.94rem;
+        line-height: 1.75;
+        color: #e2e8f0;
+        margin: 0;
+        text-shadow: 0 2px 8px rgba(0, 0, 0, 0.95);
+      }
+      .text-orange {
+        color: #f59e0b;
+        font-weight: 700;
+      }
+      /* Bottom Row: 3 Engineering Cards */
+      .about-cards-row {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 22px;
+        align-items: stretch;
+      }
+      .about-custom-card {
+        background: rgba(9, 16, 31, 0.85);
+        border: 1px solid rgba(245, 158, 11, 0.35);
+        border-radius: 12px;
+        padding: 22px 20px;
+        box-shadow: 0 10px 25px rgba(0, 0, 0, 0.65), inset 0 1px 0 rgba(245, 158, 11, 0.15);
+        backdrop-filter: blur(8px);
+        -webkit-backdrop-filter: blur(8px);
+        display: flex;
+        flex-direction: column;
+        transition: transform 0.25s ease, border-color 0.25s ease;
+      }
+      .about-custom-card:hover {
+        transform: translateY(-4px);
+        border-color: rgba(245, 158, 11, 0.75);
+      }
+      .card-header-flex {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+        margin-bottom: 8px;
+      }
+      .card-icon-box {
+        color: #f59e0b;
+        font-size: 1.35rem;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+      .code-badge-icon {
+        border: 1.5px solid #f59e0b;
+        border-radius: 4px;
+        padding: 1px 6px;
+        font-family: monospace;
+        font-weight: 700;
+        font-size: 0.85rem;
+        line-height: 1.3;
+      }
+      .card-title-text {
+        font-size: 1.1rem;
+        font-weight: 600;
+        color: #ffffff;
+        margin: 0;
+      }
+      .card-mini-bar {
+        width: 32px;
+        height: 2px;
+        background: #f59e0b;
+        border-radius: 1px;
+        margin-bottom: 12px;
+      }
+      .card-body-text {
+        font-size: 0.88rem;
+        line-height: 1.6;
+        color: #cbd5e1;
+        margin: 0;
+      }
+      /* Responsive Layouts */
+      @media screen and (max-width: 1080px) {
+        .about-split-grid {
+          grid-template-columns: 1fr;
+          gap: 20px;
+        }
+        .about-face-safe-gap {
+          display: none;
+        }
+        .about-cards-row {
+          grid-template-columns: repeat(2, 1fr);
+        }
+      }
+      @media screen and (max-width: 650px) {
+        #about {
+          padding: 80px 5% 40px !important;
+        }
+        .about-cards-row {
+          grid-template-columns: 1fr;
+          gap: 16px;
+        }
+        .about-title-text {
+          font-size: 1.85rem;
+        }
+      }
+    </style>
+
+    <section id="about" class="section">
+      <div class="about-inner">
+        <!-- Biography Split Grid -->
+        <div class="about-split-grid">
+          <!-- Left Column -->
+          <div class="about-left-col">
+            <div class="about-heading-box">
+              <h2 class="about-title-text">About Me</h2>
+              <div class="about-orange-divider"></div>
+            </div>
+            <p class="about-para">
+              I am a <span class="text-orange">BEng (Hons) Mechanical Engineering</span> undergraduate at London South Bank University, building on a four-year technical diploma and practical experience in automotive diagnostics, workshop operations and industrial pump maintenance. My background has given me hands-on experience in mechanical troubleshooting, component inspection, manufacturing processes and working with engineering equipment.
+            </p>
+          </div>
+
+          <!-- Center Column (Clear Space for Your Face) -->
+          <div class="about-face-safe-gap" aria-hidden="true"></div>
+
+          <!-- Right Column -->
+          <div class="about-right-col">
+            <p class="about-para">
+              Alongside my practical experience, I am developing technical capabilities in Autodesk Fusion 360, MATLAB, Python and C++, applying engineering principles through CAD modelling, laboratory experiments and design projects. I am particularly interested in mechanical design, manufacturing, energy systems and the use of computational tools to solve engineering problems. I am seeking a <span class="text-orange">12-month industrial placement in 2027</span> where I can contribute my practical knowledge while continuing to develop as a mechanical engineer.
+            </p>
+          </div>
+        </div>
+
+        <!-- 3 Engineering Cards -->
+        <div class="about-cards-row">
+          <!-- Card 1 -->
+          <div class="about-custom-card">
+            <div class="card-header-flex">
+              <div class="card-icon-box">
+                <span class="code-badge-icon">&lt;/&gt;</span>
+              </div>
+              <h3 class="card-title-text">Computational Engineering</h3>
+            </div>
+            <div class="card-mini-bar"></div>
+            <p class="card-body-text">
+              Applying Autodesk Fusion 360, MATLAB, Python and C++ to CAD modelling, numerical analysis and engineering problem-solving through academic and personal projects.
+            </p>
+          </div>
+
+          <!-- Card 2 -->
+          <div class="about-custom-card">
+            <div class="card-header-flex">
+              <div class="card-icon-box">
+                <i class="fa-solid fa-screwdriver-wrench"></i>
+              </div>
+              <h3 class="card-title-text">Hands-on Manufacturing</h3>
+            </div>
+            <div class="card-mini-bar"></div>
+            <p class="card-body-text">
+              Practical experience in automotive diagnostics, turning, milling, welding, fabrication, precision measurement and industrial equipment maintenance.
+            </p>
+          </div>
+
+          <!-- Card 3 -->
+          <div class="about-custom-card">
+            <div class="card-header-flex">
+              <div class="card-icon-box">
+                <i class="fa-solid fa-leaf"></i>
+              </div>
+              <h3 class="card-title-text">Sustainable Energy</h3>
+            </div>
+            <div class="card-mini-bar"></div>
+            <p class="card-body-text">
+              Exploring energy efficiency and renewable technologies through heat-recovery ventilation, wind turbine performance studies and fluid mechanics investigations.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+    
+    <!-- Education Section -->
+    <section id="education" class="section">
+        <h2 class="section-title"> <span>Educational Journey</span></h2>
+        <div class="timeline">
+            <div class="timeline-item">
+                <div class="timeline-dot"></div>
+                <div class="timeline-content">
+                    <h3>BEng (Hons) Mechanical Engineering</h3>
+                    <h4>London South Bank University (Oct 2025 – Sep 2028, Expected)</h4>
+                    <p><strong>First-year Highlights:</strong> Computer Programming (87%), Electrical Circuit Analysis (85%), Engineering Mathematics (76%). Active IMechE Student Member.</p>
+                </div>
+            </div>
+            <div class="timeline-item">
+                <div class="timeline-dot"></div>
+                <div class="timeline-content">
+                    <h3>Diploma in Engineering (Mechanical Technology)</h3>
+                    <h4>Dhaka Polytechnic Institute (Aug 2018 – Dec 2022)</h4>
+                    <p><strong>CGPA: 3.43 / 4.00</strong> — Completed 500+ hours of practical workshop training and served as Class Representative.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+<!-- WORK EXPERIENCE SECTION -->
+<section id="experience" class="section experience-section">
+  <div class="experience-inner">
+
+    <div class="experience-heading">
+      <p class="experience-eyebrow">PROFESSIONAL JOURNEY</p>
+      <h2>Work Experience</h2>
+      <p>From hands-on engineering to industrial problem-solving</p>
+    </div>
+
+    <div class="experience-grid">
+
+      <!-- MECHANICAL TECHNICIAN -->
+      <article class="experience-card">
+        <div class="experience-card-top">
+          <i class="fa-solid fa-wrench" aria-hidden="true"></i>
+          <span>Jan 2023 – Aug 2025</span>
+        </div>
+
+        <h3>Mechanical Technician</h3>
+        <p class="experience-company">Multibrand Workshop Ltd.</p>
+        <p class="experience-summary">
+          Diagnosed and repaired 50+ vehicle systems monthly,
+          including engines, transmissions and suspension components.
+          Improved workshop efficiency by 20% using computerised
+          diagnostics and reduced recurring faults by 15%.
+          Maintained a 100% safety record over 32 months.
+        </p>
+      </article>
+
+      <!-- MECHANICAL ENGINEERING INTERN -->
+      <article class="experience-card">
+        <div class="experience-card-top">
+          <i class="fa-solid fa-industry" aria-hidden="true"></i>
+          <span>Oct 2022 – Dec 2022</span>
+        </div>
+
+        <h3>Mechanical Engineering Intern</h3>
+        <p class="experience-company">
+          Bangladesh Water Development Board
+        </p>
+        <p class="experience-summary">
+          Worked with a five-person engineering team supporting
+          three large-scale industrial pump systems. Contributed
+          to 10+ maintenance projects involving welding and pipe
+          fitting, and prepared 5+ technical maintenance reports.
+        </p>
+      </article>
+
+      <!-- TESCO -->
+      <article class="experience-card">
+        <div class="experience-card-top">
+          <i class="fa-solid fa-users" aria-hidden="true"></i>
+          <span>Nov 2025 – Present</span>
+        </div>
+
+        <h3>Tesco Colleague</h3>
+        <p class="experience-company">Tesco</p>
+        <p class="experience-summary">
+          Processed transactions for 200+ customers per shift,
+          maintaining 100% financial reconciliation accuracy.
+          Resolved 15+ customer enquiries daily, contributing
+          to a 10% reduction in waiting times while developing
+          communication, teamwork and problem-solving skills.
+        </p>
+      </article>
+
+    </div>
+  </div>
+</section>
+<!-- END WORK EXPERIENCE SECTION -->
+
+   <!-- Skills & Tools (3D Precision Industrial Engineering Panels) -->
+    <section id="skills" class="section">
+        <div class="toolbox-header-wrap">
+            <h2 class="section-title">
+                <i class="fa-solid fa-gear toolbox-title-gear"></i>
+                <span>Technical <span class="title-accent-orange">Toolbox</span></span>
+            </h2>
+            <p class="section-subtitle">
+                <span class="sub-hash">//</span> SELECT A SKILL TO EXPLORE PROJECTS &amp; TECHNICAL EVIDENCE <span class="sub-hash">//</span>
+            </p>
+        </div>
+
+        <div class="engineering-panels-grid">
+            <!-- PANEL 1: CAD & Simulation -->
+            <div class="tech-panel" data-panel="cad" tabindex="0" role="region" aria-label="CAD and Simulation Panel">
+                <div class="panel-bezel">
+                    <span class="bolt top-left"></span>
+                    <span class="bolt top-right"></span>
+                    <span class="bolt bottom-left"></span>
+                    <span class="bolt bottom-right"></span>
+                    <span class="panel-ambient-led orange-led"></span>
+
+                    <!-- Technical Visual 1: CAD Turbine Assembly Graphic -->
+                    <div class="panel-screen">
+                        <svg class="tech-svg" viewBox="0 0 200 130" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                            <defs>
+                                <radialGradient id="cyanCore" cx="50%" cy="50%" r="50%">
+                                    <stop offset="0%" stop-color="#00f2fe" stop-opacity="0.35"/>
+                                    <stop offset="100%" stop-color="#00f2fe" stop-opacity="0"/>
+                                </radialGradient>
+                            </defs>
+                            <circle cx="100" cy="65" r="52" fill="url(#cyanCore)" stroke="#00f2fe" stroke-width="1.2" stroke-dasharray="4,2"/>
+                            <circle cx="100" cy="65" r="36" stroke="#38bdf8" stroke-width="1.4"/>
+                            <circle cx="100" cy="65" r="15" fill="#080d1a" stroke="#00f2fe" stroke-width="2"/>
+                            <g stroke="#38bdf8" stroke-width="1.6" stroke-linecap="round">
+                                <path d="M100,50 C96,34 84,23 72,19"/>
+                                <path d="M115,65 C131,61 142,49 146,37"/>
+                                <path d="M100,80 C104,96 116,107 128,111"/>
+                                <path d="M85,65 C69,69 58,81 54,93"/>
+                                <path d="M111,54 C125,42 132,28 134,15"/>
+                                <path d="M89,76 C75,88 68,102 66,115"/>
+                            </g>
+                            <line x1="18" y1="65" x2="35" y2="65" stroke="#f59e0b" stroke-width="1"/>
+                            <line x1="165" y1="65" x2="182" y2="65" stroke="#f59e0b" stroke-width="1"/>
+                            <text x="100" y="125" text-anchor="middle" fill="#38bdf8" font-size="8" font-family="monospace">CAD // TURBINE ASSEMBLY</text>
+                        </svg>
+                        <div class="screen-scanline"></div>
+                    </div>
+
+                    <div class="panel-header">
+                        <div class="panel-category-tag">
+                            <i class="fa-solid fa-cube header-icon-orange"></i>
+                            <span class="panel-title-text">CAD &amp; SIMULATION</span>
+                        </div>
+                    </div>
+
+                    <div class="skill-buttons-list">
+                        <button type="button" class="skill-btn" data-skill="Fusion 360" data-category="CAD &amp; Simulation">
+                            <span class="btn-left">
+                                <i class="fa-solid fa-cube btn-lead-icon orange-icon"></i>
+                                <span class="skill-label">Fusion 360</span>
+                            </span>
+                            <i class="fa-solid fa-chevron-right chevron-icon"></i>
+                        </button>
+                        <button type="button" class="skill-btn" data-skill="2D Drafting" data-category="CAD &amp; Simulation">
+                            <span class="btn-left">
+                                <i class="fa-solid fa-compass-drafting btn-lead-icon cyan-icon"></i>
+                                <span class="skill-label">2D Drafting</span>
+                            </span>
+                            <i class="fa-solid fa-chevron-right chevron-icon"></i>
+                        </button>
+                        <button type="button" class="skill-btn" data-skill="ANSYS FEA" data-category="CAD &amp; Simulation">
+                            <span class="btn-left">
+                                <i class="fa-solid fa-triangle-exclamation btn-lead-icon orange-icon"></i>
+                                <span class="skill-label">ANSYS FEA</span>
+                            </span>
+                            <i class="fa-solid fa-chevron-right chevron-icon"></i>
+                        </button>
+                        <button type="button" class="skill-btn" data-skill="Parametric Design" data-category="CAD &amp; Simulation">
+                            <span class="btn-left">
+                                <i class="fa-solid fa-layer-group btn-lead-icon cyan-icon"></i>
+                                <span class="skill-label">Parametric Design</span>
+                            </span>
+                            <i class="fa-solid fa-chevron-right chevron-icon"></i>
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- PANEL 2: Programming & AI -->
+            <div class="tech-panel" data-panel="code" tabindex="0" role="region" aria-label="Programming and AI Panel">
+                <div class="panel-bezel">
+                    <span class="bolt top-left"></span>
+                    <span class="bolt top-right"></span>
+                    <span class="bolt bottom-left"></span>
+                    <span class="bolt bottom-right"></span>
+                    <span class="panel-ambient-led orange-led"></span>
+
+                    <!-- Technical Visual 2: Laptop Displaying Code & AI Graphic -->
+                    <div class="panel-screen">
+                        <svg class="tech-svg" viewBox="0 0 200 130" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                            <rect x="38" y="20" width="124" height="78" rx="4" fill="#080d1a" stroke="#00f2fe" stroke-width="1.5"/>
+                            <polygon points="26,102 174,102 162,110 38,110" fill="#1e293b" stroke="#38bdf8" stroke-width="1"/>
+                            <line x1="46" y1="32" x2="80" y2="32" stroke="#f59e0b" stroke-width="2" stroke-linecap="round"/>
+                            <line x1="86" y1="32" x2="118" y2="32" stroke="#38bdf8" stroke-width="2" stroke-linecap="round"/>
+                            <line x1="46" y1="42" x2="128" y2="42" stroke="#38bdf8" stroke-width="1.5" stroke-linecap="round" stroke-opacity="0.8"/>
+                            <line x1="54" y1="52" x2="96" y2="52" stroke="#00f2fe" stroke-width="1.5" stroke-linecap="round"/>
+                            <line x1="54" y1="62" x2="140" y2="62" stroke="#94a3b8" stroke-width="1.5" stroke-linecap="round" stroke-opacity="0.7"/>
+                            <line x1="46" y1="72" x2="92" y2="72" stroke="#f59e0b" stroke-width="1.5" stroke-linecap="round"/>
+                            <!-- Neural nodes -->
+                            <circle cx="135" cy="38" r="3" fill="#00f2fe"/>
+                            <circle cx="150" cy="45" r="2.5" fill="#f59e0b"/>
+                            <circle cx="140" cy="56" r="2.5" fill="#00f2fe"/>
+                            <line x1="135" y1="38" x2="150" y2="45" stroke="#00f2fe" stroke-width="0.8"/>
+                            <line x1="150" y1="45" x2="140" y2="56" stroke="#00f2fe" stroke-width="0.8"/>
+                            <text x="100" y="125" text-anchor="middle" fill="#38bdf8" font-size="8" font-family="monospace">SYS // COMPUTATIONAL ML</text>
+                        </svg>
+                        <div class="screen-scanline"></div>
+                    </div>
+
+                    <div class="panel-header">
+                        <div class="panel-category-tag">
+                            <i class="fa-solid fa-code header-icon-orange"></i>
+                            <span class="panel-title-text">PROGRAMMING &amp; AI</span>
+                        </div>
+                    </div>
+
+                    <div class="skill-buttons-list">
+                        <button type="button" class="skill-btn" data-skill="MATLAB" data-category="Programming &amp; AI">
+                            <span class="btn-left">
+                                <i class="fa-solid fa-calculator btn-lead-icon orange-icon"></i>
+                                <span class="skill-label">MATLAB</span>
+                            </span>
+                            <i class="fa-solid fa-chevron-right chevron-icon"></i>
+                        </button>
+                        <button type="button" class="skill-btn" data-skill="Python" data-category="Programming &amp; AI">
+                            <span class="btn-left">
+                                <i class="fa-brands fa-python btn-lead-icon cyan-icon"></i>
+                                <span class="skill-label">Python</span>
+                            </span>
+                            <i class="fa-solid fa-chevron-right chevron-icon"></i>
+                        </button>
+                        <button type="button" class="skill-btn" data-skill="C++" data-category="Programming &amp; AI">
+                            <span class="btn-left">
+                                <i class="fa-solid fa-terminal btn-lead-icon cyan-icon"></i>
+                                <span class="skill-label">C++</span>
+                            </span>
+                            <i class="fa-solid fa-chevron-right chevron-icon"></i>
+                        </button>
+                        <button type="button" class="skill-btn" data-skill="Applied AI" data-category="Programming &amp; AI">
+                            <span class="btn-left">
+                                <i class="fa-solid fa-microchip btn-lead-icon cyan-icon"></i>
+                                <span class="skill-label">Applied AI</span>
+                            </span>
+                            <i class="fa-solid fa-chevron-right chevron-icon"></i>
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- PANEL 3: Practical Engineering -->
+            <div class="tech-panel" data-panel="practical" tabindex="0" role="region" aria-label="Practical Engineering Panel">
+                <div class="panel-bezel">
+                    <span class="bolt top-left"></span>
+                    <span class="bolt top-right"></span>
+                    <span class="bolt bottom-left"></span>
+                    <span class="bolt bottom-right"></span>
+                    <span class="panel-ambient-led orange-led"></span>
+
+                    <!-- Technical Visual 3: Precision Machining Spindle / Workpiece Sparks Graphic -->
+                    <div class="panel-screen">
+                        <svg class="tech-svg" viewBox="0 0 200 130" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                            <rect x="24" y="30" width="30" height="70" rx="2" fill="#1e293b" stroke="#38bdf8" stroke-width="1.5"/>
+                            <rect x="54" y="44" width="12" height="42" fill="#0f172a" stroke="#00f2fe" stroke-width="1"/>
+                            <rect x="66" y="48" width="58" height="34" fill="#0b1324" stroke="#38bdf8" stroke-width="1.2"/>
+                            <line x1="66" y1="65" x2="124" y2="65" stroke="#38bdf8" stroke-width="1" stroke-dasharray="3,3"/>
+                            <polygon points="124,72 142,60 148,64 130,78" fill="#f59e0b" stroke="#f59e0b" stroke-width="1"/>
+                            <path d="M124,70 Q120,58 114,56" fill="none" stroke="#00f2fe" stroke-width="1.2"/>
+                            <path d="M125,73 Q128,79 135,81" fill="none" stroke="#f59e0b" stroke-width="1.2"/>
+                            <circle cx="124" cy="72" r="2.5" fill="#ffffff"/>
+                            <polygon points="166,54 146,65 166,76" fill="#1e293b" stroke="#38bdf8" stroke-width="1.2"/>
+                            <rect x="166" y="46" width="16" height="38" fill="#0f172a" stroke="#38bdf8" stroke-width="1"/>
+                            <text x="100" y="125" text-anchor="middle" fill="#38bdf8" font-size="8" font-family="monospace">MFG // LATHE &amp; SPINDLE</text>
+                        </svg>
+                        <div class="screen-scanline"></div>
+                    </div>
+
+                    <div class="panel-header">
+                        <div class="panel-category-tag">
+                            <i class="fa-solid fa-wrench header-icon-orange"></i>
+                            <span class="panel-title-text">PRACTICAL ENGINEERING</span>
+                        </div>
+                    </div>
+
+                    <div class="skill-buttons-list">
+                        <button type="button" class="skill-btn" data-skill="Automotive Diagnostics" data-category="Practical Engineering">
+                            <span class="btn-left">
+                                <i class="fa-solid fa-car-side btn-lead-icon orange-icon"></i>
+                                <span class="skill-label">Automotive Diagnostics</span>
+                            </span>
+                            <i class="fa-solid fa-chevron-right chevron-icon"></i>
+                        </button>
+                        <button type="button" class="skill-btn" data-skill="Machining" data-category="Practical Engineering">
+                            <span class="btn-left">
+                                <i class="fa-solid fa-gears btn-lead-icon orange-icon"></i>
+                                <span class="skill-label">Machining</span>
+                            </span>
+                            <i class="fa-solid fa-chevron-right chevron-icon"></i>
+                        </button>
+                        <button type="button" class="skill-btn" data-skill="Welding &amp; Fabrication" data-category="Practical Engineering">
+                            <span class="btn-left">
+                                <i class="fa-solid fa-fire btn-lead-icon orange-icon"></i>
+                                <span class="skill-label">Welding &amp; Fabrication</span>
+                            </span>
+                            <i class="fa-solid fa-chevron-right chevron-icon"></i>
+                        </button>
+                        <button type="button" class="skill-btn" data-skill="Industrial Maintenance" data-category="Practical Engineering">
+                            <span class="btn-left">
+                                <i class="fa-solid fa-screwdriver-wrench btn-lead-icon orange-icon"></i>
+                                <span class="skill-label">Industrial Maintenance</span>
+                            </span>
+                            <i class="fa-solid fa-chevron-right chevron-icon"></i>
+                        </button>
+                        <button type="button" class="skill-btn" data-skill="Metrology" data-category="Practical Engineering">
+                            <span class="btn-left">
+                                <i class="fa-solid fa-ruler-combined btn-lead-icon orange-icon"></i>
+                                <span class="skill-label">Metrology</span>
+                            </span>
+                            <i class="fa-solid fa-chevron-right chevron-icon"></i>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+<!-- Projects Section -->
+    <section id="projects" class="section">
+        <!-- Section Header -->
+        <div class="projects-header-wrap">
+            <h2 class="section-title projects-mech-title">
+                <i class="fa-solid fa-gears projects-title-icon"></i>
+                <span>Featured Engineering <span class="title-accent-orange">Projects</span></span>
+            </h2>
+            <p class="projects-mech-subtitle">
+                <span class="sub-hash">//</span> PRECISION CAD, THERMAL-FLUIDS, FEA SIMULATION &amp; APPLIED MECHANICS <span class="sub-hash">//</span>
+            </p>
+        </div>
+
+        <!-- 3D Mechanical Engineering Grid (Dynamic Engine Container) -->
+        <div id="featured-projects-grid" class="mech-projects-grid" role="region" aria-label="Featured Engineering Projects Grid">
+            <noscript>
+                <div class="project-grid">
+                    <p style="color: #94a3b8; text-align: center; grid-column: 1 / -1;">Please enable JavaScript to view interactive 3D mechanical project cards.</p>
+                </div>
+            </noscript>
+        </div>
+    </section>
+    
+<!-- Contact Section -->
+    <section id="contact" class="section contact-section">
+      <div class="contact-container">
+        
+        <!-- Section Header -->
+        <div class="contact-header">
+          <div class="contact-title-wrap">
+            <span class="tech-slash">//</span>
+            <h2 class="contact-title">Get In Touch</h2>
+          </div>
+          <p class="contact-subtitle">
+            I'm actively seeking a <strong>2027 Industrial Placement</strong> in Mechanical Engineering. Feel free to reach out regarding placement opportunities, engineering projects or professional collaborations.
+          </p>
+        </div>
+
+        <!-- 3D Futuristic HUD Engineering Panel -->
+        <div class="hud-panel-frame">
+          <div class="hud-corner hud-corner-tl"></div>
+          <div class="hud-corner hud-corner-tr"></div>
+          <div class="hud-corner hud-corner-bl"></div>
+          <div class="hud-corner hud-corner-br"></div>
+          
+          <div class="hud-panel-content">
+            <!-- Left Column: Contact Information -->
+            <div class="contact-info-col">
+              
+              <!-- Email Card -->
+              <div class="info-card">
+                <div class="info-icon-box">
+                  <i class="fa-solid fa-envelope"></i>
+                </div>
+                <div class="info-details">
+                  <span class="info-label">Email</span>
+                  <a href="mailto:bokhtearuddinbadhon@gmail.com" class="info-val info-link">bokhtearuddinbadhon@gmail.com</a>
+                </div>
+                <button type="button" class="copy-btn" id="copyEmailBtn" aria-label="Copy email address" title="Copy to clipboard">
+                  <i class="fa-regular fa-clone"></i>
+                </button>
+              </div>
+
+              <!-- Location Card -->
+              <div class="info-card">
+                <div class="info-icon-box">
+                  <i class="fa-solid fa-location-dot"></i>
+                </div>
+                <div class="info-details">
+                  <span class="info-label">Location</span>
+                  <span class="info-val">London, England, United Kingdom</span>
+                </div>
+              </div>
+
+              <!-- Placement Card -->
+              <div class="info-card">
+                <div class="info-icon-box">
+                  <i class="fa-solid fa-calendar-check"></i>
+                </div>
+                <div class="info-details">
+                  <span class="info-label">Placement</span>
+                  <span class="info-val">Seeking a <strong>2027 Industrial Placement</strong> in Mechanical Engineering</span>
+                </div>
+              </div>
+
+              <!-- Social Links -->
+              <div class="connect-row">
+                <span class="connect-label">Connect With Me</span>
+                <div class="connect-links">
+                  <a href="https://www.linkedin.com/in/bokhtearuddinbadhon/" target="_blank" rel="noopener noreferrer" class="hud-social-btn" aria-label="LinkedIn">
+                    <i class="fa-brands fa-linkedin-in"></i>
+                  </a>
+                  <a href="https://github.com/bokhtearuddinbadhon" target="_blank" rel="noopener noreferrer" class="hud-social-btn" aria-label="GitHub">
+                    <i class="fa-brands fa-github"></i>
+                  </a>
+                </div>
+              </div>
+
+            </div>
+
+            <!-- Vertical HUD Divider -->
+            <div class="hud-divider"></div>
+
+            <!-- Right Column: Send a Message Form -->
+            <div class="contact-form-col">
+              <div class="form-header">
+                <i class="fa-solid fa-comment-dots form-header-icon"></i>
+                <h3 class="form-title">Send a Message</h3>
+              </div>
+
+              <form id="contactForm" class="hud-form" novalidate>
+                <!-- Anti-spam Honeypot field (hidden from real users) -->
+                <input type="text" name="_gotcha" class="form-honeypot" tabindex="-1" autocomplete="off" aria-hidden="true">
+
+                <!-- Row: Name & Email -->
+                <div class="form-row-dual">
+                  <div class="form-group">
+                    <label for="senderName" class="visually-hidden">Your Name</label>
+                    <div class="input-wrap">
+                      <i class="fa-solid fa-user input-icon"></i>
+                      <input type="text" id="senderName" name="name" class="hud-input" placeholder="Your Name" required>
+                    </div>
+                  </div>
+                  <div class="form-group">
+                    <label for="senderEmail" class="visually-hidden">Your Email</label>
+                    <div class="input-wrap">
+                      <i class="fa-solid fa-envelope input-icon"></i>
+                      <input type="email" id="senderEmail" name="_replyto" class="hud-input" placeholder="Your Email" required>
+                    </div>
+                  </div>
+                </div>
+
+                <!-- Subject -->
+                <div class="form-group">
+                  <label for="msgSubject" class="visually-hidden">Subject</label>
+                  <div class="input-wrap">
+                    <i class="fa-solid fa-tag input-icon"></i>
+                    <input type="text" id="msgSubject" name="subject" class="hud-input" placeholder="Subject" required>
+                  </div>
+                </div>
+
+                <!-- Message Area -->
+                <div class="form-group">
+                  <label for="senderMessage" class="visually-hidden">Your Message</label>
+                  <div class="input-wrap textarea-wrap">
+                    <i class="fa-solid fa-pen input-icon textarea-icon"></i>
+                    <textarea id="senderMessage" name="message" class="hud-textarea" rows="4" placeholder="Your Message..." required></textarea>
+                  </div>
+                </div>
+
+                <!-- Submit Button -->
+                <button type="submit" id="submitBtn" class="hud-submit-btn">
+                  <i class="fa-solid fa-paper-plane"></i>
+                  <span id="submitBtnText">Send Message</span>
+                </button>
+
+                <!-- Feedback Message Container -->
+                <div id="formStatus" class="form-status" aria-live="polite"></div>
+              </form>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <footer>
+        <p>Built with precision &copy; 2026 Bokhtear Uddin Badhon. Hosted on GitHub Pages.</p>
+    </footer>
+
+    <script src="script.js?v=20261106"></script>
+    <!-- Dedicated Skill Page Coming Soon Modal -->
+    <div id="skill-modal" class="skill-modal-backdrop" aria-hidden="true" role="dialog" aria-labelledby="modal-skill-title">
+        <div class="skill-modal-panel">
+            <span class="bolt top-left"></span>
+            <span class="bolt top-right"></span>
+            <span class="bolt bottom-left"></span>
+            <span class="bolt bottom-right"></span>
+            <button type="button" class="modal-close-btn" id="modal-close" aria-label="Close dialog">&times;</button>
+            <div class="modal-header">
+                <span class="modal-badge"><i class="fa-solid fa-microchip"></i> TECHNICAL EVIDENCE</span>
+                <h3 id="modal-skill-title">Skill Name</h3>
+                <p id="modal-skill-category" class="modal-category">Category</p>
+            </div>
+            <div class="modal-body">
+                <div class="modal-status-box">
+                    <span class="status-pulse"></span>
+                    <span>DEDICATED SKILL PAGE COMING SOON</span>
+                </div>
+                <p>This technical node is being connected to real project repositories, CAD models, lab test data, and workshop documentation.</p>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn primary-btn" id="modal-ack-btn">Understood</button>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
