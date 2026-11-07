@@ -1915,3 +1915,23 @@ section,
     align-items: flex-start;
   }
 }
+
+
+/* Contact form privacy notice */
+.contact-privacy-note {
+  margin: 12px 0 0;
+  color: #9caec4;
+  font-size: 0.78rem;
+  line-height: 1.55;
+}
+
+.contact-privacy-note a {
+  color: #38bdf8;
+  text-decoration: underline;
+  text-underline-offset: 2px;
+}
+
+.contact-privacy-note a:hover,
+.contact-privacy-note a:focus-visible {
+  color: #00d9ff;
+}
