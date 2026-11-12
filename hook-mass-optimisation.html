@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Study 2 | Lifting Hook Mass Optimisation</title>
+    <meta name="description" content="Four Fusion 360 design iterations reduced mild-steel hook mass by 8.74% under a 3000 N static load.">
+    <link rel="canonical" href="https://bokhtearuddinbadhon.github.io/hook-mass-optimisation.html">
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        body{background:#080d1a!important;color:#e2e8f0;min-height:100vh;margin:0}
+        .fea-wrap{max-width:1120px;margin:58px auto 70px;padding:0 24px;position:relative;z-index:1;line-height:1.65}
+        .fea-back{color:#f59e0b;text-decoration:none;font-weight:700;display:inline-flex;gap:9px;align-items:center;margin-bottom:25px}
+        .fea-kicker{color:#22d3ee;text-transform:uppercase;letter-spacing:.16em;font:700 .8rem/1.5 monospace}
+        .fea-wrap h1{font-size:clamp(2rem,4.5vw,3.2rem);line-height:1.12;color:#fff;margin:10px 0 12px}
+        .fea-lead{max-width:850px;color:#b6c4d4;font-size:1.08rem;margin:0 0 22px}
+        .fea-actions{display:flex;flex-wrap:wrap;gap:12px;margin:22px 0 30px}
+        .fea-btn{display:inline-flex;align-items:center;gap:9px;border-radius:9px;padding:11px 16px;text-decoration:none;font-weight:800;border:1px solid #f59e0b;color:#101827;background:#f59e0b}
+        .fea-btn.secondary{color:#dff9ff;background:#0c1c2e;border-color:#22d3ee}
+        .fea-btn:hover,.fea-btn:focus-visible{filter:brightness(1.08);outline:2px solid #fff;outline-offset:2px}
+        .fea-stats{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:13px;margin:0 0 30px}
+        .fea-stat{padding:18px;border:1px solid rgba(34,211,238,.24);border-radius:12px;background:rgba(17,31,49,.88)}
+        .fea-stat strong{display:block;color:#f59e0b;font-size:.75rem;text-transform:uppercase;letter-spacing:.08em;margin-bottom:6px}
+        .fea-stat span{display:block;color:#fff;font-size:1.25rem;font-weight:800;line-height:1.25}
+        .fea-panel{padding:24px;margin:22px 0;border:1px solid rgba(255,255,255,.1);border-radius:15px;background:rgba(15,23,42,.85);box-shadow:0 12px 32px rgba(0,0,0,.2)}
+        .fea-panel h2{margin:0 0 15px;color:#fff;font-size:1.45rem}
+        .fea-panel h3{color:#f59e0b;margin:19px 0 6px;font-size:1.05rem}
+        .fea-panel p{color:#c1ccda;margin:8px 0 13px}
+        .fea-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:16px}
+        .fea-grid ul{color:#c1ccda;margin:8px 0;padding-left:21px;line-height:1.8}
+        .fea-warning{border-left:4px solid #f59e0b;padding:12px 15px;background:rgba(245,158,11,.08);color:#e6edf5;border-radius:0 8px 8px 0;margin-top:16px}
+        .fea-viewer{overflow:hidden;border:1px solid rgba(34,211,238,.3);border-radius:12px;background:#111c2b}
+        .fea-viewer iframe{width:100%;height:min(72vw,740px);min-height:430px;border:0;display:block;background:#182235}
+        .fea-viewer-note{padding:12px 16px;color:#aebccd;font-size:.92rem}
+        .fea-gallery{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:18px}
+        .fea-figure{margin:0;overflow:hidden;background:#0a1220;border:1px solid rgba(255,255,255,.12);border-radius:12px}
+        .fea-figure img{width:100%;height:auto;display:block;background:#fff}
+        .fea-figure figcaption{padding:12px 14px;color:#b9c6d5;font-size:.92rem}
+        .fea-footer{color:#8092a8;font-size:.9rem;margin-top:28px}
+        @media(max-width:780px){.fea-stats{grid-template-columns:repeat(2,minmax(0,1fr))}.fea-grid,.fea-gallery{grid-template-columns:1fr}.fea-wrap{padding:0 17px;margin-top:38px}.fea-viewer iframe{height:70vh;min-height:380px}}
+        @media(max-width:420px){.fea-stats{grid-template-columns:1fr}.fea-actions{display:grid}.fea-btn{justify-content:center}}
+    </style>
+</head>
+<body>
+<main class="fea-wrap">
+    <a class="fea-back" href="hook-fea.html">← Back to FEA &amp; Simulation studies</a>
+    <div class="fea-kicker">Fusion 360 / Study 2</div>
+    <h1>Lifting Hook Mass Optimisation</h1>
+    <p class="fea-lead">Four design changes reduced the hook from 504.085 g to 460.005 g. The selected design retained the raised lip and satisfied the coursework yield criterion under a 3000 N downward load.</p>
+    <div class="fea-actions">
+        <a class="fea-btn" href="hook-mass-optimisation.pdf">View slide deck</a>
+        <a class="fea-btn secondary" href="hook-mass-optimisation.pptx" download>Download editable PowerPoint</a>
+    </div>
+    <section class="fea-stats" aria-label="Design 4 results">
+        <div class="fea-stat"><strong>Mass saved</strong><span>44.080 g (8.74%)</span></div>
+        <div class="fea-stat"><strong>Final mass</strong><span>460.005 g</span></div>
+        <div class="fea-stat"><strong>Peak von Mises stress</strong><span>77.839 MPa</span></div>
+        <div class="fea-stat"><strong>Minimum safety factor</strong><span>2.659</span></div>
+    </section>
+    <section class="fea-panel"><h2>From baseline to Design 4</h2>
+        <p>The iterations introduced a hole in the short arm, rounded the lower outside corner, added a hole in the upright and enlarged the short-arm hole from 12 to 14 mm. The last change saved 6.412 g and left 3 mm of steel above the hole.</p>
+        <p>In the final study, the top face was fixed in all three translational directions. The highest stress occurred at the inner fillet. Dividing the mild steel’s 207 MPa yield strength by the peak stress gives a safety factor of 2.659, above the coursework target of 1.00.</p>
+        <p>The earlier runs use their recorded results. Load and mesh equivalence across the intermediate studies was unconfirmed, which limits how much of the stress change can be attributed to geometry.</p>
+        <a class="fea-back" href="hook-static-stress.html">View the Study 1 baseline →</a>
+    </section>
+    <section class="fea-panel"><h2>Slide deck</h2><div class="fea-viewer">
+        <iframe src="hook-mass-optimisation.pdf" title="Study 2 lifting hook mass optimisation slide deck" loading="lazy"></iframe>
+        <div class="fea-viewer-note"><a class="fea-back" href="hook-mass-optimisation.pdf">Open the slide deck as a PDF</a></div>
+    </div></section>
+</main>
+</body>
+</html>
