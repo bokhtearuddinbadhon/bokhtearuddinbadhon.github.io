@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Study 3 | Circular Shaft Torsion Analysis</title>
+    <meta name="description" content="Fusion 360 analysis of shaft twist, mesh convergence and shear stress under a 100 N·m torque.">
+    <link rel="canonical" href="https://bokhtearuddinbadhon.github.io/circular-shaft-torsion.html">
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        body{background:#080d1a!important;color:#e2e8f0;min-height:100vh;margin:0}
+        .fea-wrap{max-width:1120px;margin:58px auto 70px;padding:0 24px;position:relative;z-index:1;line-height:1.65}
+        .fea-back{color:#f59e0b;text-decoration:none;font-weight:700;display:inline-flex;gap:9px;align-items:center;margin-bottom:25px}
+        .fea-kicker{color:#22d3ee;text-transform:uppercase;letter-spacing:.16em;font:700 .8rem/1.5 monospace}
+        .fea-wrap h1{font-size:clamp(2rem,4.5vw,3.2rem);line-height:1.12;color:#fff;margin:10px 0 12px}
+        .fea-lead{max-width:850px;color:#b6c4d4;font-size:1.08rem;margin:0 0 22px}
+        .fea-actions{display:flex;flex-wrap:wrap;gap:12px;margin:22px 0 30px}
+        .fea-btn{display:inline-flex;align-items:center;gap:9px;border-radius:9px;padding:11px 16px;text-decoration:none;font-weight:800;border:1px solid #f59e0b;color:#101827;background:#f59e0b}
+        .fea-btn.secondary{color:#dff9ff;background:#0c1c2e;border-color:#22d3ee}
+        .fea-btn:hover,.fea-btn:focus-visible{filter:brightness(1.08);outline:2px solid #fff;outline-offset:2px}
+        .fea-stats{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:13px;margin:0 0 30px}
+        .fea-stat{padding:18px;border:1px solid rgba(34,211,238,.24);border-radius:12px;background:rgba(17,31,49,.88)}
+        .fea-stat strong{display:block;color:#f59e0b;font-size:.75rem;text-transform:uppercase;letter-spacing:.08em;margin-bottom:6px}
+        .fea-stat span{display:block;color:#fff;font-size:1.25rem;font-weight:800;line-height:1.25}
+        .fea-panel{padding:24px;margin:22px 0;border:1px solid rgba(255,255,255,.1);border-radius:15px;background:rgba(15,23,42,.85);box-shadow:0 12px 32px rgba(0,0,0,.2)}
+        .fea-panel h2{margin:0 0 15px;color:#fff;font-size:1.45rem}
+        .fea-panel h3{color:#f59e0b;margin:19px 0 6px;font-size:1.05rem}
+        .fea-panel p{color:#c1ccda;margin:8px 0 13px}
+        .fea-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:16px}
+        .fea-grid ul{color:#c1ccda;margin:8px 0;padding-left:21px;line-height:1.8}
+        .fea-warning{border-left:4px solid #f59e0b;padding:12px 15px;background:rgba(245,158,11,.08);color:#e6edf5;border-radius:0 8px 8px 0;margin-top:16px}
+        .fea-viewer{overflow:hidden;border:1px solid rgba(34,211,238,.3);border-radius:12px;background:#111c2b}
+        .fea-viewer iframe{width:100%;height:min(72vw,740px);min-height:430px;border:0;display:block;background:#182235}
+        .fea-viewer-note{padding:12px 16px;color:#aebccd;font-size:.92rem}
+        .fea-gallery{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:18px}
+        .fea-figure{margin:0;overflow:hidden;background:#0a1220;border:1px solid rgba(255,255,255,.12);border-radius:12px}
+        .fea-figure img{width:100%;height:auto;display:block;background:#fff}
+        .fea-figure figcaption{padding:12px 14px;color:#b9c6d5;font-size:.92rem}
+        .fea-footer{color:#8092a8;font-size:.9rem;margin-top:28px}
+        @media(max-width:780px){.fea-stats{grid-template-columns:repeat(2,minmax(0,1fr))}.fea-grid,.fea-gallery{grid-template-columns:1fr}.fea-wrap{padding:0 17px;margin-top:38px}.fea-viewer iframe{height:70vh;min-height:380px}}
+        @media(max-width:420px){.fea-stats{grid-template-columns:1fr}.fea-actions{display:grid}.fea-btn{justify-content:center}}
+    </style>
+</head>
+<body>
+<main class="fea-wrap">
+    <a class="fea-back" href="hook-fea.html#study-3">← Back to FEA &amp; Simulation studies</a>
+    <div class="fea-kicker">Fusion 360 / Study 3</div>
+    <h1>Circular Shaft Torsion Analysis</h1>
+    <p class="fea-lead">How much does a mild-steel shaft twist under a 100 N·m torque? I compared a Fusion 360 static-stress model with hand calculations for a 200 mm shaft, then varied the mesh size and shaft diameter.</p>
+    <div class="fea-actions"><a class="fea-btn" href="circular-shaft-torsion.pdf">View the 12-slide study (PDF)</a></div>
+    <section class="fea-panel"><h2>What the model showed</h2>
+        <p>At the same probe position, the magnitude of the shear stress component was 61.757 MPa in Fusion 360 and 61.727 MPa by hand, a difference of 0.049%. Global peak stresses varied with mesh refinement.</p>
+        <p>At the same torque, increasing the diameter from 18 mm to 24 mm reduced the estimated twist from 1.292° to 0.411°. I estimated twist from the rounded total displacement at the rim, treating it as tangential motion.</p>
+    </section>
+    <section class="fea-panel"><h2>Study slides</h2><div class="fea-viewer">
+        <iframe src="circular-shaft-torsion.pdf" title="Study 3 circular shaft torsion slide deck" loading="lazy"></iframe>
+        <div class="fea-viewer-note"><a class="fea-back" href="circular-shaft-torsion.pdf">Open the PDF</a></div>
+    </div></section>
+</main>
+</body>
+</html>
