@@ -43,31 +43,63 @@
     </style>
 </head>
 <body>
-<main class="fea-wrap">
-    <a class="fea-back" href="hook-fea.html">← Back to FEA &amp; Simulation studies</a>
-    <div class="fea-kicker">Fusion 360 / Study 2</div>
+    <main class="fea-wrap">
+        <a class="fea-back" href="hook-fea.html"><i class="fa-solid fa-arrow-left" aria-hidden="true"></i> Back to FEA &amp; Simulation studies</a>
+        <div class="fea-kicker">Fusion 360 / Study 2</div>
     <h1>Lifting Hook Mass Optimisation</h1>
     <p class="fea-lead">Four design changes reduced the hook from 504.085 g to 460.005 g. The selected design retained the raised lip and satisfied the coursework yield criterion under a 3000 N downward load.</p>
     <div class="fea-actions">
-        <a class="fea-btn" href="hook-mass-optimisation.pdf">View slide deck</a>
-        <a class="fea-btn secondary" href="hook-mass-optimisation.pptx" download>Download editable PowerPoint</a>
-    </div>
-    <section class="fea-stats" aria-label="Design 4 results">
+            <a class="fea-btn" href="hook-mass-optimisation.pdf" target="_blank" rel="noopener"><i class="fa-solid fa-file-pdf" aria-hidden="true"></i> View slide deck</a>
+            <a class="fea-btn secondary" href="hook-mass-optimisation.pptx" download><i class="fa-solid fa-file-powerpoint" aria-hidden="true"></i> Download editable PowerPoint</a>
+        </div>
+<section class="fea-stats" aria-label="Design 4 results">
         <div class="fea-stat"><strong>Mass saved</strong><span>44.080 g (8.74%)</span></div>
         <div class="fea-stat"><strong>Final mass</strong><span>460.005 g</span></div>
         <div class="fea-stat"><strong>Peak von Mises stress</strong><span>77.839 MPa</span></div>
         <div class="fea-stat"><strong>Minimum safety factor</strong><span>2.659</span></div>
     </section>
-    <section class="fea-panel"><h2>From baseline to Design 4</h2>
-        <p>The iterations introduced a hole in the short arm, rounded the lower outside corner, added a hole in the upright and enlarged the short-arm hole from 12 to 14 mm. The last change saved 6.412 g and left 3 mm of steel above the hole.</p>
-        <p>In the final study, the top face was fixed in all three translational directions. The highest stress occurred at the inner fillet. Dividing the mild steel’s 207 MPa yield strength by the peak stress gives a safety factor of 2.659, above the coursework target of 1.00.</p>
-        <p>The earlier runs use their recorded results. Load and mesh equivalence across the intermediate studies was unconfirmed, which limits how much of the stress change can be attributed to geometry.</p>
-        <a class="fea-back" href="hook-static-stress.html">View the Study 1 baseline →</a>
-    </section>
-    <section class="fea-panel"><h2>Slide deck</h2><div class="fea-viewer">
-        <iframe src="hook-mass-optimisation.pdf" title="Study 2 lifting hook mass optimisation slide deck" loading="lazy"></iframe>
-        <div class="fea-viewer-note"><a class="fea-back" href="hook-mass-optimisation.pdf">Open the slide deck as a PDF</a></div>
-    </div></section>
-</main>
+        <section class="fea-panel" aria-labelledby="setup">
+            <h2 id="setup">Model and analysis setup</h2>
+            <div class="fea-grid">
+                <div><h3>Geometry and material</h3><ul>
+                    <li>Study 1 mild-steel hook, initially 504.085 g</li>
+                    <li>Four iterations introduced holes in the short arm and upright and rounded the lower outside corner.</li>
+                    <li>Design 4 retained the load seat and raised lip. Enlarging the short-arm hole from 12 to 14 mm left 3 mm of steel above it.</li>
+                </ul></div>
+                <div><h3>Boundary conditions and mesh</h3><ul>
+                    <li>Fusion 360 static-stress study of the final design</li>
+                    <li>Top face of the upright fixed in all three translational directions</li>
+                    <li>3000 N downward force applied to the 200 mm² load-seat face, with gravity disabled</li>
+                </ul></div>
+            </div>
+        </section>
+        <section class="fea-panel" aria-labelledby="results">
+            <h2 id="results">Results and mechanical interpretation</h2>
+            <p>The final hook weighed <strong>460.005 g</strong>, saving 44.080 g (8.74%) from the Study 1 baseline. The final change to the short-arm hole accounted for 6.412 g of that saving.</p>
+            <p>The highest von Mises stress occurred at the inner fillet where the load seat meets the upright. The stress plot places the peak at this curved transition, away from the two holes.</p>
+            <h3>Factor-of-safety check</h3>
+            <p>Dividing the mild steel’s yield strength by the peak von Mises stress gives <strong>207 MPa ÷ 77.839 MPa ≈ 2.659</strong>. This agrees with the Fusion result and exceeds the coursework target of 1.00 for this load case.</p>
+            <div class="fea-warning"><strong>Scope and limits.</strong> Load and mesh equivalence across the intermediate runs was unconfirmed. This limits how much of the change in stress can be attributed to geometry alone.</div>
+            <p><a class="fea-back" href="hook-static-stress.html">View the Study 1 baseline →</a></p>
+        </section>
+        <section class="fea-panel" aria-labelledby="evidence">
+            <h2 id="evidence">Fusion 360 evidence</h2>
+            <div class="fea-gallery">
+                <figure class="fea-figure"><img src="hook-optimisation/geometry.png" alt="Final two-hole mild-steel hook with the Fusion properties panel" loading="lazy"><figcaption>Design 4 geometry and properties. The two-hole hook has a mass of 460.005 g.</figcaption></figure>
+                <figure class="fea-figure"><img src="hook-optimisation/load.png" alt="Meshed hook with the seat face selected and downward force arrows" loading="lazy"><figcaption>The highlighted seat face carries the 3000 N downward load.</figcaption></figure>
+                <figure class="fea-figure"><img src="hook-optimisation/stress.png" alt="Design 4 von Mises stress contour with the peak marked at the inner fillet" loading="lazy"><figcaption>The peak von Mises stress of 77.839 MPa occurs at the inner fillet.</figcaption></figure>
+                <figure class="fea-figure"><img src="hook-optimisation/safety-factor.png" alt="Design 4 safety-factor plot and Fusion result summary" loading="lazy"><figcaption>Fusion reports a minimum safety factor of 2.659 against the coursework target of 1.00.</figcaption></figure>
+            </div>
+        </section>
+        <section class="fea-panel" aria-labelledby="fea-deck-title">
+            <h2 id="fea-deck-title">Slide deck</h2>
+            <div class="fea-viewer">
+                <iframe src="hook-mass-optimisation.pdf" title="Lifting hook mass optimisation slide deck" loading="lazy"></iframe>
+                <div class="fea-viewer-note">If the preview does not load in your browser, use “View slide deck” or download the editable PowerPoint above.</div>
+            </div>
+        </section>
+
+        <p class="fea-footer">Coursework case study based on my CW1 Task 2 hook optimisation and final Design 4 simulation.</p>
+    </main>
 </body>
 </html>
