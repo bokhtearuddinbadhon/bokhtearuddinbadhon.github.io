@@ -43,20 +43,62 @@
     </style>
 </head>
 <body>
-<main class="fea-wrap">
-    <a class="fea-back" href="hook-fea.html#study-3">← Back to FEA &amp; Simulation studies</a>
-    <div class="fea-kicker">Fusion 360 / Study 3</div>
-    <h1>Circular Shaft Torsion Analysis</h1>
-    <p class="fea-lead">How much does a mild-steel shaft twist under a 100 N·m torque? I compared a Fusion 360 static-stress model with hand calculations for a 200 mm shaft, then varied the mesh size and shaft diameter.</p>
-    <div class="fea-actions"><a class="fea-btn" href="circular-shaft-torsion.pdf">View the 12-slide study (PDF)</a></div>
-    <section class="fea-panel"><h2>What the model showed</h2>
-        <p>At the same probe position, the magnitude of the shear stress component was 61.757 MPa in Fusion 360 and 61.727 MPa by hand, a difference of 0.049%. Global peak stresses varied with mesh refinement.</p>
-        <p>At the same torque, increasing the diameter from 18 mm to 24 mm reduced the estimated twist from 1.292° to 0.411°. I estimated twist from the rounded total displacement at the rim, treating it as tangential motion.</p>
-    </section>
-    <section class="fea-panel"><h2>Study slides</h2><div class="fea-viewer">
-        <iframe src="circular-shaft-torsion.pdf" title="Study 3 circular shaft torsion slide deck" loading="lazy"></iframe>
-        <div class="fea-viewer-note"><a class="fea-back" href="circular-shaft-torsion.pdf">Open the PDF</a></div>
-    </div></section>
-</main>
+    <main class="fea-wrap">
+        <a class="fea-back" href="hook-fea.html#study-3"><i class="fa-solid fa-arrow-left" aria-hidden="true"></i> Back to FEA &amp; Simulation studies</a>
+        <div class="fea-kicker">FEA &amp; simulation / Study 3</div>
+        <h1>Circular Shaft Torsion Analysis</h1>
+        <p class="fea-lead">I modelled a solid mild-steel shaft in Fusion 360 to see how closely it followed torsion theory. I compared shear stress at a fixed probe position, checked the effect of mesh refinement, and varied the shaft diameter to see how much the free end twisted.</p>
+        <div class="fea-actions">
+            <a class="fea-btn" href="circular-shaft-torsion.pdf" target="_blank" rel="noopener"><i class="fa-solid fa-file-pdf" aria-hidden="true"></i> View slide deck</a>
+            <a class="fea-btn secondary" href="circular-shaft-torsion.pdf" download>Download PDF</a>
+        </div>
+        <section class="fea-stats" aria-label="Baseline shaft results">
+            <div class="fea-stat"><strong>Applied torque</strong><span>100 N·m</span></div>
+            <div class="fea-stat"><strong>Probe shear magnitude</strong><span>61.757 MPa</span></div>
+            <div class="fea-stat"><strong>Estimated free-end twist</strong><span>0.848°</span></div>
+            <div class="fea-stat"><strong>Finest mesh</strong><span>72,504 elements</span></div>
+        </section>
+        <section class="fea-panel" aria-labelledby="setup">
+            <h2 id="setup">Model and analysis setup</h2>
+            <div class="fea-grid">
+                <div><h3>Geometry and material</h3><ul>
+                    <li>Solid circular shaft, 200 mm long with a baseline diameter of 20 mm</li>
+                    <li>Fusion mild steel with Young’s modulus of 220 GPa and Poisson’s ratio of 0.275</li>
+                    <li>Diameter study covering 18, 20, 22 and 24 mm at the same length and torque</li>
+                </ul></div>
+                <div><h3>Boundary conditions and mesh</h3><ul>
+                    <li>Fixed face at z = 0 mm, with all three translations restrained</li>
+                    <li>100 N·m axial moment at z = 200 mm, with gravity disabled</li>
+                    <li>Four mesh sizes from 5.00 to 1.75 mm, with a 2.50 mm mesh for the diameter comparison</li>
+                </ul></div>
+            </div>
+        </section>
+        <section class="fea-panel" aria-labelledby="results">
+            <h2 id="results">Results and mechanical interpretation</h2>
+            <h3>Shear stress at the probe</h3>
+            <p>I compared the same shear component at the same position in both models. At x = 9.696 mm, torsion theory gave <strong>61.727 MPa</strong> and Fusion gave <strong>61.757 MPa</strong>, a difference of 0.049%. Refining the mesh from 2.50 mm to 1.75 mm changed the probe result by 0.026%.</p>
+            <h3>Twist and shaft diameter</h3>
+            <p>For the 20 mm shaft, I divided the free-end displacement by the 10 mm radius to estimate twist. This gave <strong>0.148 ÷ 10 = 0.0148 rad ≈ 0.848°</strong>. Using the Fusion material properties, the theoretical twist was 0.846°.</p>
+            <p>At the same torque, the 18 mm shaft twisted by an estimated 1.292° and the 24 mm shaft by 0.411°. A solid shaft’s polar second moment of area grows with the fourth power of diameter, so even a modest diameter increase substantially reduces twist.</p>
+            <div class="fea-warning"><strong>Scope and limits.</strong> The twist estimate treats rounded total displacement at the rim as tangential motion. Global stress peaks varied with mesh size. The comparison uses analytical theory and the simulation results, with no physical torsion test.</div>
+        </section>
+        <section class="fea-panel" aria-labelledby="evidence">
+            <h2 id="evidence">Fusion 360 evidence</h2>
+            <div class="fea-gallery">
+                <figure class="fea-figure"><img src="torsion/fixed-end.jpg" alt="Fusion 360 fixed constraint dialog with the shaft end face selected" loading="lazy"><figcaption>I restrained translation in all three directions at the fixed end.</figcaption></figure>
+                <figure class="fea-figure"><img src="torsion/applied-torque.jpg" alt="Fusion 360 moment dialog for the opposite shaft face" loading="lazy"><figcaption>I applied a 100 N·m moment about the shaft axis at the free end.</figcaption></figure>
+                <figure class="fea-figure"><img src="torsion/displacement.jpg" alt="Fusion 360 total displacement contour for the baseline shaft" loading="lazy"><figcaption>The maximum displacement of 0.148 mm gives an estimated free-end twist of 0.848°.</figcaption></figure>
+                <figure class="fea-figure"><img src="torsion/shear-stress.jpg" alt="Fusion 360 shear YZ stress contour with a probe on the shaft" loading="lazy"><figcaption>The probe records one shear component. Its magnitude was 61.757 MPa on the finest mesh.</figcaption></figure>
+            </div>
+        </section>
+        <section class="fea-panel" aria-labelledby="fea-deck-title">
+            <h2 id="fea-deck-title">Slide deck</h2>
+            <div class="fea-viewer">
+                <iframe src="circular-shaft-torsion.pdf" title="Circular shaft torsion case-study slide deck" loading="lazy"></iframe>
+                <div class="fea-viewer-note">If the preview does not load in your browser, use “View slide deck” or download the PDF above.</div>
+            </div>
+        </section>
+        <p class="fea-footer">Coursework case study based on my CW1 Task 3 shaft model, simulation results and analytical checks.</p>
+    </main>
 </body>
 </html>
