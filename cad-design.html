@@ -24,6 +24,7 @@
         .cad-link:hover,.cad-link:focus-visible,.cad-back:hover{color:#f59e0b;text-decoration:underline}
         .cad-note{margin-top:24px;color:#8294aa;font-size:.92rem}
         @media(max-width:700px){.cad-grid{grid-template-columns:1fr}.cad-wrap{margin-top:42px;padding:0 18px}}
+    .collection{margin-top:3rem;scroll-margin-top:2rem}.collection h2{font-size:clamp(1.7rem,4vw,2.6rem);color:white}.collection>p,.work p{color:#b8c5d5}.collection h3{margin:1.6rem 0 .8rem}.works{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,235px),1fr));gap:1rem}.work{background:#112035;border:1px solid #2d445b;border-radius:12px;overflow:hidden}.work img{display:block;width:100%;aspect-ratio:1.65;object-fit:contain;background:white}.work>div{padding:.85rem 1rem}.work h4{font-size:1.07rem;color:white;margin:0 0 .25rem}.work a,.work summary{color:#67e8f9}.work video{width:100%}.work summary,.family>summary{cursor:pointer}.family{border-top:1px solid #35485c;margin-top:1.25rem}.family>summary{padding:1rem 0;font-size:1.17rem;font-weight:700}.family small{font-size:.85rem;color:#a4b7cd;margin-left:.5rem}.collection :focus-visible{outline:3px solid #ffb443;outline-offset:-3px}
     </style>
 </head>
 <body>
@@ -31,7 +32,7 @@
         <a class="cad-back" href="fusion-360.html"><i class="fa-solid fa-arrow-left" aria-hidden="true"></i> Back to Fusion 360 options</a>
         <div class="cad-kicker">Autodesk Fusion 360 / CAD &amp; Design</div>
         <h1>CAD &amp; Mechanical Design</h1>
-        <p class="cad-lead">Selected design and modelling work, with direct links to each project page. This lightweight page opens independently from the homepage project gallery.</p>
+        <p class="cad-lead">Mechanical design case studies and a gallery of my Fusion 360 models, sketches and technical drawings.</p>
         <section class="cad-grid" aria-label="CAD and design case studies">
             <article class="cad-card">
                 <h2><i class="fa-solid fa-arrows-left-right" aria-hidden="true"></i> Slider Support Project</h2>
@@ -51,8 +52,255 @@
             <article class="cad-card">
                 <h2><i class="fa-solid fa-gear" aria-hidden="true"></i> Parametric CAD &amp; Drafting</h2>
                 <p>Exploded flange and rocker-arm modelling, assembly drawings, and engineering documentation.</p>
-                <a class="cad-link" href="https://github.com/bokhtearuddinbadhon" target="_blank" rel="noopener noreferrer">Open GitHub profile <i class="fa-solid fa-arrow-up-right-from-square" aria-hidden="true"></i></a>
+                <a class="cad-link" href="#design-gallery">Browse design gallery <i class="fa-solid fa-arrow-up-right-from-square" aria-hidden="true"></i></a>
             </article>
+        </section>
+        <section id="design-gallery" class="collection"><h2>Fusion 360 Design Gallery</h2><p>Explore my models, sketches and engineering drawings. Select an image to see the detail.</p><h3>Assemblies &amp; technical drawings</h3>
+            <div class="works">
+                <article class="work">
+                    <a href="cad-gallery/flange.webp"><img src="cad-gallery/flange.webp" loading="lazy" decoding="async" alt="Manifold flange assembly"></a><div><h4>Manifold flange assembly</h4><p>The section shows the internal passage. The exploded drawing identifies each component in the stack.</p><a href="cad-gallery/assembly-section.webp">Assembly section</a> · <a href="cad-gallery/exploded-assembly.webp">Exploded drawing</a><details><summary>Play animation</summary><video controls preload="none" playsinline poster="cad-gallery/flange.webp" src="cad-gallery/flange.mp4"></video></details></div>
+                </article>
+                <article class="work">
+                    <a href="cad-gallery/rocker-arm.webp"><img src="cad-gallery/rocker-arm.webp" loading="lazy" decoding="async" alt="Rocker arm"></a><div><h4>Rocker arm</h4><a href="cad-gallery/rocker-arm-detail.webp">Dimensioned drawing</a></div>
+                </article>
+                <article class="work">
+                    <a href="cad-gallery/hydraulic-canister-bearing-bracket.webp"><img src="cad-gallery/hydraulic-canister-bearing-bracket.webp" loading="lazy" decoding="async" alt="Hydraulic canister bearing bracket"></a><div><h4>Hydraulic canister bearing bracket</h4><a href="cad-gallery/bearing-bracket-detail.webp">Bracket drawing</a></div>
+                </article>
+                <article class="work">
+                    <a href="cad-gallery/circular-housing-assembly.webp"><img src="cad-gallery/circular-housing-assembly.webp" loading="lazy" decoding="async" alt="Circular housing assembly"></a><div><h4>Circular housing assembly</h4><a href="cad-gallery/housing-projections.webp">Orthographic drawing</a></div>
+                </article>
+                <article class="work">
+                    <a href="cad-gallery/quadcopter.webp"><img src="cad-gallery/quadcopter.webp" loading="lazy" decoding="async" alt="Quadcopter assembly"></a><div><h4>Quadcopter assembly</h4><details><summary>Play animation</summary><video controls preload="none" playsinline poster="cad-gallery/quadcopter.webp" src="cad-gallery/quadcopter.mp4"></video></details></div>
+                </article>
+                <article class="work">
+                    <a href="cad-gallery/streetvault-concept-layout.webp"><img src="cad-gallery/streetvault-concept-layout.webp" loading="lazy" decoding="async" alt="StreetVault concept layout"></a><div><h4>StreetVault concept layout</h4><a href="street-vault.html">StreetVault case study</a></div>
+                </article>
+            </div>
+            <details class="family"><summary>Engine components &amp; mechanisms <small>19 views</small></summary>
+            <div class="works">
+                <article class="work">
+                    <a href="cad-gallery/finned-engine-assembly.webp"><img src="cad-gallery/finned-engine-assembly.webp" loading="lazy" decoding="async" alt="Finned engine assembly"></a><div><h4>Finned engine assembly</h4></div>
+                </article>
+                <article class="work">
+                    <a href="cad-gallery/piston-set.webp"><img src="cad-gallery/piston-set.webp" loading="lazy" decoding="async" alt="Piston set"></a><div><h4>Piston set</h4></div>
+                </article>
+                <article class="work">
+                    <a href="cad-gallery/crankshaft-modelling-study.webp"><img src="cad-gallery/crankshaft-modelling-study.webp" loading="lazy" decoding="async" alt="Crankshaft modelling study"></a><div><h4>Crankshaft modelling study</h4></div>
+                </article>
+                <article class="work">
+                    <a href="cad-gallery/split-housing-and-shaft.webp"><img src="cad-gallery/split-housing-and-shaft.webp" loading="lazy" decoding="async" alt="Split housing and shaft"></a><div><h4>Split housing and shaft</h4></div>
+                </article>
+                <article class="work">
+                    <a href="cad-gallery/stepped-shaft-assembly.webp"><img src="cad-gallery/stepped-shaft-assembly.webp" loading="lazy" decoding="async" alt="Stepped shaft assembly"></a><div><h4>Stepped shaft assembly</h4></div>
+                </article>
+                <article class="work">
+                    <a href="cad-gallery/spherical-body-with-stem.webp"><img src="cad-gallery/spherical-body-with-stem.webp" loading="lazy" decoding="async" alt="Spherical body with stem"></a><div><h4>Spherical body with stem</h4></div>
+                </article>
+                <article class="work">
+                    <a href="cad-gallery/linked-arm-mechanism.webp"><img src="cad-gallery/linked-arm-mechanism.webp" loading="lazy" decoding="async" alt="Linked arm mechanism"></a><div><h4>Linked arm mechanism</h4></div>
+                </article>
+                <article class="work">
+                    <a href="cad-gallery/wheel-and-pin-mechanism.webp"><img src="cad-gallery/wheel-and-pin-mechanism.webp" loading="lazy" decoding="async" alt="Wheel and pin mechanism"></a><div><h4>Wheel and pin mechanism</h4></div>
+                </article>
+                <article class="work">
+                    <a href="cad-gallery/star-wheel-and-link.webp"><img src="cad-gallery/star-wheel-and-link.webp" loading="lazy" decoding="async" alt="Star wheel and link"></a><div><h4>Star wheel and link</h4></div>
+                </article>
+                <article class="work">
+                    <a href="cad-gallery/offset-crankshaft.webp"><img src="cad-gallery/offset-crankshaft.webp" loading="lazy" decoding="async" alt="Offset crankshaft"></a><div><h4>Offset crankshaft</h4></div>
+                </article>
+                <article class="work">
+                    <a href="cad-gallery/piston-and-crankshaft-assembly.webp"><img src="cad-gallery/piston-and-crankshaft-assembly.webp" loading="lazy" decoding="async" alt="Piston and crankshaft assembly"></a><div><h4>Piston and crankshaft assembly</h4></div>
+                </article>
+                <article class="work">
+                    <a href="cad-gallery/multi-link-mechanism-work-in-progress.webp"><img src="cad-gallery/multi-link-mechanism-work-in-progress.webp" loading="lazy" decoding="async" alt="Multi-link mechanism · work in progress"></a><div><h4>Multi-link mechanism · work in progress</h4></div>
+                </article>
+                <article class="work">
+                    <a href="cad-gallery/lower-engine-housing.webp"><img src="cad-gallery/lower-engine-housing.webp" loading="lazy" decoding="async" alt="Lower engine housing"></a><div><h4>Lower engine housing</h4></div>
+                </article>
+                <article class="work">
+                    <a href="cad-gallery/connecting-rod.webp"><img src="cad-gallery/connecting-rod.webp" loading="lazy" decoding="async" alt="Connecting rod"></a><div><h4>Connecting rod</h4></div>
+                </article>
+                <article class="work">
+                    <a href="cad-gallery/grooved-piston.webp"><img src="cad-gallery/grooved-piston.webp" loading="lazy" decoding="async" alt="Grooved piston"></a><div><h4>Grooved piston</h4></div>
+                </article>
+                <article class="work">
+                    <a href="cad-gallery/finned-cylinder-housing.webp"><img src="cad-gallery/finned-cylinder-housing.webp" loading="lazy" decoding="async" alt="Finned cylinder housing"></a><div><h4>Finned cylinder housing</h4></div>
+                </article>
+                <article class="work">
+                    <a href="cad-gallery/piston-pin.webp"><img src="cad-gallery/piston-pin.webp" loading="lazy" decoding="async" alt="Piston pin"></a><div><h4>Piston pin</h4></div>
+                </article>
+                <article class="work">
+                    <a href="cad-gallery/cylindrical-rod.webp"><img src="cad-gallery/cylindrical-rod.webp" loading="lazy" decoding="async" alt="Cylindrical rod"></a><div><h4>Cylindrical rod</h4></div>
+                </article>
+                <article class="work">
+                    <a href="cad-gallery/shaft-with-central-collar.webp"><img src="cad-gallery/shaft-with-central-collar.webp" loading="lazy" decoding="async" alt="Shaft with central collar"></a><div><h4>Shaft with central collar</h4></div>
+                </article>
+            </div></details>
+            <details class="family"><summary>Brackets, housings &amp; mechanical parts <small>32 views</small></summary>
+            <div class="works">
+                <article class="work">
+                    <a href="cad-gallery/sliding-plate-assembly.webp"><img src="cad-gallery/sliding-plate-assembly.webp" loading="lazy" decoding="async" alt="Sliding plate assembly"></a><div><h4>Sliding plate assembly</h4></div>
+                </article>
+                <article class="work">
+                    <a href="cad-gallery/enclosure-extrusion-study.webp"><img src="cad-gallery/enclosure-extrusion-study.webp" loading="lazy" decoding="async" alt="Enclosure extrusion study"></a><div><h4>Enclosure extrusion study</h4></div>
+                </article>
+                <article class="work">
+                    <a href="cad-gallery/guide-plate-with-underside-channel.webp"><img src="cad-gallery/guide-plate-with-underside-channel.webp" loading="lazy" decoding="async" alt="Guide plate with underside channel"></a><div><h4>Guide plate with underside channel</h4></div>
+                </article>
+                <article class="work">
+                    <a href="cad-gallery/guided-slide-first-configuration.webp"><img src="cad-gallery/guided-slide-first-configuration.webp" loading="lazy" decoding="async" alt="Guided slide · first configuration"></a><div><h4>Guided slide · first configuration</h4><a href="cad-gallery/guided-slide-second-configuration.webp">Guided slide · second configuration</a></div>
+                </article>
+                <article class="work">
+                    <a href="cad-gallery/slotted-clip.webp"><img src="cad-gallery/slotted-clip.webp" loading="lazy" decoding="async" alt="Slotted clip"></a><div><h4>Slotted clip</h4></div>
+                </article>
+                <article class="work">
+                    <a href="cad-gallery/castellated-mounting-flange.webp"><img src="cad-gallery/castellated-mounting-flange.webp" loading="lazy" decoding="async" alt="Castellated mounting flange"></a><div><h4>Castellated mounting flange</h4></div>
+                </article>
+                <article class="work">
+                    <a href="cad-gallery/forked-mounting-bracket.webp"><img src="cad-gallery/forked-mounting-bracket.webp" loading="lazy" decoding="async" alt="Forked mounting bracket"></a><div><h4>Forked mounting bracket</h4></div>
+                </article>
+                <article class="work">
+                    <a href="cad-gallery/flanged-elbow-housing.webp"><img src="cad-gallery/flanged-elbow-housing.webp" loading="lazy" decoding="async" alt="Flanged elbow housing"></a><div><h4>Flanged elbow housing</h4></div>
+                </article>
+                <article class="work">
+                    <a href="cad-gallery/bored-boss-on-base-plate.webp"><img src="cad-gallery/bored-boss-on-base-plate.webp" loading="lazy" decoding="async" alt="Bored boss on base plate"></a><div><h4>Bored boss on base plate</h4></div>
+                </article>
+                <article class="work">
+                    <a href="cad-gallery/gusseted-bearing-support.webp"><img src="cad-gallery/gusseted-bearing-support.webp" loading="lazy" decoding="async" alt="Gusseted bearing support"></a><div><h4>Gusseted bearing support</h4></div>
+                </article>
+                <article class="work">
+                    <a href="cad-gallery/twin-lug-mounting-bracket.webp"><img src="cad-gallery/twin-lug-mounting-bracket.webp" loading="lazy" decoding="async" alt="Twin-lug mounting bracket"></a><div><h4>Twin-lug mounting bracket</h4><a href="cad-gallery/twin-lug-bracket-pin-detail.webp">Twin-lug bracket · pin detail</a></div>
+                </article>
+                <article class="work">
+                    <a href="cad-gallery/angled-tool.webp"><img src="cad-gallery/angled-tool.webp" loading="lazy" decoding="async" alt="Angled tool"></a><div><h4>Angled tool</h4></div>
+                </article>
+                <article class="work">
+                    <a href="cad-gallery/bent-bracket-holder.webp"><img src="cad-gallery/bent-bracket-holder.webp" loading="lazy" decoding="async" alt="Bent bracket holder"></a><div><h4>Bent bracket holder</h4></div>
+                </article>
+                <article class="work">
+                    <a href="cad-gallery/hub-plate-and-spindle.webp"><img src="cad-gallery/hub-plate-and-spindle.webp" loading="lazy" decoding="async" alt="Hub plate and spindle"></a><div><h4>Hub plate and spindle</h4></div>
+                </article>
+                <article class="work">
+                    <a href="cad-gallery/notched-mounting-plate.webp"><img src="cad-gallery/notched-mounting-plate.webp" loading="lazy" decoding="async" alt="Notched mounting plate"></a><div><h4>Notched mounting plate</h4></div>
+                </article>
+                <article class="work">
+                    <a href="cad-gallery/lugged-cover-plate.webp"><img src="cad-gallery/lugged-cover-plate.webp" loading="lazy" decoding="async" alt="Lugged cover plate"></a><div><h4>Lugged cover plate</h4></div>
+                </article>
+                <article class="work">
+                    <a href="cad-gallery/multi-port-flanged-housing.webp"><img src="cad-gallery/multi-port-flanged-housing.webp" loading="lazy" decoding="async" alt="Multi-port flanged housing"></a><div><h4>Multi-port flanged housing</h4></div>
+                </article>
+                <article class="work">
+                    <a href="cad-gallery/ribbed-fork-bracket.webp"><img src="cad-gallery/ribbed-fork-bracket.webp" loading="lazy" decoding="async" alt="Ribbed fork bracket"></a><div><h4>Ribbed fork bracket</h4></div>
+                </article>
+                <article class="work">
+                    <a href="cad-gallery/split-boss-and-channel.webp"><img src="cad-gallery/split-boss-and-channel.webp" loading="lazy" decoding="async" alt="Split boss and channel"></a><div><h4>Split boss and channel</h4></div>
+                </article>
+                <article class="work">
+                    <a href="cad-gallery/twin-lug-collar.webp"><img src="cad-gallery/twin-lug-collar.webp" loading="lazy" decoding="async" alt="Twin-lug collar"></a><div><h4>Twin-lug collar</h4></div>
+                </article>
+                <article class="work">
+                    <a href="cad-gallery/ribbed-saddle-support.webp"><img src="cad-gallery/ribbed-saddle-support.webp" loading="lazy" decoding="async" alt="Ribbed saddle support"></a><div><h4>Ribbed saddle support</h4></div>
+                </article>
+                <article class="work">
+                    <a href="cad-gallery/raised-pivot-bracket.webp"><img src="cad-gallery/raised-pivot-bracket.webp" loading="lazy" decoding="async" alt="Raised pivot bracket"></a><div><h4>Raised pivot bracket</h4></div>
+                </article>
+                <article class="work">
+                    <a href="cad-gallery/two-bore-link.webp"><img src="cad-gallery/two-bore-link.webp" loading="lazy" decoding="async" alt="Two-bore link"></a><div><h4>Two-bore link</h4></div>
+                </article>
+                <article class="work">
+                    <a href="cad-gallery/forked-support-with-boss.webp"><img src="cad-gallery/forked-support-with-boss.webp" loading="lazy" decoding="async" alt="Forked support with boss"></a><div><h4>Forked support with boss</h4></div>
+                </article>
+                <article class="work">
+                    <a href="cad-gallery/curved-side-bracket.webp"><img src="cad-gallery/curved-side-bracket.webp" loading="lazy" decoding="async" alt="Curved side bracket"></a><div><h4>Curved side bracket</h4></div>
+                </article>
+                <article class="work">
+                    <a href="cad-gallery/twin-gusset-base-plate.webp"><img src="cad-gallery/twin-gusset-base-plate.webp" loading="lazy" decoding="async" alt="Twin-gusset base plate"></a><div><h4>Twin-gusset base plate</h4></div>
+                </article>
+                <article class="work">
+                    <a href="cad-gallery/flanged-return-pipe.webp"><img src="cad-gallery/flanged-return-pipe.webp" loading="lazy" decoding="async" alt="Flanged return pipe"></a><div><h4>Flanged return pipe</h4></div>
+                </article>
+                <article class="work">
+                    <a href="cad-gallery/offset-two-boss-link.webp"><img src="cad-gallery/offset-two-boss-link.webp" loading="lazy" decoding="async" alt="Offset two-boss link"></a><div><h4>Offset two-boss link</h4></div>
+                </article>
+                <article class="work">
+                    <a href="cad-gallery/flanged-pipe-elbow.webp"><img src="cad-gallery/flanged-pipe-elbow.webp" loading="lazy" decoding="async" alt="Flanged pipe elbow"></a><div><h4>Flanged pipe elbow</h4></div>
+                </article>
+                <article class="work">
+                    <a href="cad-gallery/cranked-lever.webp"><img src="cad-gallery/cranked-lever.webp" loading="lazy" decoding="async" alt="Cranked lever"></a><div><h4>Cranked lever</h4></div>
+                </article>
+            </div></details>
+            <details class="family"><summary>Solid modelling exercises <small>7 views</small></summary>
+            <div class="works">
+                <article class="work">
+                    <a href="cad-gallery/flanged-cylindrical-body.webp"><img src="cad-gallery/flanged-cylindrical-body.webp" loading="lazy" decoding="async" alt="Flanged cylindrical body"></a><div><h4>Flanged cylindrical body</h4></div>
+                </article>
+                <article class="work">
+                    <a href="cad-gallery/revolved-dish.webp"><img src="cad-gallery/revolved-dish.webp" loading="lazy" decoding="async" alt="Revolved dish"></a><div><h4>Revolved dish</h4></div>
+                </article>
+                <article class="work">
+                    <a href="cad-gallery/spherical-shell.webp"><img src="cad-gallery/spherical-shell.webp" loading="lazy" decoding="async" alt="Spherical shell"></a><div><h4>Spherical shell</h4></div>
+                </article>
+                <article class="work">
+                    <a href="cad-gallery/patterned-flange-and-pin.webp"><img src="cad-gallery/patterned-flange-and-pin.webp" loading="lazy" decoding="async" alt="Patterned flange and pin"></a><div><h4>Patterned flange and pin</h4></div>
+                </article>
+                <article class="work">
+                    <a href="cad-gallery/revolved-section.webp"><img src="cad-gallery/revolved-section.webp" loading="lazy" decoding="async" alt="Revolved section"></a><div><h4>Revolved section</h4></div>
+                </article>
+                <article class="work">
+                    <a href="cad-gallery/stepped-block.webp"><img src="cad-gallery/stepped-block.webp" loading="lazy" decoding="async" alt="Stepped block"></a><div><h4>Stepped block</h4></div>
+                </article>
+                <article class="work">
+                    <a href="cad-gallery/drilled-angle-block.webp"><img src="cad-gallery/drilled-angle-block.webp" loading="lazy" decoding="async" alt="Drilled angle block"></a><div><h4>Drilled angle block</h4></div>
+                </article>
+            </div></details>
+            <details class="family"><summary>Sketches &amp; profile construction <small>15 views</small></summary>
+            <div class="works">
+                <article class="work">
+                    <a href="cad-gallery/offset-circular-profile.webp"><img src="cad-gallery/offset-circular-profile.webp" loading="lazy" decoding="async" alt="Offset circular profile"></a><div><h4>Offset circular profile</h4></div>
+                </article>
+                <article class="work">
+                    <a href="cad-gallery/cross-shaped-profile.webp"><img src="cad-gallery/cross-shaped-profile.webp" loading="lazy" decoding="async" alt="Cross-shaped profile"></a><div><h4>Cross-shaped profile</h4></div>
+                </article>
+                <article class="work">
+                    <a href="cad-gallery/diamond-profile-and-centre-lines.webp"><img src="cad-gallery/diamond-profile-and-centre-lines.webp" loading="lazy" decoding="async" alt="Diamond profile and centre lines"></a><div><h4>Diamond profile and centre lines</h4></div>
+                </article>
+                <article class="work">
+                    <a href="cad-gallery/three-hole-link-profile.webp"><img src="cad-gallery/three-hole-link-profile.webp" loading="lazy" decoding="async" alt="Three-hole link profile"></a><div><h4>Three-hole link profile</h4></div>
+                </article>
+                <article class="work">
+                    <a href="cad-gallery/sketch-modification-study.webp"><img src="cad-gallery/sketch-modification-study.webp" loading="lazy" decoding="async" alt="Sketch modification study"></a><div><h4>Sketch modification study</h4></div>
+                </article>
+                <article class="work">
+                    <a href="cad-gallery/overlapping-polygon-profiles.webp"><img src="cad-gallery/overlapping-polygon-profiles.webp" loading="lazy" decoding="async" alt="Overlapping polygon profiles"></a><div><h4>Overlapping polygon profiles</h4></div>
+                </article>
+                <article class="work">
+                    <a href="cad-gallery/line-and-arc-exercises.webp"><img src="cad-gallery/line-and-arc-exercises.webp" loading="lazy" decoding="async" alt="Line and arc exercises"></a><div><h4>Line and arc exercises</h4></div>
+                </article>
+                <article class="work">
+                    <a href="cad-gallery/slotted-link-profile.webp"><img src="cad-gallery/slotted-link-profile.webp" loading="lazy" decoding="async" alt="Slotted link profile"></a><div><h4>Slotted link profile</h4></div>
+                </article>
+                <article class="work">
+                    <a href="cad-gallery/concave-four-point-profile.webp"><img src="cad-gallery/concave-four-point-profile.webp" loading="lazy" decoding="async" alt="Concave four-point profile"></a><div><h4>Concave four-point profile</h4></div>
+                </article>
+                <article class="work">
+                    <a href="cad-gallery/three-lug-construction-sketch.webp"><img src="cad-gallery/three-lug-construction-sketch.webp" loading="lazy" decoding="async" alt="Three-lug construction sketch"></a><div><h4>Three-lug construction sketch</h4></div>
+                </article>
+                <article class="work">
+                    <a href="cad-gallery/concentric-flange-profile.webp"><img src="cad-gallery/concentric-flange-profile.webp" loading="lazy" decoding="async" alt="Concentric flange profile"></a><div><h4>Concentric flange profile</h4></div>
+                </article>
+                <article class="work">
+                    <a href="cad-gallery/multi-feature-sketch.webp"><img src="cad-gallery/multi-feature-sketch.webp" loading="lazy" decoding="async" alt="Multi-feature sketch"></a><div><h4>Multi-feature sketch</h4></div>
+                </article>
+                <article class="work">
+                    <a href="cad-gallery/stepped-outline.webp"><img src="cad-gallery/stepped-outline.webp" loading="lazy" decoding="async" alt="Stepped outline"></a><div><h4>Stepped outline</h4></div>
+                </article>
+                <article class="work">
+                    <a href="cad-gallery/two-hole-plate-sketch.webp"><img src="cad-gallery/two-hole-plate-sketch.webp" loading="lazy" decoding="async" alt="Two-hole plate sketch"></a><div><h4>Two-hole plate sketch</h4></div>
+                </article>
+                <article class="work">
+                    <a href="cad-gallery/three-lug-flange-profile.webp"><img src="cad-gallery/three-lug-flange-profile.webp" loading="lazy" decoding="async" alt="Three-lug flange profile"></a><div><h4>Three-lug flange profile</h4></div>
+                </article>
+            </div></details>
         </section>
         <p class="cad-note">For simulation evidence, return to Fusion 360 options and open the separate FEA &amp; Simulation case study.</p>
     </main>
