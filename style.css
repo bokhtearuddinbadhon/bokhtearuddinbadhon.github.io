@@ -405,6 +405,9 @@ section,
 
 /* 3D Mechanical Card Shell */
 .mech-card-wrapper {
+    display: block;
+    color: inherit;
+    text-decoration: none;
     position: relative;
     height: 100%;
     transform-style: preserve-3d;
@@ -572,13 +575,7 @@ section,
     margin: 0;
 }
 
-.mech-project-title a {
-    color: inherit;
-    text-decoration: none;
-    transition: color 0.2s ease;
-}
-
-.mech-project-title a:hover {
+.mech-card-wrapper:hover .mech-project-title {
     color: #38bdf8;
 }
 
@@ -894,6 +891,7 @@ section,
 }
 
 .skill-btn {
+    text-decoration: none;
     display: flex;
     align-items: center;
     justify-content: space-between;

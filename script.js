@@ -57,23 +57,6 @@ draw();
    3D PRECISION ENGINEERING PANELS & SKILL MODAL LOGIC
    ========================================================= */
 
-// URL Routing Map: Replace null with your dedicated page URLs when ready
-const SKILL_PAGE_ROUTES = {
-    "Fusion 360": "fusion-360.html",
-    "2D Drafting": null,            // e.g. "skills/drafting.html"
-    "ANSYS FEA": null,              // e.g. "skills/ansys-fea.html"
-    "Parametric Design": null,      // e.g. "skills/parametric-design.html"
-    "MATLAB": null,                 // e.g. "skills/matlab.html"
-    "Python": null,                 // e.g. "skills/python.html"
-    "C++": null,                    // e.g. "skills/cpp.html"
-    "Applied AI": null,             // e.g. "skills/applied-ai.html"
-    "Automotive Diagnostics": null, // e.g. "skills/automotive-diagnostics.html"
-    "Machining": null,              // e.g. "skills/machining.html"
-    "Welding & Fabrication": null,  // e.g. "skills/welding-fabrication.html"
-    "Industrial Maintenance": null, // e.g. "skills/industrial-maintenance.html"
-    "Metrology": null               // e.g. "skills/metrology.html"
-};
-
 document.addEventListener('DOMContentLoaded', () => {
     // 1. Modal Elements
     const modalBackdrop = document.getElementById('skill-modal');
@@ -81,7 +64,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const modalCategory = document.getElementById('modal-skill-category');
     const modalCloseBtn = document.getElementById('modal-close');
     const modalAckBtn = document.getElementById('modal-ack-btn');
-    const skillButtons = document.querySelectorAll('.skill-btn');
+    let activeSkillLink;
 
     function openSkillModal(skillName, categoryName) {
         if (!modalBackdrop) return;
@@ -92,26 +75,30 @@ document.addEventListener('DOMContentLoaded', () => {
         if (modalCloseBtn) modalCloseBtn.focus();
     }
 
-    function closeSkillModal() {
+    function hideSkillModal() {
         if (!modalBackdrop) return;
         modalBackdrop.classList.remove('is-active');
         modalBackdrop.setAttribute('aria-hidden', 'true');
     }
 
-    skillButtons.forEach(btn => {
-        btn.addEventListener('click', (e) => {
-            e.preventDefault();
-            const skill = btn.getAttribute('data-skill');
-            const category = btn.getAttribute('data-category');
-            
-            // Check if a dedicated route exists
-            if (SKILL_PAGE_ROUTES[skill]) {
-                window.location.href = SKILL_PAGE_ROUTES[skill];
-            } else {
-                openSkillModal(skill, category);
-            }
-        });
-    });
+    function showLinkedSkill() {
+        const link = document.getElementById(location.hash.slice(1));
+        if (link && link.matches('.skill-btn[data-skill]')) {
+            activeSkillLink = link;
+            openSkillModal(link.dataset.skill, link.dataset.category);
+        } else if (modalBackdrop?.classList.contains('is-active')) {
+            hideSkillModal();
+        }
+    }
+
+    function closeSkillModal() {
+        history.replaceState(history.state, '', '#skills');
+        hideSkillModal();
+        activeSkillLink?.focus({preventScroll: true});
+    }
+
+    window.addEventListener('hashchange', showLinkedSkill);
+    showLinkedSkill();
 
     if (modalCloseBtn) modalCloseBtn.addEventListener('click', closeSkillModal);
     if (modalAckBtn) modalAckBtn.addEventListener('click', closeSkillModal);
