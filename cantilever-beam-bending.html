@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Study 4 | Cantilever Beam Bending Analysis</title>
+    <meta name="description" content="Fusion 360 cantilever beam bending study with mesh convergence, analytical verification and a beam-depth comparison.">
+    <link rel="canonical" href="https://bokhtearuddinbadhon.github.io/cantilever-beam-bending.html">
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        body{background:#080d1a!important;color:#e2e8f0;min-height:100vh;margin:0}
+        .fea-wrap{max-width:1120px;margin:58px auto 70px;padding:0 24px;position:relative;z-index:1;line-height:1.65}
+        .fea-back{color:#f59e0b;text-decoration:none;font-weight:700;display:inline-flex;gap:9px;align-items:center;margin-bottom:25px}
+        .fea-kicker{color:#22d3ee;text-transform:uppercase;letter-spacing:.16em;font:700 .8rem/1.5 monospace}
+        .fea-wrap h1{font-size:clamp(2rem,4.5vw,3.2rem);line-height:1.12;color:#fff;margin:10px 0 12px}
+        .fea-lead{max-width:850px;color:#b6c4d4;font-size:1.08rem;margin:0 0 22px}
+        .fea-actions{display:flex;flex-wrap:wrap;gap:12px;margin:22px 0 30px}
+        .fea-btn{display:inline-flex;align-items:center;gap:9px;border-radius:9px;padding:11px 16px;text-decoration:none;font-weight:800;border:1px solid #f59e0b;color:#101827;background:#f59e0b}
+        .fea-btn.secondary{color:#dff9ff;background:#0c1c2e;border-color:#22d3ee}
+        .fea-btn:hover,.fea-btn:focus-visible{filter:brightness(1.08);outline:2px solid #fff;outline-offset:2px}
+        .fea-stats{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:13px;margin:0 0 30px}
+        .fea-stat{padding:18px;border:1px solid rgba(34,211,238,.24);border-radius:12px;background:rgba(17,31,49,.88)}
+        .fea-stat strong{display:block;color:#f59e0b;font-size:.75rem;text-transform:uppercase;letter-spacing:.08em;margin-bottom:6px}
+        .fea-stat span{display:block;color:#fff;font-size:1.25rem;font-weight:800;line-height:1.25}
+        .fea-panel{padding:24px;margin:22px 0;border:1px solid rgba(255,255,255,.1);border-radius:15px;background:rgba(15,23,42,.85);box-shadow:0 12px 32px rgba(0,0,0,.2)}
+        .fea-panel h2{margin:0 0 15px;color:#fff;font-size:1.45rem}
+        .fea-panel h3{color:#f59e0b;margin:19px 0 6px;font-size:1.05rem}
+        .fea-panel p{color:#c1ccda;margin:8px 0 13px}
+        .fea-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:16px}
+        .fea-grid ul{color:#c1ccda;margin:8px 0;padding-left:21px;line-height:1.8}
+        .fea-warning{border-left:4px solid #f59e0b;padding:12px 15px;background:rgba(245,158,11,.08);color:#e6edf5;border-radius:0 8px 8px 0;margin-top:16px}
+        .fea-viewer{overflow:hidden;border:1px solid rgba(34,211,238,.3);border-radius:12px;background:#111c2b}
+        .fea-viewer iframe{width:100%;height:min(72vw,740px);min-height:430px;border:0;display:block;background:#182235}
+        .fea-viewer-note{padding:12px 16px;color:#aebccd;font-size:.92rem}
+        .fea-gallery{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:18px}
+        .fea-figure{margin:0;overflow:hidden;background:#0a1220;border:1px solid rgba(255,255,255,.12);border-radius:12px}
+        .fea-figure img{width:100%;height:auto;display:block;background:#fff}
+        .fea-figure figcaption{padding:12px 14px;color:#b9c6d5;font-size:.92rem}
+        .fea-footer{color:#8092a8;font-size:.9rem;margin-top:28px}
+        @media(max-width:780px){.fea-stats{grid-template-columns:repeat(2,minmax(0,1fr))}.fea-grid,.fea-gallery{grid-template-columns:1fr}.fea-wrap{padding:0 17px;margin-top:38px}.fea-viewer iframe{height:70vh;min-height:380px}}
+        @media(max-width:420px){.fea-stats{grid-template-columns:1fr}.fea-actions{display:grid}.fea-btn{justify-content:center}}
+    </style>
+</head>
+<body>
+    <main class="fea-wrap">
+        <a class="fea-back" href="hook-fea.html#study-4"><i class="fa-solid fa-arrow-left" aria-hidden="true"></i> Back to FEA &amp; Simulation studies</a>
+        <div class="fea-kicker">FEA &amp; simulation / Study 4</div>
+        <h1>Cantilever Beam Bending Analysis</h1>
+        <p class="fea-lead">I modelled a 300 mm aluminium cantilever under a 50 N end load. I checked the predicted tip movement against beam theory, refined the mesh to test the stress near the support, and compared four beam depths.</p>
+        <div class="fea-actions">
+            <a class="fea-btn" href="cantilever-beam-bending.pdf" target="_blank" rel="noopener"><i class="fa-solid fa-file-pdf" aria-hidden="true"></i> View slide deck</a>
+            <a class="fea-btn secondary" href="cantilever-beam-bending.pdf" download>Download PDF</a>
+        </div>
+        <section class="fea-stats" aria-label="Baseline beam results"><div class="fea-stat"><strong>End load</strong><span>50 N</span></div><div class="fea-stat"><strong>Vertical tip movement</strong><span>3.114 mm</span></div><div class="fea-stat"><strong>Theoretical deflection</strong><span>3.135 mm</span></div><div class="fea-stat"><strong>Selected mesh</strong><span>3.0 mm</span></div></section>
+        <section class="fea-panel" aria-labelledby="setup"><h2 id="setup">Model and analysis setup</h2>
+        <div class="fea-grid"><div><h3>Geometry and material</h3><ul><li>Aluminium beam with a 300 mm span and 25 mm width</li><li>Baseline depth of 10 mm and analytical Young’s modulus of 68.9 GPa</li><li>Depths of 8, 10, 12 and 15 mm compared under the same load</li></ul></div>
+        <div><h3>Boundary conditions and mesh</h3><ul><li>All three translations restrained on the root face</li><li>50 N distributed across the opposite face in the negative Z direction</li><li>Four mesh sizes from 10.0 to 1.5 mm, with 3.0 mm selected for the depth comparison</li></ul></div></div></section>
+        <section class="fea-panel" aria-labelledby="results"><h2 id="results">Results and mechanical interpretation</h2>
+        <h3>Which result stabilised as the mesh was refined?</h3><p>At 3.0 mm, the predicted vertical deflection was <strong>3.114 mm</strong>, 0.67% below the analytical value. Halving the mesh size increased the element count from 14,400 to 122,400 and changed vertical deflection by just 0.047%. Over the same step, peak von Mises stress rose from 34.763 to 38.008 MPa.</p>
+        <h3>How much does a deeper beam help?</h3><p>Increasing depth from 10 to 15 mm reduced total tip movement from 3.115 to 0.925 mm, a <strong>70.3% reduction</strong> for a 50% increase in mass. At fixed width, the second moment of area grows with the cube of the depth.</p>
+        <div class="fea-warning"><strong>Scope and limits.</strong> The 36.00 MPa analytical result is nominal longitudinal bending stress. The contour shows equivalent stress near an ideal clamp. A longitudinal stress probe at a fixed section away from the support would give a closer comparison.</div></section>
+        <section class="fea-panel" aria-labelledby="evidence"><h2 id="evidence">Fusion 360 evidence</h2><div class="fea-gallery"><figure class="fea-figure"><a href="beam/geometry.webp" target="_blank" rel="noopener"><img src="beam/geometry.webp" alt="Aluminium body properties" loading="lazy"></a><figcaption>The baseline beam measures 300 × 25 × 10 mm and has a mass of 202.50 g.</figcaption></figure>
+<figure class="fea-figure"><a href="beam/end-load.webp" target="_blank" rel="noopener"><img src="beam/end-load.webp" alt="Free-end face selected in the Fusion load dialogue" loading="lazy"></a><figcaption>I applied a total downward force of 50 N across the free-end face.</figcaption></figure>
+<figure class="fea-figure"><a href="beam/mesh.webp" target="_blank" rel="noopener"><img src="beam/mesh.webp" alt="Full Fusion view of the 3 mm beam mesh" loading="lazy"></a><figcaption>The selected 3.0 mm mesh contains 14,400 elements.</figcaption></figure>
+<figure class="fea-figure"><a href="beam/displacement.webp" target="_blank" rel="noopener"><img src="beam/displacement.webp" alt="Fusion total displacement contour on the 3 mm mesh" loading="lazy"></a><figcaption>The contour shows 3.115 mm total movement. The solver gives 3.114 mm for the vertical component.</figcaption></figure>
+<figure class="fea-figure"><a href="beam/stress.webp" target="_blank" rel="noopener"><img src="beam/stress.webp" alt="Von Mises stress contour on the 1.5 mm mesh" loading="lazy"></a><figcaption>On the finest mesh, the peak near the clamp reaches 38.008 MPa.</figcaption></figure>
+<figure class="fea-figure"><a href="beam/depth-15.webp" target="_blank" rel="noopener"><img src="beam/depth-15.webp" alt="Total displacement of the 15 mm deep beam" loading="lazy"></a><figcaption>Increasing depth to 15 mm brings maximum total displacement down to 0.925 mm.</figcaption></figure>
+</div></section>
+        <section class="fea-panel" aria-labelledby="fea-deck-title">
+            <h2 id="fea-deck-title">Slide deck</h2>
+            <div class="fea-viewer">
+                <iframe src="cantilever-beam-bending.pdf" title="Cantilever beam bending case-study slide deck" loading="lazy"></iframe>
+                <div class="fea-viewer-note">If the preview does not load in your browser, use “View slide deck” or download the PDF above.</div>
+            </div>
+        </section>
+        <p class="fea-footer">Coursework case study based on my CW1 Task 4 cantilever beam model, simulation results and analytical checks.</p>
+    </main>
+</body>
+</html>
